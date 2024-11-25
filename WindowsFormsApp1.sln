@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpAPI", "CsharpAPI\Csha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C64F5319-C1AD-41B4-AAC3-10137FDAC784}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUI", "StartUI\StartUI.csproj", "{80D819CD-9340-4525-9488-8A800ECABAEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C64F5319-C1AD-41B4-AAC3-10137FDAC784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C64F5319-C1AD-41B4-AAC3-10137FDAC784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C64F5319-C1AD-41B4-AAC3-10137FDAC784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D819CD-9340-4525-9488-8A800ECABAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D819CD-9340-4525-9488-8A800ECABAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D819CD-9340-4525-9488-8A800ECABAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D819CD-9340-4525-9488-8A800ECABAEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
