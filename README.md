@@ -1,4 +1,5 @@
 # Resume Parser System
+
  The Intelligent Resume Parsing System is a C#-based application designed to streamline and enhance recruitment workflows. By integrating advanced natural language processing (NLP) techniques and robust data management capabilities, this system provides a comprehensive solution for importing, analyzing, and matching resumes. It empowers HR professionals with structured insights and data-driven decision-making tools, making the recruitment process faster, smarter, and more accurate.
 
 # 设计文档
@@ -24,7 +25,6 @@ subgraph 简历内容解析
 end
 Winform-->Csharp
 ```
-
 
 # 模块介绍
 
@@ -57,41 +57,39 @@ Winform-->Csharp
 - 类型名:  `ResumeFile`
 
 - 字段:
-
-  |   属性名   |    类型    |   解释   |
-  | :--------: | :--------: | :------: |
-  |    `id`    |   `int`    |  实体id  |
-  | `filename` |  `string`  |  文件名  |
-  |   `path`   |  `string`  | 文件路径 |
-  |   `date`   | `DateTime` | 导入日期 |
+  
+  | 属性名        | 类型         | 解释   |
+  |:----------:|:----------:|:----:|
+  | `id`       | `int`      | 实体id |
+  | `filename` | `string`   | 文件名  |
+  | `path`     | `string`   | 文件路径 |
+  | `date`     | `DateTime` | 导入日期 |
 
 ### 简历信息实体
 
 - 类型名:    `ResumeImfo`
 
 - 字段
-
-  |   属性名   |      类型      |      解释      |
-  | :--------: | :------------: | :------------: |
-  |    `id`    |     `int`      |    实体 id     |
-  |   `name`   |    `string`    |      姓名      |
-  |  `phone`   |    `string`    | 电话(联系方式) |
-  |  `edupg`   |    `string`    |    教育背景    |
-  | `jobExper` |    `string`    |    工作经历    |
-  |  `skill`   | `List<string>` |      技能      |
+  
+  | 属性名        | 类型             | 解释       |
+  |:----------:|:--------------:|:--------:|
+  | `id`       | `int`          | 实体 id    |
+  | `name`     | `string`       | 姓名       |
+  | `phone`    | `string`       | 电话(联系方式) |
+  | `edupg`    | `string`       | 教育背景     |
+  | `jobExper` | `string`       | 工作经历     |
+  | `skill`    | `List<string>` | 技能       |
 
 ### 关键字实体
 
 - 类型名:   `KeyWord`
 
 - 字段:
-
-  | 属性名 |   类型   |  解释   |
-  | :----: | :------: | :-----: |
-  |  `id`  |  `int`   | 实体 id |
-  | `word` | `string` | 关键字  |
-
-
+  
+  | 属性名    | 类型       | 解释    |
+  |:------:|:--------:|:-----:|
+  | `id`   | `int`    | 实体 id |
+  | `word` | `string` | 关键字   |
 
 ****
 
@@ -142,10 +140,6 @@ Winform-->Csharp
 #### 统计分析
 
 调用 数据分析与报告 接口绘图,   调用`C# api`生成文字介绍
-
-
-
-
 
 ## GPTapi 部分
 
@@ -204,14 +198,17 @@ Winform-->Csharp
 ### 接口定义
 
 - 简历内容识别
+  
   - 输入：文件路径
   - 输出：简历信息类的实例
 
 - 技能评估
+  
   - 输入：简历的技能描述部分
   - 输出：技能评估信息类的实例
 
 - 报告生成
+  
   - 输入：统计信息类的实例
   - 输出：字符串，gpt 生成的报告文本。
 
@@ -245,43 +242,42 @@ Winform-->Csharp
   - 返回值:  插入的数据的`id`
     - 若未插入成功,则返回`-1`
 
-
-
 `searchResumeFile(string ) -> ResumeFile `
 
 - 查询指定名字的简历文件记录
+
 - 传入参数:  简历名称
+
 - 返回值:  简历文件实体类
+  
   - 若未查询成功,则返回`None`
 
-
-
 - `insertResumeImfo(ResumeImfo ) -> int`
+  
   - 向数据库插入一条简历信息记录
   - 传入参数:  简历实体`ResumeImfo`
   - 返回值:  插入的数据的`id`
     - 若未插入成功,则返回`-1`
 
-
-
 `searchResumeImfo(string ) -> ResumeImfo `
 
 - 查询指定名字的简历文件信息
+
 - 传入参数:  简历名称
+
 - 返回值:  简历信息实体类
+  
   - 若未查询成功,则返回`None`
 
-
-
 - `insertKeyWord(KeyWord ) -> int`
+  
   - 向数据库插入一条关键字记录
   - 传入参数:  简历实体`KeyWord`
   - 返回值:  插入的数据的`id`
     - 若未插入成功,则返回`-1`
 
-
-
 - `ConnectResumeFileToImfo(int FileId, int ImfoId) -> int`
+  
   - 向简历文件与信息关系表中插入一条记录
   - 传入参数:  
     - `FileId`:   文件实体的数据id
@@ -289,9 +285,8 @@ Winform-->Csharp
   - 返回值:  插入的数据的`id`
     - 若未插入成功,则返回`-1`
 
-
-
 - `ConnectResumeFileToKey(int FileId, int KeyId) -> int`
+  
   - 向简历文件与关键字关系表中插入一条记录
   - 传入参数:  
     - `FileId`:   文件实体的数据`id`
@@ -299,50 +294,42 @@ Winform-->Csharp
   - 返回值:  插入的数据的`id`
     - 若未插入成功,则返回`-1`
 
-
-
 - `SearchByName(string )-> DataTable`
+  
   - 根据输入的文件名匹配文件
   - 返回值:数据库结构的表DataTable
 
-
-
 - `SearchByData(DataTime )-> DataTable`
+  
   - 根据输入的时间匹配简历
   - 返回值:数据库结构的表DataTable
 
-
-
 - `Search(string ) -> DataTable `
+  
   - 根据输入的一段话匹配文章
   - 传入参数：用户在搜索框输入的内容
   - 返回值：数据库结构的表 DataTable
 
-
-
 - `CountForAge() -> Dic`
+  
   - 统计求职者的年龄分布
   - 返回值：信息字典
     - 键：年龄
     - 值：人数
 
-
-
 - `CountForEduBg() -> Dic`
+  
   - 统计求职者的学历分布
   - 返回值：信息字典
     - 键：学历，如 小学/初中
     - 值：人数
 
-
-
 - `CountForSkill() -> Dic`
+  
   - 统计求职者的技能分布
   - 返回值：信息字典
     - 键：技能
     - 值：人数
-
-
 
 ## 打开并显示简历
 
@@ -351,20 +338,18 @@ Winform-->Csharp
 ### 接口声明
 
 - `DocDisplay(RichTextBox DisplayBlock,string FilePath)`
+  
   - 读取 `word` 文件内容，并将其显示到 `RichTextBox` 控件中
   - 传入参数：
     - `DisplayBlock`：`winform` 中的 `RichTextBox` 控件
     - `FilePath`: 等待打开的 word 文件路径
 
-
-
 - `PDFDisplay(PdfViewer DisplayBlock,string FilePath)`
+  
   - 读取 `pdf` 文件内容，并将其显示到 `PdfViewer` 控件中
   - 传入参数：
     - `DisplayBlock`: `winform` 中的 `PdfViewer` 控件
     - `FilePath`：等待打开的 pdf 文件路径
-
-
 
 ## 数据分析与报告
 
@@ -379,8 +364,6 @@ Winform-->Csharp
   - 传入参数：
     - `winform` 中用于展示统计信息的 `Chart` 控件
 
-
-
 ## 基于 NPL 的文字分词与关键字提取
 
 通过使用 `OpenNLP` 对传入的文本进行分词
@@ -391,7 +374,7 @@ Winform-->Csharp
   - 对传入的字符串进行分词
   - 返回分好的所有词语。
 
-##  其他
+## 其他
 
 - `C#` 将 `json` 转换为 `CSV`，`XML`
   - 需要学习，`C#` 如何处理 `json` 内容（大概是字典或实体类），然后直接调用 api 转成其他格式
@@ -409,4 +392,3 @@ Winform-->Csharp
 - 基于 NPL 的文字分词与关键字提取
   - `OpenNLP`
 - 打开并显示简历
-
