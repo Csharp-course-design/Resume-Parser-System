@@ -1,0 +1,125 @@
+﻿<Window x:Class="StartUI.LoginIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:StartUI"
+        mc:Ignorable="d" 
+        Height="645" 
+        Width="875"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        FontSize="18"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light"
+                                         PrimaryColor="Teal"
+                                         SecondaryColor="Lime"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30"
+                              ShadowDepth="1"
+                              Opacity="0.4"/>
+        </Grid.Effect>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.22*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--左区域-->
+        <Border CornerRadius="10 0 0 10"
+                ClipToBounds="True">
+
+            <Border.Background>
+                <ImageBrush ImageSource="D:\MPine\Microsoft Visual Studio\Project_CSharp\StartUI\Resources\LoginLeft.jpg"
+                            Stretch="UniformToFill"/>
+            </Border.Background>
+               
+            <Border.Clip>
+                <RectangleGeometry Rect="0,0,400,605"
+                                   RadiusX="10"
+                                   RadiusY="10"/>
+            </Border.Clip>
+
+            <StackPanel Margin="0 120 0 0"
+                        VerticalAlignment="Top">
+                <TextBlock FontSize="46"
+                           FontWeight="Light"
+                           Text="Sign up"
+                           Foreground="#ffffff"
+                           TextAlignment="Center"/>
+
+                <TextBlock FontWeight="Light"
+                           FontSize="16"
+                           Foreground="#d1f2eb"
+                           TextAlignment="Center"
+                           Text="to use all features"
+                           Margin="0 15 0 3"/>
+
+                <TextBlock FontSize="16"
+                           FontWeight="Light"
+                           Text="of the application"
+                           Foreground="#d1f2eb"
+                           TextAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        
+        <!--右区域-->
+        <Border Grid.Column="1"
+                Background="#ffffff"
+                CornerRadius="0 10 10 0"
+                MouseDown="Border_MouseDown">
+
+            <Grid>
+                <!--关闭图标-->
+                <materialDesign:PackIcon Kind="Close"
+                                         VerticalAlignment="Top"
+                                         Width="20"
+                                         Height="20"
+                                         HorizontalAlignment="Right"
+                                         Opacity="0.3"
+                                         Margin="0 13 14 0"/>
+                <!--输入框-->
+                <StackPanel VerticalAlignment="Center"
+                            Margin="75 0">
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="MPine"
+                             materialDesign:HintAssist.Hint="Username"
+                             materialDesign:HintAssist.FloatingOffset="0,-20"
+                             BorderBrush="#c5c8cc"
+                             BorderThickness="0 0 0 1.5"/>
+
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="MPine@gmail.com"
+                             materialDesign:HintAssist.Hint="Email"
+                             materialDesign:HintAssist.FloatingOffset="0,-20"
+                             BorderBrush="#c5c8cc"
+                             Margin="0 27"
+                             BorderThickness="0 0 0 1.5"/>
+
+                    <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             Password="123456"
+                             materialDesign:HintAssist.Hint="Email"
+                             materialDesign:HintAssist.FloatingOffset="0,-20"
+                             BorderBrush="#c5c8cc"
+                             Margin="0 27"
+                             BorderThickness="0 0 0 1.5"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+         
+    </Grid>
+</Window>
