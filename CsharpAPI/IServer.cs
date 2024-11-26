@@ -9,6 +9,8 @@ namespace CsharpAPI
 {
     internal interface IServer
     {
-        ResumeFile ExtractResumeFile();
+        ResumeFile ExtractResumeFile(ResumeFile resumeFile);
+
+
     }
 }
