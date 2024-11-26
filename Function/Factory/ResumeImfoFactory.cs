@@ -39,6 +39,7 @@ namespace CsharpAPI.Factory
                     new BaseImfo(
                         0, 
                         data.basic_info.name, 
+                        data.basic_info.age,
                         data.contact_info.phone_number
                         ),
                     new EduBG(

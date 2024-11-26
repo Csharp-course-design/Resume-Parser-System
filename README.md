@@ -28,6 +28,33 @@ Winform-->Csharp
 
 # 模块介绍
 
+## 里程碑
+
+- [ ] 前端页面
+- [ ] C#API
+- [x] Models
+- [ ] 数据报告图像渲染
+- [x] 文件打开与显示
+- [ ] 数据库访问
+
+## 功能清单
+
+1. **简历导入与管理**
+  1. $\checkmark$支持格式：系统应支持常见的简历格式，包括但不限于Word（.doc, .docx）、PDF和纯文本（.txt）
+  2. $\checkmark$导入方式：允许用户通过拖拽、点击上传等方式单个或批量提交简历。
+  3. 存储与检索：可按导入日期，文件名称等方式查询简历。可根据用户的选择，打开并显示一份简历文件。
+2. **简历解析与结构化**
+  1. 内容提取：自动从简历中提取求职者信息，如姓名、联系方式、教育背景、工作经历、技能等。
+  2. 数据结构化：为用户提供多种简历解析数据的格式，包括但不限于JSON、CSV、XML。
+  3. 格式转换：支持将解析后的一种简历数据格式转换为其他格式。
+3. **简历匹配与筛选**
+  1. 关键词匹配：允许用户设定关键词，系统根据关键词自动筛选符合条件的简历。
+  2. 语义匹配：利用NLP技术，实现简历与职位描述之间的语义匹配，提高筛选的准确性。
+  3. 技能评估：根据求职者简历中的技能描述，评估其技能熟练度，并给出相应的评分。
+4. **数据分析与报告**
+  1. 统计分析：对简历数据进行统计分析，如求职者年龄分布、学历分布、技能分布等。
+  2. 报告生成：提供可视化报告，以图表形式展示分析结果，并配以文字介绍。
+
 ## 窗体部分
 
 提供用户操作界面即简单逻辑，略
@@ -232,11 +259,16 @@ Winform-->Csharp
   - 文件Base64编码字符串
   - 导入日期
 - 简历信息实体
+- 技能信息实体
+  - id
+  - 技能(string)
+
 - 关键字实体
   - 实体 id
   - 关键字
 - 简历-关键字 关系表
 - 简历-简历信息关系表
+- 简历信息-技能关系表
 
 ### 关键字匹配算法设计
 
@@ -244,13 +276,16 @@ Winform-->Csharp
 
 ### 接口声明
 
-- `insertResumeFile(ResumeFile ) -> int`
-  - 向数据库插入一条简历文件记录
-  - 传入参数:  简历实体`ResumeFile`
-  - 返回值:  插入的数据的`id`
-    - 若未插入成功,则返回`-1`
+#### `insertResumeFile(ResumeFile ) -> int`
 
-`searchResumeFile(string ) -> ResumeFile `
+- 向数据库插入一条简历文件记录
+- 传入参数:  简历实体`ResumeFile`
+- 返回值:  插入的数据的`id`
+  - 若未插入成功,则返回`-1`
+
+
+
+#### `searchResumeFile(string ) -> ResumeFile `
 
 - 查询指定名字的简历文件记录
 
@@ -260,14 +295,18 @@ Winform-->Csharp
   
   - 若未查询成功,则返回`None`
 
-- `insertResumeImfo(ResumeImfo ) -> int`
-  
-  - 向数据库插入一条简历信息记录
-  - 传入参数:  简历实体`ResumeImfo`
-  - 返回值:  插入的数据的`id`
-    - 若未插入成功,则返回`-1`
 
-`searchResumeImfo(string ) -> ResumeImfo `
+
+#### `insertResumeImfo(ResumeImfo ) -> int`
+
+- 向数据库插入一条简历信息记录
+- 传入参数:  简历实体`ResumeImfo`
+- 返回值:  插入的数据的`id`
+  - 若未插入成功,则返回`-1`
+
+
+
+#### `searchResumeImfo(string ) -> ResumeImfo `
 
 - 查询指定名字的简历文件信息
 
@@ -277,67 +316,87 @@ Winform-->Csharp
   
   - 若未查询成功,则返回`None`
 
-- `insertKeyWord(KeyWord ) -> int`
-  
-  - 向数据库插入一条关键字记录
-  - 传入参数:  简历实体`KeyWord`
-  - 返回值:  插入的数据的`id`
-    - 若未插入成功,则返回`-1`
 
-- `ConnectResumeFileToImfo(int FileId, int ImfoId) -> int`
-  
-  - 向简历文件与信息关系表中插入一条记录
-  - 传入参数:  
-    - `FileId`:   文件实体的数据id
-    - `ImfoId`:   文件信息的数据id
-  - 返回值:  插入的数据的`id`
-    - 若未插入成功,则返回`-1`
 
-- `ConnectResumeFileToKey(int FileId, int KeyId) -> int`
-  
-  - 向简历文件与关键字关系表中插入一条记录
-  - 传入参数:  
-    - `FileId`:   文件实体的数据`id`
-    - `KeyId`:     关键字的数据`id`
-  - 返回值:  插入的数据的`id`
-    - 若未插入成功,则返回`-1`
+#### `insertKeyWord(KeyWord ) -> int`
 
-- `SearchByName(string )-> DataTable`
-  
-  - 根据输入的文件名匹配文件
-  - 返回值:数据库结构的表DataTable
+- 向数据库插入一条关键字记录
+- 传入参数:  简历实体`KeyWord`
+- 返回值:  插入的数据的`id`
+  - 若未插入成功,则返回`-1`
 
-- `SearchByData(DataTime )-> DataTable`
-  
-  - 根据输入的时间匹配简历
-  - 返回值:数据库结构的表DataTable
 
-- `Search(string ) -> DataTable `
-  
-  - 根据输入的一段话匹配文章
-  - 传入参数：用户在搜索框输入的内容
-  - 返回值：数据库结构的表 DataTable
 
-- `CountForAge() -> Dic`
-  
-  - 统计求职者的年龄分布
-  - 返回值：信息字典
-    - 键：年龄
-    - 值：人数
+#### `ConnectResumeFileToImfo(int FileId, int ImfoId) -> int`
 
-- `CountForEduBg() -> Dic`
-  
-  - 统计求职者的学历分布
-  - 返回值：信息字典
-    - 键：学历，如 小学/初中
-    - 值：人数
+- 向简历文件与信息关系表中插入一条记录
+- 传入参数:  
+  - `FileId`:   文件实体的数据id
+  - `ImfoId`:   文件信息的数据id
+- 返回值:  插入的数据的`id`
+  - 若未插入成功,则返回`-1`
 
-- `CountForSkill() -> Dic`
-  
-  - 统计求职者的技能分布
-  - 返回值：信息字典
-    - 键：技能
-    - 值：人数
+
+
+#### `ConnectResumeFileToKey(int FileId, int KeyId) -> int`
+
+- 向简历文件与关键字关系表中插入一条记录
+- 传入参数:  
+  - `FileId`:   文件实体的数据`id`
+  - `KeyId`:     关键字的数据`id`
+- 返回值:  插入的数据的`id`
+  - 若未插入成功,则返回`-1`
+
+
+
+#### `SearchByName(string )-> DataTable`
+
+- 根据输入的文件名匹配文件
+- 返回值:数据库结构的表DataTable
+
+
+
+#### `SearchByData(DataTime )-> DataTable`
+
+- 根据输入的时间匹配简历
+- 返回值:数据库结构的表DataTable
+
+
+
+#### `Search(string ) -> DataTable `
+
+- 根据输入的一段话匹配文章
+- 传入参数：用户在搜索框输入的内容
+- 返回值：数据库结构的表 DataTable
+
+
+
+#### `CountForAge() -> Dic`
+
+- 统计求职者的年龄分布
+- 返回值：信息字典
+  - 键：年龄
+  - 值：人数
+
+
+
+#### `CountForEduBg() -> Dic`
+
+- 统计求职者的学历分布
+- 返回值：信息字典
+  - 键：学历，如 小学/初中
+  - 值：人数
+
+
+
+#### `CountForSkill() -> Dic`
+
+- 统计求职者的技能分布
+- 返回值：信息字典
+  - 键：技能
+  - 值：人数
+
+
 
 ## 打开并显示简历
 
@@ -346,14 +405,14 @@ Winform-->Csharp
 ### 接口声明
 
 - `DocDisplay(RichTextBox DisplayBlock,string FilePath)`
-  
   - 读取 `word` 文件内容，并将其显示到 `RichTextBox` 控件中
   - 传入参数：
     - `DisplayBlock`：`winform` 中的 `RichTextBox` 控件
     - `FilePath`: 等待打开的 word 文件路径
 
+
+
 - `PDFDisplay(PdfViewer DisplayBlock,string FilePath)`
-  
   - 读取 `pdf` 文件内容，并将其显示到 `PdfViewer` 控件中
   - 传入参数：
     - `DisplayBlock`: `winform` 中的 `PdfViewer` 控件

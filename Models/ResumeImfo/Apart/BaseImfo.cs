@@ -7,13 +7,15 @@ namespace Models.ResumeImfo.Apart
         private int id;
         private string name = string.Empty;
         private string phone = string.Empty;
+        private int age;
 
         public BaseImfo() { }
 
-        public BaseImfo(int id, string name, string phone)
+        public BaseImfo(int id, string name,int age, string phone)
         {
             this.id = id;
             this.name = name;
+            this.age = age;
             this.phone = phone;
         }
 
@@ -32,23 +34,15 @@ namespace Models.ResumeImfo.Apart
         /// </summary>
         public string Name { get => name; set => name = value; }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj is BaseImfo other)
-            {
-                return id == other.id && name == other.name && phone == other.phone;
-            }
-            return false;
-        }
+        /// <summary>
+        /// 年龄
+        /// </summary>
+        public int Age { get => age; set => age = value; }
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(id, name, phone);
-        }
 
         public override string ToString()
         {
-            return $"ID: {id}, Name: {name}, Phone: {phone}";
+            return $"ID: {id}, Name: {name}, Age: {age}, Phone: {phone}";
         }
     }
 }
