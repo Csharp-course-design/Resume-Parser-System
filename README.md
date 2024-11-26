@@ -14,7 +14,7 @@ D(数据分析与报告)
 Split(使用NPL分词)
 Winform(Winform界面)
 G(打开并显示简历)
-Gpt(GPT API)
+Gpt(小析智能API)
 D-->Search
 Search-->Split
 Winform-->D
@@ -32,9 +32,11 @@ Winform-->Csharp
 
 提供用户操作界面即简单逻辑，略
 
-## GPTapi 部分
-
-通过 lanchain 框架与大模型进行交互，并使用 Flask 框架提供网络 api 调用服务
+> 弃用的功能
+> 
+> ### GPTapi 部分
+> 
+> 通过 lanchain 框架与大模型进行交互，并使用 Flask 框架提供网络 api 调用服务
 
 ## 待测试的功能
 
@@ -67,18 +69,7 @@ Winform-->Csharp
 
 ### 简历信息实体
 
-- 类型名:    `ResumeImfo`
-
-- 字段
-  
-  | 属性名        | 类型             | 解释       |
-  |:----------:|:--------------:|:--------:|
-  | `id`       | `int`          | 实体 id    |
-  | `name`     | `string`       | 姓名       |
-  | `phone`    | `string`       | 电话(联系方式) |
-  | `edupg`    | `string`       | 教育背景     |
-  | `jobExper` | `string`       | 工作经历     |
-  | `skill`    | `List<string>` | 技能       |
+实体属性见[API开发文档 - 小析智能](https://wiki.xiaoxizn.com/#parser-result)
 
 ### 关键字实体
 
@@ -141,47 +132,53 @@ Winform-->Csharp
 
 调用 数据分析与报告 接口绘图,   调用`C# api`生成文字介绍
 
-## GPTapi 部分
 
-需要实现与 GPT 的 json 格式交互。
 
-### 简历内容识别
-
-向 GPTapi 提交指定格式接口，并返回 json 格式的文本（在 python 中 json 格式的内容一般按字典存放。)，总之提供 `姓名` 、`联系方式`、`教育背景`、`工作经历`、`技能` 等 键，然后值为指定内容就可以。
-
-### 内容提取接口
-
-- 输入
-  - 一个 word 文件，或 PDF，或纯文本
-- 输出 
-  - `json` 格式可通过字段索引的内容
-
-<small>这部分存在问题，如果 gpt 限制传入文件数量就会麻烦</small>
-
-### 技能评估
-
-- 输入
-  - 简历描述文本(`string`)
-- 输出
-  - `json`
-  - 至少包含键：`分数`
-
-### 报告生成
-
-- 输入
-  - 一些数据，可以在实际开发时再约定
-- 输出
-  - 文字(`string`)
-
-## python api 网络服务
-
-将 `GPTapi` 封装为可以通过 http 请求进行数据交互的格式，以使 `C#` 端可以调用 `GPTapi` 提供的各种方法
-
-#### REST 风格的 `url`
-
-#### 通过 `POST` 请求将文件下载到指定位置
-
-通过该功能，`GPTapi` 只需要从传入的文件路径中读取文件，而无需关心 `C#` 部分的实际文件路径
+>  <small>
+> 
+> ## GPTapi 部分
+> 
+> 需要实现与 GPT 的 json 格式交互。
+> 
+> ### 简历内容识别
+> 
+> 向 GPTapi 提交指定格式接口，并返回 json 格式的文本（在 python 中 json 格式的内容一般按字典存放。)，总之提供 `姓名` 、`联系方式`、`教育背景`、`工作经历`、`技能` 等 键，然后值为指定内容就可以。
+> 
+> ### 内容提取接口
+> 
+> - 输入
+>   - 一个 word 文件，或 PDF，或纯文本
+> - 输出
+>   - `json` 格式可通过字段索引的内容
+> 
+> <small>这部分存在问题，如果 gpt 限制传入文件数量就会麻烦</small>
+> 
+> ### 技能评估
+> 
+> - 输入
+>   - 简历描述文本(`string`)
+> - 输出
+>   - `json`
+>   - 至少包含键：`分数`
+> 
+> ### 报告生成
+> 
+> - 输入
+>   - 一些数据，可以在实际开发时再约定
+> - 输出
+>   - 文字(`string`)
+> 
+> ## python api 网络服务
+> 
+> 将 `GPTapi` 封装为可以通过 http 请求进行数据交互的格式，以使 `C#` 端可以调用 `GPTapi` 提供的各种方法
+> 
+> #### REST 风格的 `url`
+> 
+> #### 通过 `POST` 请求将文件下载到指定位置
+> 
+> 通过该功能，`GPTapi` 只需要从传入的文件路径中读取文件，而无需关心 `C#` 部分的实际文件路径
+> 
+> </small>
 
 ## C# api 网络服务
 
@@ -197,9 +194,19 @@ Winform-->Csharp
 
 ### 接口定义
 
+
+
+> #### 对pdf文件进行Base64编码
+> 
+> [C#中pdf文件与base64字符串的相互转换_c# pdf转base64-CSDN博客](https://blog.csdn.net/qq_41760419/article/details/139118479)
+
+#### `GetResumeImfo(string filename, string resume_base) -> `
+
 - 简历内容识别
   
-  - 输入：文件路径
+  - 输入：
+    - filename: 文件名称
+    - resume_base: 经 base64 编码的简历文件内容
   - 输出：简历信息类的实例
 
 - 技能评估
