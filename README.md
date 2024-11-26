@@ -60,16 +60,20 @@ Winform-->Csharp
 
 - 字段:
   
-  | 属性名        | 类型         | 解释   |
-  |:----------:|:----------:|:----:|
-  | `id`       | `int`      | 实体id |
-  | `filename` | `string`   | 文件名  |
-  | `path`     | `string`   | 文件路径 |
-  | `date`     | `DateTime` | 导入日期 |
+  |    属性名    |    类型    |        解释        |
+  | :----------: | :--------: | :----------------: |
+  |     `id`     |   `int`    |       实体id       |
+  |  `filename`  |  `string`  |       文件名       |
+  | `Base64Data` |  `string`  | 文件Base64编码内容 |
+  |    `date`    | `DateTime` |      导入日期      |
 
 ### 简历信息实体
 
-实体属性见[API开发文档 - 小析智能](https://wiki.xiaoxizn.com/#parser-result)
+- 类型名: `ResumeImfo`
+- 字段: 
+  - `BaseImfo`
+  - `EduBG`
+  - `WorkExper`
 
 ### 关键字实体
 
@@ -182,40 +186,39 @@ Winform-->Csharp
 
 ## C# api 网络服务
 
-### 提供 `POST` 请求以发送文件
-
-使用 `HttpClient` 库，通过该部分，可以将用户上传的文件直接传递给 `GPTapi` 端。
-
-[C# HttpClient全攻略：GET、POST、文件传输与授权设置一网打尽-CSDN博客](https://blog.csdn.net/weixin_42026861/article/details/135783422)
-
-### 将 `python api` 的 `url` 服务转换为函数接口
-
-使用者无需关心 `python api` 提供的网络服务如何使用，只需调用提供的相应方法。
-
 ### 接口定义
-
-
 
 > #### 对pdf文件进行Base64编码
 > 
 > [C#中pdf文件与base64字符串的相互转换_c# pdf转base64-CSDN博客](https://blog.csdn.net/qq_41760419/article/details/139118479)
 
-#### `GetResumeImfo(string filename, string resume_base) -> `
+#### `GetResumeImfo(ResumeFile ) ->  ResumeImfo`
 
 - 简历内容识别
   
   - 输入：
-    - filename: 文件名称
-    - resume_base: 经 base64 编码的简历文件内容
+    - `ResumeFile `类型的对象
   - 输出：简历信息类的实例
 
+
+
+#### `GetSkillGrade(ResumeFile ) -> Dic`
+
 - 技能评估
-  
-  - 输入：简历的技能描述部分
-  - 输出：技能评估信息类的实例
+
+  - 输入：
+    - `ResumeFile `类型的对象
+
+  - 输出：字典
+    - 键为技能
+    - 值为分数
+
+
+
+#### `GetContent() -> string `(待定义)
 
 - 报告生成
-  
+
   - 输入：统计信息类的实例
   - 输出：字符串，gpt 生成的报告文本。
 
@@ -226,16 +229,14 @@ Winform-->Csharp
 - 简历实体
   - 实体 id
   - 文件名
-  - 文件路径
+  - 文件Base64编码字符串
   - 导入日期
 - 简历信息实体
-  - 实体 id
-  - 姓名 等字段
 - 关键字实体
   - 实体 id
   - 关键字
-- 简历-简历信息 关系表
 - 简历-关键字 关系表
+- 简历-简历信息关系表
 
 ### 关键字匹配算法设计
 
@@ -377,7 +378,7 @@ Winform-->Csharp
 
 #### 接口定义
 
-- `Split(string ) -> List<string>`
+- `Split(string ) -> string[]`
   - 对传入的字符串进行分词
   - 返回分好的所有词语。
 

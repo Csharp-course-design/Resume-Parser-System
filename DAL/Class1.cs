@@ -1,4 +1,4 @@
-﻿namespace CsharpAPI
+﻿namespace DAL
 {
     public class Class1
     {
