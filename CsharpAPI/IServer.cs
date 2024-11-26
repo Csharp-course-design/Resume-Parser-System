@@ -10,5 +10,7 @@ namespace CsharpAPI
     internal interface IServer
     {
         ResumeFile ExtractResumeFile(ResumeFile resumeFile);
+
+
     }
 }
