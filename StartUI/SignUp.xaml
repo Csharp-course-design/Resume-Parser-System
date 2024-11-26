@@ -1,4 +1,4 @@
-﻿<Window x:Class="StartUI.LoginIn"
+﻿<Window x:Class="StartUI.SignUp"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,8 +19,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light"
-                                         PrimaryColor="Teal"
-                                         SecondaryColor="Lime"/>
+                                             PrimaryColor="Teal"
+                                             SecondaryColor="Lime"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -36,7 +36,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1.22*"/>
         </Grid.ColumnDefinitions>
-        
+
         <!--左区域-->
         <Border CornerRadius="10 0 0 10"
                 ClipToBounds="True">
@@ -45,7 +45,7 @@
                 <ImageBrush ImageSource="D:\MPine\Microsoft Visual Studio\Project_CSharp\StartUI\Resources\LoginLeft.jpg"
                             Stretch="UniformToFill"/>
             </Border.Background>
-               
+
             <Border.Clip>
                 <RectangleGeometry Rect="0,0,400,605"
                                    RadiusX="10"
@@ -56,7 +56,7 @@
                         VerticalAlignment="Top">
                 <TextBlock FontSize="46"
                            FontWeight="Light"
-                           Text="Login in"
+                           Text="Sign up"
                            Foreground="#ffffff"
                            TextAlignment="Center"/>
 
@@ -74,7 +74,7 @@
                            TextAlignment="Center"/>
             </StackPanel>
         </Border>
-        
+
         <!--右区域-->
         <Border Grid.Column="1"
                 Background="#ffffff"
@@ -98,7 +98,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Click="Button_Click"/>
-                
+
                 <!--输入框-->
                 <StackPanel VerticalAlignment="Center"
                             Margin="75 0">
@@ -107,67 +107,82 @@
                              materialDesign:HintAssist.Hint="Username"
                              materialDesign:HintAssist.FloatingOffset="0,-20"
                              BorderBrush="#c5c8cc"
-                             BorderThickness="0 0 0 1.5"
-                             TextChanged="UsernameTextBox_TextChanged"/>
+                             BorderThickness="0 0 0 1.5"/>
+                    
+                    <TextBlock x:Name="UsernameRequire" 
+                               Text="Between 1 and 30 characters"
+                               FontSize="10"
+                               Foreground="Black"/>
+                    <TextBlock x:Name="UsernameErrorTextBlock"
+                                FontSize="10"
+                                Foreground="Red"
+                                Visibility="Collapsed"/>
 
                     <TextBox x:Name="EmailTextBox" 
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="Email"
                              materialDesign:HintAssist.FloatingOffset="0,-20"
                              BorderBrush="#c5c8cc"
-                             Margin="0 27"
-                             BorderThickness="0 0 0 1.5"
-                             TextChanged="EmailTextBox_TextChanged"/>
+                             Margin="0 27 0 0"
+                             BorderThickness="0 0 0 1.5"/>
+
+                    <TextBlock x:Name="EmailErrorTextBlock"
+                               FontSize="10"
+                               Foreground="Red"
+                               Visibility="Collapsed"/>
 
                     <PasswordBox x:Name="PasswordBox" 
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                                  materialDesign:HintAssist.Hint="Password"
                                  materialDesign:HintAssist.FloatingOffset="0,-18"
                                  BorderBrush="#c5c8cc"
-                                 BorderThickness="0 0 0 1.5"
-                                 PasswordChanged="PasswordBox_PasswordChanged"/>
+                                 Margin="0 27 0 0"
+                                 BorderThickness="0 0 0 1.5"/>
 
-                    <TextBlock x:Name="ErrorMessageTextBlock"
-                               FontSize="13"
+                    <TextBlock x:Name="PasswordRequire" 
+                               Text="Between 1 and 30 characters"
+                               FontSize="10"
+                               Foreground="Black"/>
+                    <TextBlock x:Name="PasswordErrorTextBlock"
+                               FontSize="10"
                                Foreground="Red"
-                               Visibility="Collapsed"/>  <!--初始为收缩状态-->
+                               Visibility="Collapsed"/>
 
-                    <CheckBox Margin="0 40 0 20" FontSize="13">
-                        <TextBlock>
-                            <Run Foreground="#b6b6b6">By signing I argee with</Run>
-                            <Run Foreground="BlueViolet">terms and conditions</Run>
-                        </TextBlock>
-                    </CheckBox>
+                    <PasswordBox x:Name="ConfirmPasswordBox" 
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                 materialDesign:HintAssist.Hint="Repeat Password"
+                                 materialDesign:HintAssist.FloatingOffset="0,-18"
+                                 BorderBrush="#c5c8cc"
+                                 Margin="0 27 0 10"
+                                 BorderThickness="0 0 0 1.5"/>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Login in"
+                    <TextBlock x:Name="ConfirmPasswordErrorTextBlock"
+                               Text="Passwords don't match"
+                               FontSize="10"
+                               Foreground="Red"
+                               Visibility="Collapsed"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 30 0 20" HorizontalAlignment="Center">
+                        <Button Content="Submit"
                                 Background="BlueViolet"
                                 Foreground="#ffffff"
                                 FontSize="18"
                                 Width="120"
                                 Height="45"
                                 materialDesign:ButtonAssist.CornerRadius="22"
-                                Click="Button_Click_Login"/>
+                                Click="Button_Click_Submit"/>
 
-                        <Button Content="Sign up"
+                        <Button Content="Cancel"
                                 Background="AliceBlue"
                                 Foreground="BlueViolet"
                                 FontSize="18"
                                 Width="120"
                                 Height="45"
-                                Margin="40 0 0 0"
+                                Margin="25 0 0 0"
                                 Style="{StaticResource MaterialDesignFlatButton}"
                                 materialDesign:ButtonAssist.CornerRadius="22"
-                                Click="Button_Click_SignUp"/>
+                                Click="Button_Click_Cancel"/>
                     </StackPanel>
-
-                    <TextBlock FontSize="13" 
-                               Margin="0 10 0 20"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Bottom">
-                               <Run Foreground="#b6b6b6">If you dont't have an account,</Run>
-                               <Run Foreground="BlueViolet">Sign up.</Run>
-                    </TextBlock>
                 </StackPanel>
             </Grid>
         </Border>

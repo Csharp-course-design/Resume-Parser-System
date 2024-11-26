@@ -10,5 +10,4 @@ namespace StartUI
     public partial class App : Application
     {
     }
-
 }
