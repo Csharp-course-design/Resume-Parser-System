@@ -162,5 +162,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChartRender\ChartRender.csproj">
+      <Project>{936a582d-6a58-419a-894c-461356887743}</Project>
+      <Name>ChartRender</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

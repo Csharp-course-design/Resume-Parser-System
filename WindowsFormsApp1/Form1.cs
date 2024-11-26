@@ -15,6 +15,7 @@ using System.IO;
 using Rectangle = System.Drawing.Rectangle;
 using System.Diagnostics;
 using Application = System.Windows.Forms.Application;
+using ChartRender;
 
 
 namespace WindowsFormsApp1
@@ -25,6 +26,16 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+
+            UserControl1 userControl1 = new UserControl1();
+
+            TabPage tabPage = new TabPage();
+
+            tabPage.Controls.Add(userControl1);
+
+            tabControl1.TabPages.Add(tabPage);
+            panel1.Show();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
