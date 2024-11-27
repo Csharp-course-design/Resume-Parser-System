@@ -339,6 +339,16 @@ Winform-->F
 
 ---
 
+## 贡献者
+
+[03xiaoyuhe (听)](https://github.com/03xiaoyuhe)
+
+[Running-Turtle1 (running_Turtle)](https://github.com/Running-Turtle1)
+
+[M-Pine](https://github.com/M-Pine)
+
+[cola-cold (核子可乐)](https://github.com/cola-cold)
+
 ## 特别鸣谢
 
-感谢[API开发文档 - 小析智能](https://wiki.xiaoxizn.com/#parser)提供的$200$次简历解析试用。
+感谢[API开发文档 - 小析智能](https://wiki.xiaoxizn.com/#parser)提供的 $200$ 次简历解析试用。
