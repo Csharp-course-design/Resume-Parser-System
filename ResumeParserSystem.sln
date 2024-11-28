@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartRender", "ChartRender\ChartRender.csproj", "{936A582D-6A58-419A-894C-461356887743}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRender", "FileRender\FileRender.csproj", "{FF9EE21F-7447-41F4-965B-D2D86B54132E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormFactory", "FormFactory\FormFactory.csproj", "{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{936A582D-6A58-419A-894C-461356887743}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{936A582D-6A58-419A-894C-461356887743}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{936A582D-6A58-419A-894C-461356887743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF9EE21F-7447-41F4-965B-D2D86B54132E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF9EE21F-7447-41F4-965B-D2D86B54132E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF9EE21F-7447-41F4-965B-D2D86B54132E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF9EE21F-7447-41F4-965B-D2D86B54132E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

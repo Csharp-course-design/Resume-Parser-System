@@ -304,13 +304,13 @@ Winform-->F
 
 ##### 简历显示控件`FileRender`
 
-简历显示控件提供两种构造函数:  
+简历显示控件提供两种展示函数:  
 
-- `FileRender(sting )`
+- `Show(sting )`
   - 传入参数:
     - 文件路径`string`
 
-- `FileRender(ResumeFile )`
+- `Show(ResumeFile )`
   - 传入参数:
     - 文件对象`ResumeFile`
 

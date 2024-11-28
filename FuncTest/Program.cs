@@ -7,7 +7,7 @@ namespace FuncTest
     {
         static void Main(string[] args)
         {
-            string json = File.ReadAllText("D:\\______cloneFrom_GitHub\\Resume-Parser-System\\FuncTest\\ForFactoryTest.json");
+            string json = File.ReadAllText("ForFactoryTest.json");
             dynamic data = JsonConvert.DeserializeObject(json);
             Console.WriteLine("Name: " + data.name);
             Console.WriteLine("Age: " + data.age);
