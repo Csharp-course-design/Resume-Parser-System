@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Function\Function.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="ForFactoryTest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
