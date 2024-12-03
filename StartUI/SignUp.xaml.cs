@@ -60,13 +60,13 @@ namespace StartUI
                 UsernameErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-            else if (IsUsernameExists(username)) //检测用户名是否已经存在
-            {
-                UsernameRequire.Visibility = Visibility.Collapsed;
-                UsernameErrorTextBlock.Text = "Username already exists";
-                UsernameErrorTextBlock.Visibility = Visibility.Visible;
-                isValid = false;
-            }
+            //else if (IsUsernameExists(username)) //检测用户名是否已经存在
+            //{
+            //    UsernameRequire.Visibility = Visibility.Collapsed;
+            //    UsernameErrorTextBlock.Text = "Username already exists";
+            //    UsernameErrorTextBlock.Visibility = Visibility.Visible;
+            //    isValid = false;
+            //}
 
             if (string.IsNullOrEmpty(email))     //检测邮箱是否为空
             {
@@ -74,12 +74,12 @@ namespace StartUI
                 EmailErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-            else if (IsEmailExists(email))       //检测邮箱是否正确或存在
-            {
-                EmailErrorTextBlock.Text = "Email already exists or invalid";
-                EmailErrorTextBlock.Visibility = Visibility.Visible;
-                isValid = false;
-            }
+            //else if (IsEmailExists(email))       //检测邮箱是否正确或存在
+            //{
+            //    EmailErrorTextBlock.Text = "Email already exists or invalid";
+            //    EmailErrorTextBlock.Visibility = Visibility.Visible;
+            //    isValid = false;
+            //}
 
             if (string.IsNullOrEmpty(password) || password.Length < 1 || password.Length > 30) //检测密码是否符合输入
             {
@@ -98,7 +98,7 @@ namespace StartUI
             // 所有验证通过，则插入数据到数据库
             if (isValid)
             {
-                InsertUserToDatabase(username, email, password);
+                //InsertUserToDatabase(username, email, password);
                 MessageBox.Show("Registration successful!");
             }
         }
