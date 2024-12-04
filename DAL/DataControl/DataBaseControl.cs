@@ -5,7 +5,7 @@ using System.Data.SqlTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DAL.DataControl
+namespace DAL.DataControl 
 {
     /// <summary>
     /// 数据访问基类，用于提供数据访问基础的功能，如各种格式检测
