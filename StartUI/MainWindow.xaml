@@ -12,8 +12,8 @@
         ResizeMode="NoResize"
 >
     <Grid>
-        <Image Source="D:\MPine\Microsoft Visual Studio\Project_CSharp\StartUI\Resources\StartBackground.jpg"
-               Stretch="UniformToFill"/>
+        <Image Source="Resources/StartBackground.jpg" 
+            Stretch="UniformToFill"/>
         <Button Height="20"
                 Width="20"
                 HorizontalAlignment="Right" 

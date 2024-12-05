@@ -1,12 +1,77 @@
-﻿using CsharpAPI.Factory;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+
+class Program
+{
+    private const string ApiUrl = "https://api.xiaoxizn.com/v1/parser/parse_base";
+    private const string UserId = "fdaf1790-ab18-11ef-b1d5-ff5abccbf335";
+    private const string Secret = "616af12d-d4c1-470f-a61a-3f25bb86d33d";
+
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("请输入简历文件路径:");
+        string filePath = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+        {
+            Console.WriteLine("文件路径无效或文件不存在！");
+            return;
+        }
+
+        try
+        {
+            // 将简历文件编码为 Base64
+            string fileContent = Convert.ToBase64String(File.ReadAllBytes(filePath));
+            string fileName = Path.GetFileName(filePath);
+
+            // 构建请求体
+            var requestBody = new
+            {
+                resume_base = fileContent,
+                file_name = fileName,
+                parse_mode = "general" // 可选值: fast, general, accurate
+            };
+
+            string jsonRequest = JsonSerializer.Serialize(requestBody);
+
+            // 发送请求
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("id", UserId);
+                client.DefaultRequestHeaders.Add("secret", Secret);
+
+                HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(ApiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+
+                    // 格式化并输出结果
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    var parsedResult = JsonSerializer.Deserialize<JsonElement>(responseBody);
+                    Console.WriteLine(JsonSerializer.Serialize(parsedResult, options));
+                }
+                else
+                {
+                    Console.WriteLine($"请求失败：{response.StatusCode} - {response.ReasonPhrase}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"发生错误：{ex.Message}");
+        }
+    }
+}
 /*
- {
+
+C:\Users\95432\Desktop\闫振斌.pdf
+{
   "applied_job": "",
   "src_id": "",
   "ocr_count": 0,
@@ -151,7 +216,7 @@ using System.Threading.Tasks;
       "ethnic": "",
       "recent_graduate_year": "2025",
       "name": "\u95EB\u632F\u658C",
-      "lastupdate_time": "2024-12-02-12-11-05",
+      "lastupdate_time": "2024-12-03-04-54-05",
       "gender": "\u7537",
       "age": null,
       "marital_status": "",
@@ -251,68 +316,5 @@ using System.Threading.Tasks;
   "avatar_data": "",
   "hash_id": "8e66abe0058d0eee8ff7587584b9d66e20"
 }
- */
-class Program
-{
-    private const string ApiUrl = "https://api.xiaoxizn.com/v1/parser/parse_base";
-    private const string UserId = "fdaf1790-ab18-11ef-b1d5-ff5abccbf335";
-    private const string Secret = "616af12d-d4c1-470f-a61a-3f25bb86d33d";
 
-    static async Task Main(string[] args)
-    {
-        Console.WriteLine("请输入简历文件路径:");
-        string filePath = Console.ReadLine();
-
-        if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
-        {
-            Console.WriteLine("文件路径无效或文件不存在！");
-            return;
-        }
-
-        try
-        {
-            // 将简历文件编码为 Base64
-            string fileContent = Convert.ToBase64String(File.ReadAllBytes(filePath));
-            string fileName = Path.GetFileName(filePath);
-
-            // 构建请求体
-            var requestBody = new
-            {
-                resume_base = fileContent,
-                file_name = fileName,
-                parse_mode = "general" // 可选值: fast, general, accurate
-            };
-
-            string jsonRequest = JsonSerializer.Serialize(requestBody);
-
-            // 发送请求
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("id", UserId);
-                client.DefaultRequestHeaders.Add("secret", Secret);
-
-                HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(ApiUrl, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine((ResumeImfoFactory.TransJsonToModel(responseBody)).ToString());
-
-                    // 格式化并输出结果
-                    var options = new JsonSerializerOptions { WriteIndented = true };
-                    var parsedResult = JsonSerializer.Deserialize<JsonElement>(responseBody);
-                    Console.WriteLine(JsonSerializer.Serialize(parsedResult, options));
-                }
-                else
-                {
-                    Console.WriteLine($"请求失败：{response.StatusCode} - {response.ReasonPhrase}");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"发生错误：{ex.Message}");
-        }
-    }
-}
+ */ 

@@ -41,9 +41,10 @@
         <Border CornerRadius="10 0 0 10"
                 ClipToBounds="True">
 
+
             <Border.Background>
-                <ImageBrush ImageSource="D:\MPine\Microsoft Visual Studio\Project_CSharp\StartUI\Resources\LoginLeft.jpg"
-                            Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="Resources/LoginLeft.jpg"
+                    Stretch="UniformToFill"/>
             </Border.Background>
 
             <Border.Clip>
