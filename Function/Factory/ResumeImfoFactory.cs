@@ -6,7 +6,7 @@ using Models.ResumeInfo;
 using Models.ResumeInfo.Apart;
 // G:\01____资源管理\03____工作\简历\赵雨禾-19511669233.pdf
 
-namespace CsharpAPI.Factory
+namespace Function.Factory
 {
     public class ResumeInfoFactory : IFactory
     {
