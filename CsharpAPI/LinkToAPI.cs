@@ -78,6 +78,12 @@ namespace CsharpAPI
             }
         }
 
+        public void ResumeFIle(string filePath)
+        {
+            getJson(filePath);
+            
+        }
+
         public Dictionary<string, double> GetSkillGrade(ResumeFile resumeFile)
         {
             //TODO 编写技能评级代码
@@ -91,23 +97,5 @@ namespace CsharpAPI
         }
     }
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // 创建 LinkToAPI 实例
-            LinkToAPI api = new LinkToAPI();
-
-            // 简历文件路径，可以根据实际文件调整
-            string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf.pdf"; // 请替换成你的文件路径
-
-            // 调用 getJson 方法获取数据
-            api.getJson(filePath);
-
-            // 输出 API_Json 返回的数据，进行调试
-            // 假设 API_Json 会包含返回的 JSON 数据
-            Console.WriteLine("API 返回的数据：");
-            Console.WriteLine(api.GetJson);
-        }
-    }
+    
 }

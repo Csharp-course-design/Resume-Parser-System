@@ -1,4 +1,4 @@
-﻿using Models.ResumeImfo;
+﻿using Models.ResumeInfo;
 using System.Text;
 using Models.ResumeInfo;
 

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CsharpAPI\CsharpAPI.csproj" />
     <ProjectReference Include="..\Function\Function.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
