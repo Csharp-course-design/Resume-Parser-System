@@ -10,7 +10,7 @@ namespace CsharpAPI.Factory
 {
     public class ResumeImfoFactory : IFactory
     {
-        public static object TransJsonToModel(string json)
+        public static object Get(string json)
         {
             try
             {

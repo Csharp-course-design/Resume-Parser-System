@@ -13,6 +13,6 @@ namespace CsharpAPI.Factory
         /// </summary>
         /// <param name="Json">Json文件内容</param>
         /// <returns>Models类</returns>
-        abstract public static Object TransJsonToModel(string Json);
+        abstract public static Object Get(string Json);
     }
 }

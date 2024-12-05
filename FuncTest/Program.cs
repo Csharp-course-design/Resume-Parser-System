@@ -1,4 +1,5 @@
 ﻿using CsharpAPI.Factory;
+using Models.ResumeImfo;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -258,8 +259,14 @@ class Program
     private const string UserId = "fdaf1790-ab18-11ef-b1d5-ff5abccbf335";
     private const string Secret = "616af12d-d4c1-470f-a61a-3f25bb86d33d";
 
-    static async Task Main(string[] args)
+    #region 测试任务
+
+    /// <summary>
+    /// 测试任务1
+    /// </summary>
+    static async void Test1()
     {
+
         Console.WriteLine("请输入简历文件路径:");
         string filePath = Console.ReadLine();
 
@@ -297,7 +304,7 @@ class Program
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine((ResumeImfoFactory.TransJsonToModel(responseBody)).ToString());
+                    Console.WriteLine((ResumeImfoFactory.Get(responseBody)).ToString());
 
                     // 格式化并输出结果
                     var options = new JsonSerializerOptions { WriteIndented = true };
@@ -314,5 +321,17 @@ class Program
         {
             Console.WriteLine($"发生错误：{ex.Message}");
         }
+    }
+
+    static async void TestForTransFactory()
+    {
+        ResumeImfo resumeImfo = new ResumeImfo();
+        string Content = JsonFactory.
+    }
+
+    #endregion
+
+    static async Task Main(string[] args)
+    {
     }
 }

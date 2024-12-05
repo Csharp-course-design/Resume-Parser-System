@@ -15,7 +15,7 @@ namespace CsharpAPI.Factory
         /// </summary>
         /// <param name="Path">文件路径</param>
         /// <returns></returns>
-        public static object TransJsonToModel(string Path)
+        public static object Get(string Path)
         {
             // path 改为 只获取文件名 
             return new ResumeFile(
