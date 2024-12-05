@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
-
-namespace DAL.DataControl.Interface
+﻿namespace DAL.DataControl.Interface
 {
     public interface IDataUpdate
     {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Models.ResumeImfo.Apart;
 using System.Text;
-using System.Threading.Tasks;
-using Models.ResumeImfo.Apart;
 
 namespace Models.ResumeImfo
 {
@@ -31,7 +27,7 @@ namespace Models.ResumeImfo
         /// 技能
         /// </summary>
         public List<string> Skills { get => skill; set => skill = value; }
-        
+
         /// <summary>
         /// 教育背景
         /// </summary>

@@ -1,5 +1,5 @@
-﻿using System.Text.Json; // 用于 JSON 序列化和反序列化
-using Models.ResumeImfo;
+﻿using Models.ResumeImfo;
+using System.Text.Json; // 用于 JSON 序列化和反序列化
 
 namespace Function.TransFactory
 {

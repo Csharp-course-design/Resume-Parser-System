@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
 using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using Microsoft.Data.SqlClient;
 
 namespace DAL
 {

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Models.ResumeImfo;
 using System.Text;
-using Models.ResumeImfo;
 
 namespace Function.TransFactory
 {

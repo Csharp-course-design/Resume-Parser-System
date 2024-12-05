@@ -1,10 +1,8 @@
-﻿using Models;
+﻿using Aspose.Words;
+using Models;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Xps.Packaging;
-using Aspose.Words;
-using System.IO;
 using System.Windows.Documents;
 
 

@@ -1,10 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.RelationControl
 {
@@ -27,7 +22,7 @@ namespace DAL.RelationControl
                                     new SqlParameter("@ResumeModelId", SqlDbType.Int) { Value = int.Parse(FileId) },
                                     new SqlParameter("@ResumeImfoId", SqlDbType.Int) {Value = int.Parse(ImfoId) },
                 };
-            return DBHelper.ExecuteSql(sql, cmdParms)>0;
+            return DBHelper.ExecuteSql(sql, cmdParms) > 0;
         }
     }
 }

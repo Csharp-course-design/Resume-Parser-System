@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.DataControl.Interface;
+﻿using DAL.DataControl.Interface;
 using Microsoft.Data.SqlClient;
-using Models;
 using Models.ResumeImfo;
 using Models.ResumeImfo.Apart;
+using System.Data;
 
 namespace DAL.DataControl
 {
-    internal class ResumeImfoControl :  DataBaseControl, IDataInsert
+    internal class ResumeImfoControl : DataBaseControl, IDataInsert
     {
         public void Insert<T>(T Item)
         {
@@ -69,10 +62,10 @@ namespace DAL.DataControl
         VALUES
         (@ResumeId, @StartTimeYear, @StartTimeMonth, @EndTimeYear, @StillActive, @CompanyName, @Department,@Location,@JobTitle)
         ;";
-                        foreach(WorkExper item in resume.WorkExpers)
+                        foreach (WorkExper item in resume.WorkExpers)
                         {
-                                SqlParameter[] cmdParms = new SqlParameter[]
-                                {
+                            SqlParameter[] cmdParms = new SqlParameter[]
+                            {
                                     new SqlParameter("@ResumeId", SqlDbType.Int) { Value = int.Parse(IdReturn) },
                                     new SqlParameter("@StartTimeYear", SqlDbType.NVarChar, 4) { Value = item.Start_time_year },
                                     new SqlParameter("@StartTimeMonth", SqlDbType.NVarChar, 2) { Value = item.Start_time_month },
@@ -83,8 +76,8 @@ namespace DAL.DataControl
                                     new SqlParameter("@Department", SqlDbType.NVarChar, 100) { Value = item.Department },
                                     new SqlParameter("@Location", SqlDbType.NVarChar, 100) { Value = item.Location },
                                     new SqlParameter("@JobTitle", SqlDbType.NVarChar, 100) { Value = item.Job_title }
-                                };
-                                DBHelper.ExecuteSql(sql, cmdParms);
+                            };
+                            DBHelper.ExecuteSql(sql, cmdParms);
 
                         }
                         //对技能表插入
@@ -109,15 +102,15 @@ namespace DAL.DataControl
                         // 返回生成的 ID
                         return IdReturn;
 
-                        
+
                     }
                 }
                 catch (Exception ex) { }
-                
+
             }
             return null;
         }
     }
 
-    
+
 }
