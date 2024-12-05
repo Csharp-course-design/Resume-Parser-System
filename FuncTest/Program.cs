@@ -326,7 +326,7 @@ class Program
     static async void TestForTransFactory()
     {
         ResumeImfo resumeImfo = new ResumeImfo();
-        string Content = JsonFactory.
+
     }
 
     #endregion

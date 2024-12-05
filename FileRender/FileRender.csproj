@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1004" />
+    <PackageReference Include="Aspose.Words" Version="24.11.1" />
     <PackageReference Include="Spire.PDF" Version="10.11.7" />
   </ItemGroup>
 
