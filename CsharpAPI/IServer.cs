@@ -1,5 +1,5 @@
 ﻿using Models;
-using Models.ResumeImfo;
+using Models.ResumeInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace CsharpAPI
         /// </summary>
         /// <param name="resumeFile">简历文件对象</param>
         /// <returns>返回简历信息类</returns>
-        ResumeImfo ExtractResumeFile(ResumeFile resumeFile);
+        ResumeInfo ExtractResumeFile(ResumeFile resumeFile);
 
         /// <summary>
         /// 获取当前简历技能评级

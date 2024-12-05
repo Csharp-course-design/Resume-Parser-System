@@ -2,13 +2,13 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using Models.ResumeImfo;
-using Models.ResumeImfo.Apart;
+using Models.ResumeInfo;
+using Models.ResumeInfo.Apart;
 // G:\01____资源管理\03____工作\简历\赵雨禾-19511669233.pdf
 
 namespace CsharpAPI.Factory
 {
-    public class ResumeImfoFactory : IFactory
+    public class ResumeInfoFactory : IFactory
     {
         public static object Get(string json)
         {
@@ -21,7 +21,7 @@ namespace CsharpAPI.Factory
 
                 var basicInfo = data["basic_info"];
                 var contactInfo = data["contact_info"];
-                var baseImfo = new BaseImfo(
+                var baseInfo = new BaseInfo(
                     id: 0,
                     name: basicInfo?["name"]?.ToString() ?? string.Empty,
                     age: int.TryParse(basicInfo?["age"]?.ToString(), out var age) ? age : 0,
@@ -38,7 +38,7 @@ namespace CsharpAPI.Factory
                 var skillsArray = data["others"]?["skills"] as JArray;
                 var skills = skillsArray != null ? skillsArray.ToObject<List<string>>() : new List<string>();
 
-                return new ResumeImfo(baseImfo, eduBG, skills, workExpers);
+                return new ResumeInfo(baseInfo, eduBG, skills, workExpers);
             }
             catch (Exception ex)
             {

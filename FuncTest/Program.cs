@@ -1,5 +1,5 @@
 ﻿using CsharpAPI.Factory;
-using Models.ResumeImfo;
+using Models.ResumeInfo;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -304,7 +304,7 @@ class Program
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine((ResumeImfoFactory.Get(responseBody)).ToString());
+                    Console.WriteLine((ResumeInfoFactory.Get(responseBody)).ToString());
 
                     // 格式化并输出结果
                     var options = new JsonSerializerOptions { WriteIndented = true };
@@ -325,7 +325,7 @@ class Program
 
     static async void TestForTransFactory()
     {
-        ResumeImfo resumeImfo = new ResumeImfo();
+        ResumeInfo resumeInfo = new ResumeInfo();
         string Content = JsonFactory.
     }
 

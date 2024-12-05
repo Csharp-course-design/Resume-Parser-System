@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.ResumeImfo.Apart
+namespace Models.ResumeInfo.Apart
 {
         public class EduBG
         {

@@ -1,16 +1,16 @@
 ﻿using System.Text.Json; // 用于 JSON 序列化和反序列化
-using Models.ResumeImfo;
+using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
     internal class JsonFactory : ITransFactory
     {
         /// <summary>
-        /// 将格式化字符串（JSON）转换为 ResumeImfo 对象
+        /// 将格式化字符串（JSON）转换为 ResumeInfo 对象
         /// </summary>
         /// <param name="Content">JSON 格式字符串</param>
-        /// <returns>ResumeImfo 对象</returns>
-        public ResumeImfo Model(string Content)
+        /// <returns>ResumeInfo 对象</returns>
+        public ResumeInfo Model(string Content)
         {
             if (string.IsNullOrWhiteSpace(Content))
             {
@@ -19,7 +19,7 @@ namespace Function.TransFactory
 
             try
             {
-                return JsonSerializer.Deserialize<ResumeImfo>(Content)
+                return JsonSerializer.Deserialize<ResumeInfo>(Content)
                        ?? throw new InvalidOperationException("反序列化失败，结果为 null");
             }
             catch (JsonException ex)
@@ -29,11 +29,11 @@ namespace Function.TransFactory
         }
 
         /// <summary>
-        /// 将 ResumeImfo 对象转换为 JSON 格式字符串
+        /// 将 ResumeInfo 对象转换为 JSON 格式字符串
         /// </summary>
-        /// <param name="Model">ResumeImfo 对象</param>
+        /// <param name="Model">ResumeInfo 对象</param>
         /// <returns>JSON 格式字符串</returns>
-        public string Content(ResumeImfo Model)
+        public string Content(ResumeInfo Model)
         {
             if (Model == null)
             {

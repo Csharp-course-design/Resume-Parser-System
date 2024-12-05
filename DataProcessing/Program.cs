@@ -69,8 +69,9 @@ class Program
     }
 }
 /*
-
+输入文件 :
 C:\Users\95432\Desktop\闫振斌.pdf
+返回格式 : 
 {
   "applied_job": "",
   "src_id": "",

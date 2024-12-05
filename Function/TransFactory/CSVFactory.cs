@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Text;
-using Models.ResumeImfo;
+using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
     internal class CSVFactory : ITransFactory
     {
         /// <summary>
-        /// 将格式化字符串（CSV）转换为 ResumeImfo 对象
+        /// 将格式化字符串（CSV）转换为 ResumeInfo 对象
         /// </summary>
         /// <param name="Content">CSV 格式字符串</param>
-        /// <returns>ResumeImfo 对象</returns>
-        public ResumeImfo Model(string Content)
+        /// <returns>ResumeInfo 对象</returns>
+        public ResumeInfo Model(string Content)
         {
             if (string.IsNullOrWhiteSpace(Content))
             {
@@ -29,13 +29,13 @@ namespace Function.TransFactory
                 var headers = lines[0].Split(',');
                 var values = lines[1].Split(',');
 
-                var resume = new ResumeImfo();
+                var resume = new ResumeInfo();
                 for (int i = 0; i < headers.Length; i++)
                 {
                     var propertyName = headers[i].Trim();
                     var propertyValue = values[i].Trim();
 
-                    var property = typeof(ResumeImfo).GetProperty(propertyName);
+                    var property = typeof(ResumeInfo).GetProperty(propertyName);
                     if (property != null)
                     {
                         property.SetValue(resume, Convert.ChangeType(propertyValue, property.PropertyType));
@@ -51,11 +51,11 @@ namespace Function.TransFactory
         }
 
         /// <summary>
-        /// 将 ResumeImfo 对象转换为 CSV 格式字符串
+        /// 将 ResumeInfo 对象转换为 CSV 格式字符串
         /// </summary>
-        /// <param name="Model">ResumeImfo 对象</param>
+        /// <param name="Model">ResumeInfo 对象</param>
         /// <returns>CSV 格式字符串</returns>
-        public string Content(ResumeImfo Model)
+        public string Content(ResumeInfo Model)
         {
             if (Model == null)
             {
@@ -64,7 +64,7 @@ namespace Function.TransFactory
 
             try
             {
-                var properties = typeof(ResumeImfo).GetProperties();
+                var properties = typeof(ResumeInfo).GetProperties();
                 var headers = new StringBuilder();
                 var values = new StringBuilder();
 

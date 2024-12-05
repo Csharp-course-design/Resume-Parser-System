@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using DAL.DataControl.Interface;
 using Microsoft.Data.SqlClient;
 using Models;
-using Models.ResumeImfo;
-using Models.ResumeImfo.Apart;
+using Models.ResumeInfo;
+using Models.ResumeInfo.Apart;
 
 namespace DAL.DataControl
 {
-    internal class ResumeImfoControl :  DataBaseControl, IDataInsert
+    internal class ResumeInfoControl :  DataBaseControl, IDataInsert
     {
         public void Insert<T>(T Item)
         {
@@ -22,8 +22,8 @@ namespace DAL.DataControl
         /// <summary>
         /// 简历信息，技能，工作经验的插入。
         /// </summary>
-        /// <typeparam name="T">ResumeImfo类型</typeparam>
-        /// <param name="Item">ResumeImfo类型变量</param>
+        /// <typeparam name="T">ResumeInfo类型</typeparam>
+        /// <param name="Item">ResumeInfo类型变量</param>
         /// <returns>会返回简历信息基础表的id</returns>
         public string InsertReturnID<T>(T Item)
         {
@@ -33,27 +33,27 @@ namespace DAL.DataControl
                 {
                     OpenSqlConnection();
 
-                    //Item = (ResumeImfo)Item ;
-                    // 构造 SQL 语句，假设 ResumeImfo 表名为 ResumeImfoTable
+                    //Item = (ResumeInfo)Item ;
+                    // 构造 SQL 语句，假设 ResumeInfo 表名为 ResumeInfoTable
                     //对简历信息表的插入
                     string IdReturn;
                     string sql = @"
-        INSERT INTO ResumeImfo
+        INSERT INTO ResumeInfo
         ( Name, Age, Phone, SchoolName, SchoolType, Degree, Major)
         VALUES
         ( @Name, @Age, @Phone, @SchoolName, @SchoolType, @Degree, @Major);
         
         SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
-                    // 假设 item 是 ResumeImfo 类型，将属性映射到 SQL 参数
-                    if (Item is ResumeImfo resume)
+                    // 假设 item 是 ResumeInfo 类型，将属性映射到 SQL 参数
+                    if (Item is ResumeInfo resume)
                     {
                         // 准备 SqlCommand
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Name", resume.BaseImfo.Name);
-                            cmd.Parameters.AddWithValue("@Age", resume.BaseImfo.Age);
-                            cmd.Parameters.AddWithValue("@Phone", resume.BaseImfo.Phone);
+                            cmd.Parameters.AddWithValue("@Name", resume.BaseInfo.Name);
+                            cmd.Parameters.AddWithValue("@Age", resume.BaseInfo.Age);
+                            cmd.Parameters.AddWithValue("@Phone", resume.BaseInfo.Phone);
                             cmd.Parameters.AddWithValue("@SchoolName", resume.EduBG.School_name);
                             cmd.Parameters.AddWithValue("@SchoolType", resume.EduBG.Schooll_type);
                             cmd.Parameters.AddWithValue("@Degree", resume.EduBG.Degree);

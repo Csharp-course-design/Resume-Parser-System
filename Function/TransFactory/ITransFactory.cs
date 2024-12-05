@@ -1,4 +1,4 @@
-﻿using Models.ResumeImfo;
+﻿using Models.ResumeInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +14,13 @@ namespace Function.TransFactory
         /// </summary>
         /// <param name="Content">格式化字符串</param>
         /// <returns></returns>
-        public ResumeImfo Model(string Content);
+        public ResumeInfo Model(string Content);
 
         /// <summary>
         /// 将对象转换为格式化字符串
         /// </summary>
         /// <param name="Model">对象</param>
         /// <returns></returns>
-        public string Content(ResumeImfo Model);
+        public string Content(ResumeInfo Model);
     }
 }

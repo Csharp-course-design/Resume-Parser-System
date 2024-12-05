@@ -1,17 +1,17 @@
 ﻿using System;
 
-namespace Models.ResumeImfo.Apart
+namespace Models.ResumeInfo.Apart
 {
-    public class BaseImfo
+    public class BaseInfo
     {
         private int id;
         private string name = string.Empty;
         private string phone = string.Empty;
         private int age;
 
-        public BaseImfo() { }
+        public BaseInfo() { }
 
-        public BaseImfo(int id, string name,int age, string phone)
+        public BaseInfo(int id, string name,int age, string phone)
         {
             this.id = id;
             this.name = name;

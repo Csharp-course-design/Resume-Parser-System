@@ -2,18 +2,18 @@
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
-using Models.ResumeImfo;
+using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
     internal class XMLFactory : ITransFactory
     {
         /// <summary>
-        /// 将格式化字符串（XML）转换为 ResumeImfo 对象
+        /// 将格式化字符串（XML）转换为 ResumeInfo 对象
         /// </summary>
         /// <param name="Content">XML 格式字符串</param>
-        /// <returns>ResumeImfo 对象</returns>
-        public ResumeImfo Model(string Content)
+        /// <returns>ResumeInfo 对象</returns>
+        public ResumeInfo Model(string Content)
         {
             if (string.IsNullOrWhiteSpace(Content))
             {
@@ -22,9 +22,9 @@ namespace Function.TransFactory
 
             try
             {
-                var serializer = new XmlSerializer(typeof(ResumeImfo));
+                var serializer = new XmlSerializer(typeof(ResumeInfo));
                 using var reader = new StringReader(Content);
-                return serializer.Deserialize(reader) as ResumeImfo
+                return serializer.Deserialize(reader) as ResumeInfo
                        ?? throw new InvalidOperationException("反序列化失败，结果为 null");
             }
             catch (InvalidOperationException ex)
@@ -34,11 +34,11 @@ namespace Function.TransFactory
         }
 
         /// <summary>
-        /// 将 ResumeImfo 对象转换为 XML 格式字符串
+        /// 将 ResumeInfo 对象转换为 XML 格式字符串
         /// </summary>
-        /// <param name="Model">ResumeImfo 对象</param>
+        /// <param name="Model">ResumeInfo 对象</param>
         /// <returns>XML 格式字符串</returns>
-        public string Content(ResumeImfo Model)
+        public string Content(ResumeInfo Model)
         {
             if (Model == null)
             {
@@ -47,7 +47,7 @@ namespace Function.TransFactory
 
             try
             {
-                var serializer = new XmlSerializer(typeof(ResumeImfo));
+                var serializer = new XmlSerializer(typeof(ResumeInfo));
                 using var writer = new StringWriter();
                 serializer.Serialize(writer, Model);
                 return writer.ToString();

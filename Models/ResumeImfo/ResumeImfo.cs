@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.ResumeImfo.Apart;
+using Models.ResumeInfo.Apart;
 
-namespace Models.ResumeImfo
+namespace Models.ResumeInfo
 {
-    public class ResumeImfo
+    public class ResumeInfo
     {
-        BaseImfo baseImfo = new BaseImfo();
+        BaseInfo baseInfo = new BaseInfo();
         EduBG eduBG = new EduBG();
         List<string> skill = new List<string>();
         List<WorkExper> workExpers = new List<WorkExper>();
 
-        public ResumeImfo()
+        public ResumeInfo()
         {
         }
 
-        public ResumeImfo(BaseImfo baseImfo, EduBG eduBG, List<string> skill, List<WorkExper> workExpers)
+        public ResumeInfo(BaseInfo baseInfo, EduBG eduBG, List<string> skill, List<WorkExper> workExpers)
         {
-            BaseImfo = baseImfo;
+            BaseInfo = baseInfo;
             EduBG = eduBG;
             this.skill = skill;
             this.workExpers = workExpers;
@@ -45,7 +45,7 @@ namespace Models.ResumeImfo
         /// <summary>
         /// 基础信息
         /// </summary>
-        public BaseImfo BaseImfo { get => baseImfo; set => baseImfo = value; }
+        public BaseInfo BaseInfo { get => baseInfo; set => baseInfo = value; }
 
         public override string ToString()
         {
@@ -53,7 +53,7 @@ namespace Models.ResumeImfo
 
             sb.AppendLine("=== Resume Information ===");
             sb.AppendLine("Basic Information:");
-            sb.AppendLine(BaseImfo.ToString());
+            sb.AppendLine(BaseInfo.ToString());
             sb.AppendLine();
 
             sb.AppendLine("Education Background:");
