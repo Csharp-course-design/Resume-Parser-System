@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FileRender"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Name="grid">
             
     </Grid>
 </UserControl>

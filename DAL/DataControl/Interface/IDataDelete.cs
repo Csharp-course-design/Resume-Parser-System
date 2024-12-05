@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Data.SqlClient;
-
-namespace DAL.DataControl.Interface
+﻿namespace DAL.DataControl.Interface
 {
     public interface IDataDelete
     {
@@ -17,7 +14,7 @@ namespace DAL.DataControl.Interface
         /// </summary>
         /// <param name="Where">限制条件</param>
         /// <returns>影响的条数</returns>
-        int Delete(Dictionary<string,List<string>> Wheres);
+        int Delete(Dictionary<string, List<string>> Wheres);
 
     }
 }

@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DAL.DataControl 
+namespace DAL.DataControl
 {
     /// <summary>
     /// 数据访问基类，用于提供数据访问基础的功能，如各种格式检测
     /// </summary>
-    public abstract class  DataBaseControl
+    public abstract class DataBaseControl
     {
         /// <summary>
         /// 单例，数据库连接对象
@@ -23,7 +21,7 @@ namespace DAL.DataControl
         /// <returns>返回数据库连接对象</returns>
         public static SqlConnection GetSqlConnection()
         {
-            if(sqlConnection == null) sqlConnection = new SqlConnection(DBHelper.connectionString);
+            if (sqlConnection == null) sqlConnection = new SqlConnection(DBHelper.connectionString);
             return sqlConnection;
         }
 
@@ -51,7 +49,7 @@ namespace DAL.DataControl
             cmd.Connection = sqlTransaction.Connection;
             cmd.CommandText = sql;
             cmd.Parameters.Clear();
-            foreach(SqlParameter sqlParameter in sqlParameters)
+            foreach (SqlParameter sqlParameter in sqlParameters)
             {
                 cmd.Parameters.Add(sqlParameter);
             }

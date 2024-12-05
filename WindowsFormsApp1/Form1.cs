@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Office;
-using MSWord = Microsoft.Office.Interop.Word;
-using Microsoft.Office.Interop.Word;
+﻿using ChartRender;
 using Spire.PdfViewer.Forms;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using Rectangle = System.Drawing.Rectangle;
-using System.Diagnostics;
+using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
-using ChartRender;
+using MSWord = Microsoft.Office.Interop.Word;
+using Rectangle = System.Drawing.Rectangle;
 
 
 namespace WindowsFormsApp1
@@ -61,7 +52,7 @@ namespace WindowsFormsApp1
             MSWord.Application app = new MSWord.Application();//可以打开word
             MSWord.Document doc = null;      //需要记录打开的word
 
-            
+
 
             object missing = System.Reflection.Missing.Value;
             object File = fileName;
@@ -80,7 +71,7 @@ namespace WindowsFormsApp1
                 doc.ActiveWindow.Selection.WholeStory();//全选word文档中的数据
                 doc.ActiveWindow.Selection.Copy();//复制数据到剪切板
                 richTextBox.Paste();//richTextBox粘贴数据
-                                     //richTextBox1.Text = doc.Content.Text;//显示无格式数据
+                                    //richTextBox1.Text = doc.Content.Text;//显示无格式数据
             }
             finally
             {
@@ -197,7 +188,7 @@ namespace WindowsFormsApp1
             {
                 fileName = dlg.FileName;
             }
-            if(fileName != null)
+            if (fileName != null)
             {
                 string str = (string)fileName;
                 OpenFile(str);

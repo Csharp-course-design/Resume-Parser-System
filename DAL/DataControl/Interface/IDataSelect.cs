@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Diagnostics;
+﻿using System.Data;
 
 namespace DAL.DataControl.Interface
 {

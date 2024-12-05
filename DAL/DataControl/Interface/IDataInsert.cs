@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Data.SqlClient;
-
-namespace DAL.DataControl.Interface
+﻿namespace DAL.DataControl.Interface
 {
     public interface IDataInsert
     {

@@ -1,7 +1,12 @@
-﻿using Models;
+﻿using Aspose.Words;
+using Models;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using MOIW = Microsoft.Office.Interop.Word;
+using System.Windows.Documents;
+
+
+
 
 namespace FileRender
 {
@@ -15,20 +20,6 @@ namespace FileRender
             InitializeComponent();
         }
 
-        Microsoft.Office.Interop.Word.Application wordOpener = new Microsoft.Office.Interop.Word.Application();
-
-        public Microsoft.Office.Interop.Word.Application WordOpener
-        {
-            set
-            {
-                wordOpener = value;
-            }
-            get
-            {
-                return wordOpener;
-            }
-        }
-
 
         public string Filepath
         {
@@ -38,7 +29,7 @@ namespace FileRender
             }
         }
 
-        public ResumeFile File
+        public ResumeFile FileObj
         {
             set
             {
@@ -46,40 +37,33 @@ namespace FileRender
             }
         }
 
-        private void OpenWord(string word, RichTextBox richTextBox)
+        public void OpenWord(string fileName, RichTextBox richTextBox)
         {
-            MOIW.Document doc = null;      //需要记录打开的word
-
-            object missing = System.Reflection.Missing.Value;
-            object File = word;
-            object readOnly = false;//不是只读
-            object isVisible = true;
-
             try
             {
-                doc = wordOpener.Documents.Open(ref File, ref missing, ref readOnly,
-                 ref missing, ref missing, ref missing, ref missing, ref missing,
-                 ref missing, ref missing, ref missing, ref isVisible, ref missing,
-                 ref missing, ref missing, ref missing);
+                // 加载 Word 文档
+                Document doc = new Document(fileName);
 
-                doc.ActiveWindow.Selection.WholeStory();//全选word文档中的数据
-                doc.ActiveWindow.Selection.Copy();//复制数据到剪切板
-                richTextBox.Paste();//richTextBox粘贴数据
-                                    //richTextBox1.Text = doc.Content.Text;//显示无格式数据
+                // 将文档保存为 XAML 流
+                using (MemoryStream xamlStream = new MemoryStream())
+                {
+                    doc.Save(xamlStream, SaveFormat.XamlFlow);
+                    xamlStream.Position = 0;
+
+                    // 将 XAML 流加载到 FlowDocument
+                    FlowDocument flowDocument = System.Windows.Markup.XamlReader.Load(xamlStream) as FlowDocument;
+
+                    // 设置到 RichTextBox
+                    richTextBox.Document = flowDocument;
+                }
             }
-            finally
+            catch (IOException ioEx)
             {
-                if (doc != null)
-                {
-                    doc.Close(ref missing, ref missing, ref missing);
-                    doc = null;
-                }
-
-                if (wordOpener != null)
-                {
-                    wordOpener.Quit(ref missing, ref missing, ref missing);
-                    wordOpener = null;
-                }
+                MessageBox.Show($"无法打开文件: {ioEx.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"发生错误: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -90,10 +74,17 @@ namespace FileRender
         private void OpenFile(string value)
         {
             RichTextBox richTextBox = new RichTextBox();
+            OpenWord(value, richTextBox);
+
+            // 设置富文本控件显示样式
             richTextBox.HorizontalAlignment = HorizontalAlignment.Stretch;
             richTextBox.VerticalAlignment = VerticalAlignment.Stretch;
-            OpenWord(value, richTextBox);
-            this.AddVisualChild(richTextBox);
+            richTextBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+            // 将 RichTextBox 添加到 Grid 中
+            grid.Children.Add(richTextBox);
+
         }
+
     }
 }

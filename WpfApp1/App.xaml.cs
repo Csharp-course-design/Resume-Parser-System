@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace StartUI
+namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -8,4 +8,5 @@ namespace StartUI
     public partial class App : Application
     {
     }
+
 }

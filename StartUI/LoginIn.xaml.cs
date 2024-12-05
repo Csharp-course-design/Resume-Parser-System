@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MySql.Data.MySqlClient;
 
 namespace StartUI
 {
@@ -17,7 +16,7 @@ namespace StartUI
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ChangedButton == MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
             }
@@ -30,7 +29,7 @@ namespace StartUI
 
         private void Button_Click_SignUp(object sender, RoutedEventArgs e)
         {
-            SignUp signUp = new SignUp();            
+            SignUp signUp = new SignUp();
             signUp.Show();
             this.Close();
         }
@@ -78,7 +77,7 @@ namespace StartUI
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
 
-            if(username == "admin")
+            if (username == "admin")
             {
                 MessageBox.Show("登录成功！");
             }
