@@ -1,4 +1,4 @@
-﻿namespace CsharpAPI.Factory
+﻿namespace Function.Factory
 {
     public interface IFactory
     {

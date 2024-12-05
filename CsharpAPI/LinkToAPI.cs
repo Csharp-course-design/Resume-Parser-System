@@ -78,11 +78,14 @@ namespace CsharpAPI
             }
         }
 
-        public void ResumeFIle(string filePath)
+        public ResumeInfo ResumeFile(string filePath)
         {
             getJson(filePath);
-            
+            // 解析好的JSON 
+            return (ResumeInfo)Function.Factory.ResumeInfoFactory.Get(GetJson());
         }
+
+
 
         public Dictionary<string, double> GetSkillGrade(ResumeFile resumeFile)
         {
