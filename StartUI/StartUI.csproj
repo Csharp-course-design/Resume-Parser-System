@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\iconfont.ttf" />
+    <None Remove="Fonts\Orbitron-Medium.ttf" />
+    <None Remove="Resources\Arrow.jpg" />
+    <None Remove="Resources\Licence.jpg" />
     <None Remove="Resources\LoginLeft.jpg" />
+    <None Remove="Resources\Logo.jpg" />
     <None Remove="Resources\StartBackground.jpg" />
+    <None Remove="Resources\SubSuccess.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,8 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\iconfont.ttf" />
+    <Resource Include="Fonts\Orbitron-Medium.ttf" />
+    <Resource Include="Resources\Arrow.jpg" />
+    <Resource Include="Resources\Licence.jpg" />
     <Resource Include="Resources\LoginLeft.jpg" />
+    <Resource Include="Resources\Logo.jpg" />
     <Resource Include="Resources\StartBackground.jpg" />
+    <Resource Include="Resources\SubSuccess.jpg" />
   </ItemGroup>
 
 </Project>

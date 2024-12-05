@@ -14,7 +14,8 @@
         Background="Transparent"
         ResizeMode="NoResize"
         FontSize="18"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        Icon="/Resources/Logo.jpg">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -42,8 +43,8 @@
                 ClipToBounds="True">
 
             <Border.Background>
-                <ImageBrush ImageSource="Resources/LoginLeft.jpg"
-                    Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Resources/LoginLeft.jpg"
+                            Stretch="UniformToFill"/>
             </Border.Background>
                
             <Border.Clip>
@@ -132,14 +133,33 @@
                                Foreground="Red"
                                Visibility="Collapsed"/>  <!--初始为收缩状态-->
 
-                    <CheckBox Margin="0 40 0 20" FontSize="13">
-                        <TextBlock>
+                    <StackPanel Margin="0 40 0 0" Orientation="Horizontal">
+                        <CheckBox x:Name="Licence" FontSize="13"
+                                  Checked="Licence_Checked">
+                            <TextBlock>
                             <Run Foreground="#b6b6b6">By signing I argee with</Run>
                             <Run Foreground="BlueViolet">terms and conditions</Run>
-                        </TextBlock>
-                    </CheckBox>
+                            </TextBlock>
+                        </CheckBox>
+                        <Canvas>
+                            <Image Source="/Resources/Licence.jpg"
+                                   Height="13"
+                                   Width="13"
+                                   Margin="2"/>
+                            <Button Height="13"
+                                    Width="13"
+                                    Margin="2"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Button_Click_Licence"/>
+                        </Canvas>
+                    </StackPanel>
+                    <TextBlock x:Name="NotArgeeTextBlock"
+                               FontSize="10"
+                               Foreground="Red"
+                               Visibility="Collapsed"/>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                         <Button Content="Login in"
                                 Background="BlueViolet"
                                 Foreground="#ffffff"

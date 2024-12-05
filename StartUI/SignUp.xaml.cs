@@ -1,6 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
+using MySql.Data.MySqlClient;
 
 namespace StartUI
 {
@@ -24,7 +24,7 @@ namespace StartUI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoginIn loginIn = new LoginIn();
+            LoginIn loginIn = new LoginIn();            
             loginIn.Show();
             this.Close();
         }
@@ -60,13 +60,13 @@ namespace StartUI
                 UsernameErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-            //else if (IsUsernameExists(username)) //检测用户名是否已经存在
-            //{
-            //    UsernameRequire.Visibility = Visibility.Collapsed;
-            //    UsernameErrorTextBlock.Text = "Username already exists";
-            //    UsernameErrorTextBlock.Visibility = Visibility.Visible;
-            //    isValid = false;
-            //}
+            else if (IsUsernameExists(username)) //检测用户名是否已经存在
+            {
+                UsernameRequire.Visibility = Visibility.Collapsed;
+                UsernameErrorTextBlock.Text = "Username already exists";
+                UsernameErrorTextBlock.Visibility = Visibility.Visible;
+                isValid = false;
+            }
 
             if (string.IsNullOrEmpty(email))     //检测邮箱是否为空
             {
@@ -74,12 +74,12 @@ namespace StartUI
                 EmailErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-            //else if (IsEmailExists(email))       //检测邮箱是否正确或存在
-            //{
-            //    EmailErrorTextBlock.Text = "Email already exists or invalid";
-            //    EmailErrorTextBlock.Visibility = Visibility.Visible;
-            //    isValid = false;
-            //}
+            else if (IsEmailExists(email))       //检测邮箱是否正确或存在
+            {
+                EmailErrorTextBlock.Text = "Email already exists or invalid";
+                EmailErrorTextBlock.Visibility = Visibility.Visible;
+                isValid = false;
+            }
 
             if (string.IsNullOrEmpty(password) || password.Length < 1 || password.Length > 30) //检测密码是否符合输入
             {
@@ -88,7 +88,7 @@ namespace StartUI
                 PasswordErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-
+           
             if (password != confirmPassword)      // 验证密码和确认密码一致
             {
                 ConfirmPasswordErrorTextBlock.Visibility = Visibility.Visible;
@@ -98,8 +98,9 @@ namespace StartUI
             // 所有验证通过，则插入数据到数据库
             if (isValid)
             {
-                //InsertUserToDatabase(username, email, password);
-                MessageBox.Show("Registration successful!");
+                InsertUserToDatabase(username, email, password);
+                SubSuccess subSuccess = new SubSuccess();
+                subSuccess.SubShow(this);
             }
         }
 
@@ -141,6 +142,28 @@ namespace StartUI
                 command.Parameters.AddWithValue("@Password", password);
                 command.ExecuteNonQuery();
             }
+        }
+
+        private void UsernameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            UsernameRequire.Visibility = Visibility.Visible;
+            UsernameErrorTextBlock.Visibility = Visibility.Collapsed;          
+        }
+
+        private void EmailTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            EmailErrorTextBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordRequire.Visibility = Visibility.Visible;
+            PasswordErrorTextBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ConfirmPasswordErrorTextBlock.Visibility = Visibility.Collapsed;
         }
     }
 }

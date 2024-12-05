@@ -35,7 +35,7 @@ namespace StartUI
             {
                 timerProgressbar.Stop();
 
-                LoginIn loginIn = new LoginIn();
+                LoginIn loginIn = new LoginIn();                
                 loginIn.Show();
                 this.Close();
             }

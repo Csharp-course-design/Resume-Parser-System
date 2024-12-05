@@ -1,0 +1,22 @@
+﻿<Window x:Class="StartUI.OurLicence"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StartUI"
+        mc:Ignorable="d"
+        Title="OurLicence" Height="550" Width="550"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Logo.jpg">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <TextBlock VerticalAlignment="Top" Margin="10" TextWrapping="Wrap" FontSize="20">
+                免责声明：<LineBreak/>           
+                <Run Text="       本平台所提供的所有信息、内容和服务仅供参考之用。我们力求确保提供的资料准确、及时和完整，但不对其准确性、可靠性或完整性做任何保证。用户在使用本平台内容时，应自行判断其适用性和可靠性。"/><LineBreak/>
+                <Run Text="       对于因使用本平台内容或服务而导致的任何直接或间接损失，平台不承担任何责任。所有通过本平台链接的外部网站或资源，不代表本平台对其内容的认可或支持，我们对其内容的准确性、安全性或合法性不作任何保证。"/><LineBreak/>
+                <Run Text="       本平台保留随时更改、更新或删除内容的权利，恕不另行通知。用户应定期查看本免责声明，以确保了解最新的使用条款。"/><LineBreak/>
+                <Run Text="       风险提示：用户在使用本平台时，应当遵守相关法律法规，不得将本平台用于非法目的。如有违反，用户需自行承担相应法律责任。"/>
+            </TextBlock>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -14,7 +14,8 @@
         Background="Transparent"
         ResizeMode="NoResize"
         FontSize="18"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Icon="/Resources/Logo.jpg">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -41,10 +42,9 @@
         <Border CornerRadius="10 0 0 10"
                 ClipToBounds="True">
 
-
             <Border.Background>
-                <ImageBrush ImageSource="Resources/LoginLeft.jpg"
-                    Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Resources/LoginLeft.jpg"
+                            Stretch="UniformToFill"/>
             </Border.Background>
 
             <Border.Clip>
@@ -108,7 +108,8 @@
                              materialDesign:HintAssist.Hint="Username"
                              materialDesign:HintAssist.FloatingOffset="0,-20"
                              BorderBrush="#c5c8cc"
-                             BorderThickness="0 0 0 1.5"/>
+                             BorderThickness="0 0 0 1.5"
+                             TextChanged="UsernameTextBox_TextChanged"/>
                     
                     <TextBlock x:Name="UsernameRequire" 
                                Text="Between 1 and 30 characters"
@@ -125,7 +126,8 @@
                              materialDesign:HintAssist.FloatingOffset="0,-20"
                              BorderBrush="#c5c8cc"
                              Margin="0 27 0 0"
-                             BorderThickness="0 0 0 1.5"/>
+                             BorderThickness="0 0 0 1.5"
+                             TextChanged="EmailTextBox_TextChanged"/>
 
                     <TextBlock x:Name="EmailErrorTextBlock"
                                FontSize="10"
@@ -138,7 +140,8 @@
                                  materialDesign:HintAssist.FloatingOffset="0,-18"
                                  BorderBrush="#c5c8cc"
                                  Margin="0 27 0 0"
-                                 BorderThickness="0 0 0 1.5"/>
+                                 BorderThickness="0 0 0 1.5"
+                                 PasswordChanged="PasswordBox_PasswordChanged"/>
 
                     <TextBlock x:Name="PasswordRequire" 
                                Text="Between 1 and 30 characters"
@@ -155,7 +158,8 @@
                                  materialDesign:HintAssist.FloatingOffset="0,-18"
                                  BorderBrush="#c5c8cc"
                                  Margin="0 27 0 10"
-                                 BorderThickness="0 0 0 1.5"/>
+                                 BorderThickness="0 0 0 1.5"
+                                 PasswordChanged="ConfirmPasswordBox_PasswordChanged"/>
 
                     <TextBlock x:Name="ConfirmPasswordErrorTextBlock"
                                Text="Passwords don't match"
@@ -173,7 +177,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="22"
                                 Click="Button_Click_Submit"/>
 
-                        <Button Content="Cancel"
+                        <Button Content="Back"
                                 Background="AliceBlue"
                                 Foreground="BlueViolet"
                                 FontSize="18"
@@ -182,7 +186,7 @@
                                 Margin="25 0 0 0"
                                 Style="{StaticResource MaterialDesignFlatButton}"
                                 materialDesign:ButtonAssist.CornerRadius="22"
-                                Click="Button_Click_Cancel"/>
+                                Click="Button_Click_Cancel" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
