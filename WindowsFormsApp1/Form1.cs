@@ -22,6 +22,9 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+
+
+
         List<string> FileList = new List<string>();
         public Form1()
         {
@@ -52,10 +55,13 @@ namespace WindowsFormsApp1
 
 
         }
+
         public void OpenWord(string fileName, RichTextBox richTextBox)
         {
             MSWord.Application app = new MSWord.Application();//可以打开word
             MSWord.Document doc = null;      //需要记录打开的word
+
+            
 
             object missing = System.Reflection.Missing.Value;
             object File = fileName;
@@ -93,6 +99,7 @@ namespace WindowsFormsApp1
         }
         public void OpenFile(string file)
         {
+            //获取文件后缀名，并转成小写
             string extension = Path.GetExtension(file).ToLower();
             try
             {

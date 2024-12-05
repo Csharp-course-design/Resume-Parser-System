@@ -9,8 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\LoginLeft.jpg" />
+    <None Remove="Resources\StartBackground.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\LoginLeft.jpg" />
+    <Resource Include="Resources\StartBackground.jpg" />
   </ItemGroup>
 
 </Project>

@@ -30,7 +30,7 @@ namespace Models.ResumeImfo
         /// <summary>
         /// 技能
         /// </summary>
-        public List<string> Skill { get => skill; set => skill = value; }
+        public List<string> Skills { get => skill; set => skill = value; }
         
         /// <summary>
         /// 教育背景
@@ -61,8 +61,8 @@ namespace Models.ResumeImfo
             sb.AppendLine();
 
             sb.AppendLine("Skills:");
-            if (Skill.Any())
-                sb.AppendLine(string.Join(", ", Skill));
+            if (Skills.Any())
+                sb.AppendLine(string.Join(", ", Skills));
             else
                 sb.AppendLine("None");
             sb.AppendLine();

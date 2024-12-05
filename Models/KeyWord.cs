@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class KeyWord
+    public class KeyWord
     {
         public int Id { get; set; }
 
