@@ -35,8 +35,11 @@ namespace StartUI
             {
                 timerProgressbar.Stop();
 
-                LoginIn loginIn = new LoginIn();                
-                loginIn.Show();
+                //LoginIn loginIn = new LoginIn();                
+                //loginIn.Show();
+                //this.Close();
+                Func func = new Func();
+                func.Show();
                 this.Close();
             }
         }
