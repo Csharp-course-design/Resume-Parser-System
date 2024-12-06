@@ -3,7 +3,7 @@ using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
-    internal class JsonFactory : ITransFactory
+    public class JsonFactory : ITransFactory
     {
         /// <summary>
         /// 将格式化字符串（JSON）转换为 ResumeInfo 对象

@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CsharpAPI\CsharpAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\Orbitron-Medium.ttf" />
     <Resource Include="Resources\Arrow.jpg" />

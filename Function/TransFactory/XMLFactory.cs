@@ -4,7 +4,7 @@ using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
-    internal class XMLFactory : ITransFactory
+    public class XMLFactory : ITransFactory
     {
         /// <summary>
         /// 将格式化字符串（XML）转换为 ResumeInfo 对象

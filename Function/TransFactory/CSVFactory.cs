@@ -2,9 +2,20 @@
 using System.Text;
 using Models.ResumeInfo;
 
+
+// Hack Data
+/*
+ 
+错误数据
+
+Skills,EduBG,WorkExpers,BaseInfo
+System.Collections.Generic.List`1[System.String],School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术,System.Collections.Generic.List`1[Models.ResumeInfo.Apart.WorkExper],ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
+ 
+ */
+
 namespace Function.TransFactory
 {
-    internal class CSVFactory : ITransFactory
+    public class CSVFactory : ITransFactory
     {
         /// <summary>
         /// 将格式化字符串（CSV）转换为 ResumeInfo 对象

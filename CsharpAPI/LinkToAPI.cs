@@ -80,9 +80,8 @@ namespace CsharpAPI
 
         public ResumeInfo ResumeFile(string filePath)
         {
-            getJson(filePath);
-            // 解析好的JSON 
-            return (ResumeInfo)Function.Factory.ResumeInfoFactory.Get(GetJson());
+            getJson(filePath); // API 的 JSON
+            return (ResumeInfo)Function.Factory.ResumeInfoFactory.Get(GetJson()); // 解析好的JSON 
         }
 
 
