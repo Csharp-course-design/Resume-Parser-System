@@ -48,10 +48,13 @@ class Program
         // 输出 API_Json 返回的数据，进行调试
         // 假设 API_Json 会包含返回的 JSON 数据
         Console.WriteLine("API 返回的数据：");
-        Console.WriteLine(api.ResumeFile(filePath).ToString());
+        //Console.WriteLine(api.ResumeFile(filePath).ToString());
 
-        var TestObject = api.ResumeFile(filePath);
-        var res = (new JsonFactory()).Content(TestObject);
+        var TestObject = api.ResumeFile(filePath); // 类
+        Console.WriteLine(TestObject.ToString()); 
+        var res = (new CSVFactory()).Content(TestObject); // JSON
+        var tmp = (new CSVFactory()).Model(res); // JSON -> 类
+        Console.WriteLine(tmp.ToString());
     }
 }
 
