@@ -4,6 +4,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using Function.Factory;
+using System.Security.Permissions;
 
 
 
@@ -11,7 +13,6 @@ using System.Windows.Documents;
 namespace FileRender
 {
     /// <summary>
-    /// FileRender.xaml 的交互逻辑
     /// </summary>
     public partial class FileRender : UserControl
     {
@@ -20,71 +21,68 @@ namespace FileRender
             InitializeComponent();
         }
 
+        ResumeFile fileObj;
 
-        public string Filepath
-        {
-            set
-            {
-                OpenFile(value);
-            }
-        }
+        Dictionary<string, ResumeFile> keyValuePairs = new Dictionary<string, ResumeFile>();
 
         public ResumeFile FileObj
         {
+            get
+            {
+                return fileObj;
+            }
             set
             {
-                OpenFile(value);
+                fileObj = value;
             }
         }
 
-        public void OpenWord(string fileName, RichTextBox richTextBox)
+        public List<string> Files
         {
-            try
+            set
             {
-                // 加载 Word 文档
-                Document doc = new Document(fileName);
-
-                // 将文档保存为 XAML 流
-                using (MemoryStream xamlStream = new MemoryStream())
+                ResumeFiles.Clear();
+                foreach(string item in value)
                 {
-                    doc.Save(xamlStream, SaveFormat.XamlFlow);
-                    xamlStream.Position = 0;
-
-                    // 将 XAML 流加载到 FlowDocument
-                    FlowDocument flowDocument = System.Windows.Markup.XamlReader.Load(xamlStream) as FlowDocument;
-
-                    // 设置到 RichTextBox
-                    richTextBox.Document = flowDocument;
+                    ResumeFile resumeFile = (ResumeFile)ResumeFIleFactory.Get(item);
+                    ResumeFiles.Add(resumeFile);
+                    keyValuePairs.Add(resumeFile.Filename, resumeFile);
                 }
             }
-            catch (IOException ioEx)
-            {
-                MessageBox.Show($"无法打开文件: {ioEx.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"发生错误: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
-        private void OpenFile(ResumeFile value)
+        List<ResumeFile> resumeFiles = new List<ResumeFile>();
+
+        public List<ResumeFile> ResumeFiles
         {
-            throw new NotImplementedException();
+            set
+            {
+                resumeFiles = value;
+            }
+            get
+            {
+                return resumeFiles;
+            }
         }
-        private void OpenFile(string value)
+
+        public void ShowFiles()
         {
-            RichTextBox richTextBox = new RichTextBox();
-            OpenWord(value, richTextBox);
-
-            // 设置富文本控件显示样式
-            richTextBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-            richTextBox.VerticalAlignment = VerticalAlignment.Stretch;
-            richTextBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-
-            // 将 RichTextBox 添加到 Grid 中
-            grid.Children.Add(richTextBox);
-
+            foreach(ResumeFile item in ResumeFiles)
+            {
+                TabItem tabItem = new TabItem();
+                tabItem.Header = item.Filename;
+                tabItem.MouseDown += TagOpen;
+                SingleFileRender singleFileRender = new SingleFileRender();
+                singleFileRender.FileObj = item;
+                singleFileRender.OpenFile(item);
+                tabItem.Content = singleFileRender;
+                tagControl.Items.Add(tabItem);
+            }
         }
 
+        public void TagOpen(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            FileObj = keyValuePairs[((TabItem)sender).Header.ToString()];
+        }
     }
 }

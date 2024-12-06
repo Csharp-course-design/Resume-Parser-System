@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-
 namespace WpfApp1
 {
     /// <summary>
@@ -10,7 +9,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            a.Filepath = "C:\\Users\\Administrator\\Desktop\\ahw_实验讲义7信号量应用241122073158.docx";
+            a.Filepath = "C:\\Users\\王翔\\Desktop\\ms.docx";
         }
     }
 }

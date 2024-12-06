@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FileRender.FileRender"
+﻿<UserControl x:Class="FileRender.SingleFileRender"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,11 +6,7 @@
              xmlns:local="clr-namespace:FileRender"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <!-- 定义TabControl -->
-        <TabControl x:Name="tagControl">
-
-        </TabControl>
+    <Grid x:Name="FileGrid">
 
     </Grid>
 </UserControl>

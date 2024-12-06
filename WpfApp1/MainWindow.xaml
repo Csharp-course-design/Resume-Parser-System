@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
-        <FileRender:FileRender Name="a" Margin="158,61,183,61" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+        <FileRender:FileRender Name="a"/>
 
     </Grid>
 </Window>
