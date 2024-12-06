@@ -102,19 +102,19 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="JSON"
-                                      Template="{StaticResource Item_Template}">
+                                      Template="{StaticResource Item_Template}" Click="MenuItem_Click_JSON">
                                 <MenuItem.Icon>
                                     <TextBlock Text="&#xeba3;"/>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="CSV"
-                                      Template="{StaticResource Item_Template}">
+                                      Template="{StaticResource Item_Template}" Click="MenuItem_Click_CSV">
                                 <MenuItem.Icon>
                                     <TextBlock Text="&#xeba2;"/>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="XML"
-                                      Template="{StaticResource Item_Template}">
+                                      Template="{StaticResource Item_Template}" Click="MenuItem_Click_XML">
                                 <MenuItem.Icon>
                                     <TextBlock Text="&#xeba4;"/>
                                 </MenuItem.Icon>
@@ -222,13 +222,15 @@
                     BorderBrush="Transparent"
                     Click="Button_Click_Min"/>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer x:Name="InputAreaScrollViewer" 
+                        HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                  Margin="55" Visibility="Collapsed">
                         <TextBox x:Name="InputArea"
                         Foreground="#ffffff" 
                         FontSize="20"   
                         VerticalAlignment="Top" 
                         HorizontalAlignment="Left" 
-                        Margin="55"
+                        Margin="0"
                         Width="800"
                         Height="600"
                         TextWrapping="Wrap"
@@ -237,7 +239,8 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         VerticalContentAlignment="Top"
-                        Visibility="Collapsed"/>
+                                 Visibility="Collapsed"
+                        />
                     </ScrollViewer>
                     
 

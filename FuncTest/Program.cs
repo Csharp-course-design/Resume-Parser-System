@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using CsharpAPI;
 using Microsoft.VisualBasic;
+using Function.TransFactory;
 
 // 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
 /// <summary>
@@ -48,6 +49,9 @@ class Program
         // 假设 API_Json 会包含返回的 JSON 数据
         Console.WriteLine("API 返回的数据：");
         Console.WriteLine(api.ResumeFile(filePath).ToString());
+
+        var TestObject = api.ResumeFile(filePath);
+        var res = (new JsonFactory()).Content(TestObject);
     }
 }
 

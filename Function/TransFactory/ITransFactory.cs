@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Function.TransFactory
 {
-    internal interface ITransFactory
+    public interface ITransFactory
     {
         /// <summary>
         /// 将格式化字符转换为对象

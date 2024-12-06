@@ -4,7 +4,7 @@ using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {
-    internal class CSVFactory : ITransFactory
+    public class CSVFactory : ITransFactory
     {
         /// <summary>
         /// 将格式化字符串（CSV）转换为 ResumeInfo 对象
