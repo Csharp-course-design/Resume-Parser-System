@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
+using CsharpAPI;
 
 namespace StartUI
 {
@@ -57,6 +59,51 @@ namespace StartUI
             {
                 this.DragMove();
             }
+        }
+
+        private void MenuItem_Click_Resume_Analysis(object sender, RoutedEventArgs e)
+        {
+            InputArea.Visibility = Visibility.Visible;
+            closeInputAreaButton.Visibility = Visibility.Visible;
+            closeInputAreaIcon.Visibility = Visibility.Visible;
+
+            // 创建文件选择对话框
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Title = "选择一个文件",
+                Filter = "支持的文件 (*.pdf;*.docx;*.doc;*.txt)|*.pdf;*.docx;*.doc;*.txt|所有文件 (*.*)|*.*",
+                Multiselect = false // 限制只选择一个文件
+            };
+
+            // 显示对话框并判断用户是否选择了文件
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // 获取文件的绝对路径
+                string filePath = openFileDialog.FileName;
+
+                // 显示文件路径（也可以替换为其他逻辑）
+                // MessageBox.Show($"您选择的文件路径是：{filePath}", "文件路径", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // 创建 LinkToAPI 实例
+                LinkToAPI api = new LinkToAPI();
+
+                // 假设 API_Json 会包含返回的 JSON 数据
+                InputArea.Text = api.ResumeFile(filePath).ToString();
+            }
+            else
+            {
+                // 用户取消选择
+                MessageBox.Show("未选择任何文件。", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void closeInputAreaButton_Click(object sender, RoutedEventArgs e)
+        {
+            InputArea.Visibility = Visibility.Collapsed;
+            closeInputAreaButton.Visibility = Visibility.Collapsed; 
+            closeInputAreaIcon.Visibility = Visibility.Collapsed;
+
+            InputArea.Text = String.Empty;
         }
     }
 }

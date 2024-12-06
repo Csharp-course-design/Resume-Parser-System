@@ -19,7 +19,7 @@ using Microsoft.VisualBasic;
 //Basic Information:
 //ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
 
-// 解析内容如下 : 
+// 解析内容如下:
 //Education Background:
 //School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术
 
