@@ -76,7 +76,7 @@ namespace FileRender
             }
         }
 
-        private void OpenFile(ResumeFile value)
+        public void OpenFile(ResumeFile value)
         {
             Base64Helper.Base64StringToFile(value.Base64Data, value.Filename);
             OpenFile(value.Filename);

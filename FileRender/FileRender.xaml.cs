@@ -9,7 +9,6 @@ using System.Security.Permissions;
 
 
 
-
 namespace FileRender
 {
     /// <summary>
