@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Models;
 using Models.ResumeInfo;
 using Models.ResumeInfo.Apart;
+using System.Data;
 
 namespace DAL.DataControl
 {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DataControl
 {
-    internal class ResumeFileControl : DataBaseControl, IDataInsert
+    internal class ResumeFileControl : DataBaseControl, IDataInsert, IDataSelect
     {
         public void Insert<T>(T Item)
         {
@@ -58,6 +58,124 @@ namespace DAL.DataControl
                 catch (Exception ex) { }
             }
             return null;
+        }
+
+        private string BuildWhereClause(Dictionary<string, List<string>> wheres)
+        {
+            if (wheres == null || wheres.Count == 0)
+                return "1=1";
+
+            var clauses = new List<string>();
+            foreach (var where in wheres)
+            {
+                if (where.Value.Count == 1)
+                {
+                    clauses.Add($"{where.Key} = '{where.Value[0]}'");
+                }
+                else
+                {
+                    var inClause = string.Join(", ", where.Value.ConvertAll(val => $"'{val}'"));
+                    clauses.Add($"{where.Key} IN ({inClause})");
+                }
+            }
+
+            return string.Join(" AND ", clauses);
+        }
+
+        public List<object> Select(Dictionary<string, List<string>> Wheres)
+        {
+            string whereClause = BuildWhereClause(Wheres);
+            string query = $"SELECT * FROM ResumeModel WHERE {whereClause}";
+            if (Wheres.Count == 0) {
+                 query = "SELECT * FROM ResumeModel;";
+
+            }
+
+            List<object> results = new List<object>();
+
+            using (var connection = GetSqlConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(new
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                FileName = reader.IsDBNull(reader.GetOrdinal("FileName")) ? null : reader.GetString(reader.GetOrdinal("FileName")),
+                                FileBase64 = reader.IsDBNull(reader.GetOrdinal("FileBase64")) ? null : reader.GetString(reader.GetOrdinal("FileBase64")),
+                                ImportDate = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
+                            });
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        public List<object> Select(List<string> Fields, Dictionary<string, List<string>> Wheres)
+        {
+            string fieldList = Fields != null && Fields.Count > 0 ? string.Join(", ", Fields) : "*";
+            string whereClause = BuildWhereClause(Wheres);
+            string query = $"SELECT {fieldList} FROM ResumeModel WHERE {whereClause}";
+            if (Wheres.Count == 0) { query = "SELECT * FROM ResumeModel;"; }
+
+            List<object> results = new List<object>();
+
+            using (var connection = GetSqlConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var record = new Dictionary<string, object>();
+                            foreach (var field in Fields)
+                            {
+                                record[field] = reader[field];
+                            }
+                            results.Add(record);
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        public T SelectReturnObject<T>(Dictionary<string, List<string>> Wheres)
+        {
+            string whereClause = BuildWhereClause(Wheres);
+            string query = $"SELECT TOP 1 * FROM ResumeModel WHERE {whereClause}";
+            if (Wheres.Count == 0) { query = "SELECT * FROM ResumeModel;"; }
+            using (var connection = GetSqlConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return (T)Activator.CreateInstance(typeof(T), new
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                FileName = reader.IsDBNull(reader.GetOrdinal("FileName")) ? null : reader.GetString(reader.GetOrdinal("FileName")),
+                                FileBase64 = reader.IsDBNull(reader.GetOrdinal("FileBase64")) ? null : reader.GetString(reader.GetOrdinal("FileBase64")),
+                                ImportDate = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
+                            });
+                        }
+                    }
+                }
+            }
+
+            return default(T);
         }
     }
 }
