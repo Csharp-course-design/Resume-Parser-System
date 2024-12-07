@@ -235,7 +235,25 @@ namespace StartUI
             }
         }
 
-        
+
+        private void DragEnterFunc(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effects = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        private void DragDropFunc(object sender, DragEventArgs e)
+        {
+
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            DocDisplay.ShowFiles(new List<string>(files));
+        }
     }
 }
 

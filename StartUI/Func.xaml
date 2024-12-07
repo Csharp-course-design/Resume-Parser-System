@@ -1,4 +1,4 @@
-﻿<Window x:Class="StartUI.Func"
+﻿<Window xmlns:FileRender="clr-namespace:FileRender;assembly=FileRender"  x:Class="StartUI.Func"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -69,7 +69,7 @@
                         </Menu.ItemsPanel>
 
                         <MenuItem Header="新增简历"
-                              Template="{StaticResource Menu_Template}">
+                              Template="{StaticResource Menu_Template}" DragEnter="DragEnterFunc" Drop="DragDropFunc" AllowDrop="True">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60e;"/>
                             </MenuItem.Icon>
@@ -150,7 +150,7 @@
                     Background="Transparent"
                     CornerRadius="0 15 15 0"
                     MouseDown="Border_MouseDown">
-                <Grid>
+                <Grid x:Name="Grid1">
                     <TextBlock Text="INTELLIGENT RESUME PARING"
                                Foreground="#525965"
                                FontFamily="Fonts/#Orbitron Medium"
@@ -262,6 +262,13 @@
                             RenderTransformOrigin="0.997,0.207" 
                             Visibility="Collapsed"
                             Click="closeInputAreaButton_Click"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                  Margin="10 55 10 10">
+                        <FileRender:FileRender x:Name="DocDisplay"
+                                               Margin="0"
+                                               Background="White"/>
+                    </ScrollViewer>
+                    
 
                 </Grid>
             </Border>

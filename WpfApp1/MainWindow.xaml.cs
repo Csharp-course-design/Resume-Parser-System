@@ -9,7 +9,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            a.Filepath = "C:\\Users\\王翔\\Desktop\\ms.docx";
+            a.ShowFiles(new List<string>(){"C:\\Users\\王翔\\Desktop\\ms.docx" }) ;
         }
     }
 }

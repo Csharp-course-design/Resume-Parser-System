@@ -20,68 +20,24 @@ namespace FileRender
             InitializeComponent();
         }
 
-        ResumeFile fileObj;
 
-        Dictionary<string, ResumeFile> keyValuePairs = new Dictionary<string, ResumeFile>();
 
-        public ResumeFile FileObj
+        public void ShowFiles(List<string> FilePath)
         {
-            get
-            {
-                return fileObj;
-            }
-            set
-            {
-                fileObj = value;
-            }
-        }
-
-        public List<string> Files
-        {
-            set
-            {
-                ResumeFiles.Clear();
-                foreach(string item in value)
-                {
-                    ResumeFile resumeFile = (ResumeFile)ResumeFIleFactory.Get(item);
-                    ResumeFiles.Add(resumeFile);
-                    keyValuePairs.Add(resumeFile.Filename, resumeFile);
-                }
-            }
-        }
-
-        List<ResumeFile> resumeFiles = new List<ResumeFile>();
-
-        public List<ResumeFile> ResumeFiles
-        {
-            set
-            {
-                resumeFiles = value;
-            }
-            get
-            {
-                return resumeFiles;
-            }
-        }
-
-        public void ShowFiles()
-        {
-            foreach(ResumeFile item in ResumeFiles)
+            foreach (string item in FilePath)
             {
                 TabItem tabItem = new TabItem();
-                tabItem.Header = item.Filename;
-                tabItem.MouseDown += TagOpen;
+                tabItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                tabItem.VerticalAlignment = VerticalAlignment.Stretch;
+                tabItem.Header = item;
                 SingleFileRender singleFileRender = new SingleFileRender();
-                singleFileRender.FileObj = item;
+                singleFileRender.VerticalAlignment = VerticalAlignment.Stretch;
+                singleFileRender.HorizontalAlignment = HorizontalAlignment.Stretch;
                 singleFileRender.OpenFile(item);
                 tabItem.Content = singleFileRender;
                 tagControl.Items.Add(tabItem);
             }
         }
 
-        public void TagOpen(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            FileObj = keyValuePairs[((TabItem)sender).Header.ToString()];
-        }
     }
 }

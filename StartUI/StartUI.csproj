@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CsharpAPI\CsharpAPI.csproj" />
+    <ProjectReference Include="..\FileRender\FileRender.csproj" />
   </ItemGroup>
 
   <ItemGroup>
