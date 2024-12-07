@@ -253,6 +253,18 @@ namespace StartUI
 
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             DocDisplay.ShowFiles(new List<string>(files));
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_AddResumeClose(object sender, RoutedEventArgs e)
+        {
+            DocDisplay.Visibility = Visibility.Collapsed;
+            DocDisplayScroll.Visibility = Visibility.Collapsed;
+            DocDisplayIcon.Visibility = Visibility.Collapsed;
+            DocDisplayButton.Visibility = Visibility.Collapsed;
         }
     }
 }

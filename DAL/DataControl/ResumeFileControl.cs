@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace DAL.DataControl
 {
-    internal class ResumeFileControl : DataBaseControl, IDataInsert, IDataSelect
+    public class ResumeFileControl : DataBaseControl, IDataInsert, IDataSelect
     {
+        public ResumeFileControl()
+        {
+
+        }
         public void Insert<T>(T Item)
         {
             InsertReturnID(Item);
@@ -44,9 +48,9 @@ namespace DAL.DataControl
                         // 准备 SqlCommand
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Name", resume.Filename);
-                            cmd.Parameters.AddWithValue("@Age", resume.Base64Data);
-                            cmd.Parameters.AddWithValue("@Phone", resume.Date);
+                            cmd.Parameters.AddWithValue("@FileName", resume.Filename);
+                            cmd.Parameters.AddWithValue("@FileBase64", resume.Base64Data);
+                            cmd.Parameters.AddWithValue("@ImportDate", resume.Date);
                             // 执行插入操作并获取生成的 ID
                             var insertedId = cmd.ExecuteScalar();
                             IdReturn = insertedId.ToString();

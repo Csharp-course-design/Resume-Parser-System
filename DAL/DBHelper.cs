@@ -18,7 +18,7 @@ namespace DAL
         /// <summary>
         /// 获取连接字符串
         /// </summary>
-        public static string connectionString = GetSqlConnectionString();
+        public static string connectionString = "Data Source= .;Initial Catalog = ResumeBase;User Id=sa;Password=0.0.00.0;TrustServerCertificate=True";
 
 
         public static void Setting()
@@ -33,6 +33,7 @@ namespace DAL
         {
 
             /// TODO 待书写
+            
             return connectionString;
         }
 

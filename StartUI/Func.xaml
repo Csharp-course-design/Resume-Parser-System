@@ -262,13 +262,37 @@
                             RenderTransformOrigin="0.997,0.207" 
                             Visibility="Collapsed"
                             Click="closeInputAreaButton_Click"/>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                                  Margin="10 55 10 10">
+                    <ScrollViewer x:Name="DocDisplayScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                  Margin="10 55 10 10"
+                                  Visibility="Collapsed">
                         <FileRender:FileRender x:Name="DocDisplay"
                                                Margin="0"
-                                               Background="White"/>
+                                               Background="White"
+                                               Height="600"
+                                               Width="900"
+                                               Visibility="Collapsed"/>
                     </ScrollViewer>
-                    
+                    <materialDesign:PackIcon x:Name="DocDisplayIcon" 
+                        Kind="WindowClose"
+                 VerticalAlignment="Top"
+                 Width="20"
+                 Height="20"
+                 HorizontalAlignment="Right"
+                 Background="Transparent"
+                 Foreground="#ffffff"
+                 Margin="0 75 40 0"
+                                             Visibility="Collapsed"/>
+                    <Button x:Name="DocDisplayButton" 
+                            Height="20"
+                        Width="20"
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        Margin="0 75 40 0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="Button_Click_AddResumeClose"
+                            Visibility="Collapsed"/>
+
 
                 </Grid>
             </Border>
