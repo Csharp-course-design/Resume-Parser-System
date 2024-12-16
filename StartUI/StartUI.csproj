@@ -21,8 +21,9 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
-    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
+    <PackageReference Include="O2S.Components.PDFView4NET.WPF" Version="11.3.13" />
   </ItemGroup>
 
   <ItemGroup>

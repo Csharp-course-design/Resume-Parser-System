@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form", "WindowsFormsApp1\Form.csproj", "{1E744406-8BC9-4BF6-AD17-72901F0DEDD1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpAPI", "CsharpAPI\CsharpAPI.csproj", "{821258CE-FDE4-402A-B4AD-AAD68AB2A8B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{C64F5319-C1AD-41B4-AAC3-10137FDAC784}"
@@ -35,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1E744406-8BC9-4BF6-AD17-72901F0DEDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E744406-8BC9-4BF6-AD17-72901F0DEDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E744406-8BC9-4BF6-AD17-72901F0DEDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E744406-8BC9-4BF6-AD17-72901F0DEDD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{821258CE-FDE4-402A-B4AD-AAD68AB2A8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{821258CE-FDE4-402A-B4AD-AAD68AB2A8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{821258CE-FDE4-402A-B4AD-AAD68AB2A8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
