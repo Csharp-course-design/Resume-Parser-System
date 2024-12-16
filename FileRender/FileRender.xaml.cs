@@ -20,6 +20,11 @@ namespace FileRender
             InitializeComponent();
         }
 
+        public void ClearAll()
+        {
+            tagControl.Items.Clear();
+        }
+
         public void ShowFiles(List<ResumeFile> Files)
         {
             // 假设tagControl已经在XAML中定义

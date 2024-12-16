@@ -18,6 +18,7 @@ using Google.Protobuf.WellKnownTypes;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using YourNamespace;
+using JiebaNet.Segmenter.Common;
 
 namespace StartUI
 {
@@ -267,6 +268,7 @@ namespace StartUI
 
         private void Button_Click_AddResumeClose(object sender, RoutedEventArgs e)
         {
+            DocDisplay.ClearAll();
             DocDisplay.Visibility = Visibility.Collapsed;
             DocDisplayScroll.Visibility = Visibility.Collapsed;
             DocDisplayIcon.Visibility = Visibility.Collapsed;
@@ -402,14 +404,28 @@ namespace StartUI
                 nlis.Add(file);
             }
 
+            if(nlis.Count == 0)
+            {
+                MessageBox.Show("查询不到对应结果");
+                return;
+            }
+
             DocDisplay.ShowFiles(nlis);
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
         }
 
         private void TestClick(object sender, RoutedEventArgs e)
         {
             List<string> Test = new List<string> ();
-            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
+            Test.Add("C:\\Users\\34435\\Desktop\\计算224刘子默2209030115-微程序控制器实验.doc");
             DocDisplay.ShowFiles(Test);
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
         }
     }
 }
