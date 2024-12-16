@@ -16,6 +16,8 @@ using CsharpAPI;
 using Function.TransFactory;
 using Google.Protobuf.WellKnownTypes;
 using System.IO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using YourNamespace;
 
 namespace StartUI
 {
@@ -93,7 +95,7 @@ namespace StartUI
                 LinkToAPI api = new LinkToAPI();
 
                 // 假设 API_Json 会包含返回的 JSON 数据
-                if (api.ResumeFile(filePath).ToString() == String.Empty)
+                if (api.ResumeFile(filePath).ToString() == string.Empty)
                 {
                     throw new Exception("Null ");
                 }
@@ -114,7 +116,7 @@ namespace StartUI
             closeInputAreaIcon.Visibility = Visibility.Collapsed;
 
 
-            InputArea.Text = String.Empty;
+            InputArea.Text = string.Empty;
         }
          
         private void MenuItem_Click_JSON(object sender, RoutedEventArgs e)
@@ -280,64 +282,134 @@ namespace StartUI
 
         private void SearchByDate_Click(object sender, RoutedEventArgs e)
         {
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            // 弹出输入框让用户输入日期
+            string userInput = ShowInputDialog("请输入导入日期（格式：yyyy-MM-dd）");
 
-            // 假设用户选择了开始日期和结束日期
-            DateTime startDate = new DateTime(2023, 1, 1);  // 示例起始日期
-            DateTime endDate = new DateTime(2023, 12, 31);  // 示例结束日期
-
-            // 获取指定目录下的所有文件
-            string[] files = Directory.GetFiles(directoryPath);
-
-            // 按日期筛选文件
-            var filteredFiles = files.Where(file =>
+            if (!string.IsNullOrEmpty(userInput))
             {
-                DateTime creationDate = File.GetCreationTime(file);  // 获取文件创建日期
-                return creationDate >= startDate && creationDate <= endDate;
-            }).ToList();
+                // 日期格式检查
+                DateTime parsedDate;
+                bool isValidDate = DateTime.TryParseExact(userInput, "yyyy-MM-dd",
+                                                          System.Globalization.CultureInfo.InvariantCulture,
+                                                          System.Globalization.DateTimeStyles.None,
+                                                          out parsedDate);
 
-            // 显示筛选的文件（可以将文件名或文件内容展示在界面上）
-            DisplayFiles(filteredFiles);
+                if (isValidDate)
+                {
+                    // 如果日期格式正确，根据用户输入的日期进行查询
+                    var files = GetFilesByDate(parsedDate.ToString("yyyy-MM-dd"));
+
+                    // 显示查询结果
+                    DisplayFiles(files);
+                }
+                else
+                {
+                    // 如果日期格式无效，提示用户重新输入
+                    MessageBox.Show("输入的日期格式无效，请确保格式为 yyyy-MM-dd", "日期格式错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("输入的日期为空", "日期格式错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SearchByName_Click(object sender, RoutedEventArgs e)
         {
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            // 弹出输入框让用户输入文件名称
+            string userInput = ShowInputDialog("请输入文件名称");
 
-            // 假设用户输入了一个查询关键字（可以通过文本框获取）
-            string searchKeyword = "John";  // 示例关键字
-
-            // 获取指定目录下的所有文件
-            string[] files = Directory.GetFiles(directoryPath);
-
-            // 按文件名筛选
-            var filteredFiles = files.Where(file =>
+            if (!string.IsNullOrEmpty(userInput))
             {
-                string fileName = Path.GetFileName(file);  // 获取文件名
-                return fileName.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase);  // 检查文件名是否包含关键字
-            }).ToList();
+                // 根据用户输入的名称进行查询
+                var files = GetFilesByName(userInput);
 
-            // 显示筛选的文件（可以将文件名或文件内容展示在界面上）
-            DisplayFiles(filteredFiles);
-        }
-
-        private void DisplayFiles(List<string> files)
-        {
-            FilesListBox.Items.Clear();  // 清空当前项
-            foreach (var file in files)
-            {
-                FilesListBox.Items.Add(Path.GetFileName(file));  // 只显示文件名
+                // 显示查询结果
+                DisplayFiles(files);
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        // 弹出输入框让用户输入
+        private string ShowInputDialog(string prompt)
         {
-            string filepath = "C:\\Users\\34435\\Desktop\\数据库.docx";
-            DocDisplay.ShowFiles(new List<string>() { filepath });
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
+            // 创建 InputDialog 对话框实例并传入提示信息
+            var inputDialog = new InputDialog(prompt);
+            bool? result = inputDialog.ShowDialog();  // 显示对话框并等待用户操作
+
+            if (result == true)  // 如果用户点击了 OK
+            {
+                //MessageBox.Show(inputDialog.UserInput);
+                return inputDialog.UserInput;  // 返回用户输入的信息
+            }
+
+            return string.Empty;  // 如果用户点击了 Cancel 或关闭了对话框
+        }
+
+        // 根据日期获取文件
+        private List<string> GetFilesByDate(string date)
+        {
+            List<string> matchingFiles = new List<string>();
+
+            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            var files = Directory.GetFiles(directoryPath);
+
+            foreach (var file in files)
+            {
+                var fileInfo = new FileInfo(file);
+
+                // 假设文件的创建日期是导入日期
+                if (fileInfo.CreationTime.ToString("yyyy-MM-dd") == date)
+                {
+                    matchingFiles.Add(file);
+                }
+            }
+
+            return matchingFiles;
+        }
+
+        // 根据文件名获取文件
+        private List<string> GetFilesByName(string fileName)
+        {
+            List<string> matchingFiles = new List<string>();
+
+            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            var files = Directory.GetFiles(directoryPath);
+
+            foreach (var file in files)
+            {
+                if (file.Contains(fileName)) // 根据文件名进行模糊查询
+                {
+                    matchingFiles.Add(file);
+                }
+            }
+
+            return matchingFiles;
+        }
+
+        // 显示查询结果
+        private void DisplayFiles(List<string> files)
+        {
+            FilesListBox.Items.Clear();  // 清空当前项
+
+            List<string> nlis = new List<string>();
+
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            foreach (var file in files)
+            {
+                string filePath = directoryPath + file;
+                nlis.Add(file);
+            }
+
+            DocDisplay.ShowFiles(nlis);
+        }
+
+        private void TestClick(object sender, RoutedEventArgs e)
+        {
+            List<string> Test = new List<string> ();
+            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
+            DocDisplay.ShowFiles(Test);
         }
     }
 }
