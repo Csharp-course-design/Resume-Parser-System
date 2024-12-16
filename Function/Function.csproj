@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="jieba.NET" Version="0.42.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
   </ItemGroup>
 
   <ItemGroup>

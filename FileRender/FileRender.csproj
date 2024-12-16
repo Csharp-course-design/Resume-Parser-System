@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspose.Words" Version="24.11.1" />
+    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
     <PackageReference Include="Spire.PDF" Version="10.11.7" />
   </ItemGroup>
 

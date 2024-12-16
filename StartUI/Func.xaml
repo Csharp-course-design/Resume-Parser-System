@@ -86,19 +86,19 @@
 
 
                         <MenuItem Header="搜索简历"
-      Template="{StaticResource Menu_SubMenu_Template}">
+Template="{StaticResource Menu_SubMenu_Template}">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe606;"/>
                             </MenuItem.Icon>
 
                             <MenuItem Header="按导入日期查询"
-              Template="{StaticResource Item_Template}" Click="SearchByDate_Click">
+        Template="{StaticResource Item_Template}" Click="SearchByDate_Click">
                                 <MenuItem.Icon>
                                     <TextBlock Text="&#xe669;"/>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="按文件名称查询"
-              Template="{StaticResource Item_Template}" Click="SearchByName_Click">
+        Template="{StaticResource Item_Template}" Click="SearchByName_Click">
                                 <MenuItem.Icon>
                                     <TextBlock Text="&#xe669;"/>
                                 </MenuItem.Icon>
@@ -173,7 +173,7 @@
                         </MenuItem>
 
                         <MenuItem Header="报告生成"
-                              Template="{StaticResource Menu_Template}">
+                              Template="{StaticResource Menu_Template}" Click="TestClick">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60b;"/>
                             </MenuItem.Icon>

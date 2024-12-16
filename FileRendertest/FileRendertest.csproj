@@ -34,6 +34,12 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="O2S.Components.PDFView4NET.WPF, Version=11.3.13.0, Culture=neutral, PublicKeyToken=2f824cb48af66728, processorArchitecture=MSIL">
+      <HintPath>..\packages\O2S.Components.PDFView4NET.WPF.11.3.13.0\lib\net40\O2S.Components.PDFView4NET.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.Pdf, Version=10.7.21.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.PDFViewer.7.12.23\lib\net48\Spire.Pdf.dll</HintPath>
     </Reference>
