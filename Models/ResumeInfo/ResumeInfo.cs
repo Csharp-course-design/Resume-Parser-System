@@ -80,5 +80,28 @@ namespace Models.ResumeInfo
 
             return sb.ToString();
         }
+        public string ToStr()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(BaseInfo.ToStr());
+            sb.AppendLine();
+
+            sb.AppendLine(EduBG.ToStr());
+            sb.AppendLine();
+
+            if (Skills.Any())
+                sb.AppendLine(string.Join(", ", Skills));
+            sb.AppendLine();
+
+            if (WorkExpers.Any())
+            {
+                foreach (var workExper in WorkExpers)
+                {
+                    sb.AppendLine(workExper.ToString());
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }

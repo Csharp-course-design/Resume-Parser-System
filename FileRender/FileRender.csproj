@@ -9,13 +9,16 @@
 
   <ItemGroup>
     <PackageReference Include="Aspose.Words" Version="24.11.1" />
-    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+    <PackageReference Include="Spire.Doc" Version="12.11.7" />
     <PackageReference Include="Spire.PDF" Version="10.11.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Function\Function.csproj" />
-    <ProjectReference Include="..\Models\Models.csproj" />
+	<ProjectReference Include="..\Models\Models.csproj" />
+	<ProjectReference Include="..\DAL\DAL.csproj" />
+	  <!-- F:\原神\Resume-Parser-System\DAL\DAL.csproj-->
   </ItemGroup>
 
 </Project>

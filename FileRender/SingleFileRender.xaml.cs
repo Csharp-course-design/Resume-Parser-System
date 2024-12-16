@@ -2,6 +2,8 @@
 using Function;
 using Microsoft.VisualBasic.FileIO;
 using Models;
+using Microsoft.Web.WebView2.Wpf;
+using Spire.Additions.Xps.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +19,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Xps.Packaging;
+using DAL.DataControl;
+using Function.Factory;
 
 namespace FileRender
 {
@@ -25,6 +30,18 @@ namespace FileRender
     /// </summary>
     public partial class SingleFileRender : UserControl
     {
+
+        /// <summary>
+        /// 统一读取
+        /// </summary>
+        XpsDocument readerDoc;
+
+        /// <summary>
+        /// 转化临时显示文件
+        /// </summary>
+        public string tempPdfPreAddress = Environment.CurrentDirectory + "\\tempPdfPre\\";
+
+
         public SingleFileRender()
         {
             InitializeComponent();
@@ -46,6 +63,7 @@ namespace FileRender
             }
         }
 
+
         public void OpenWord(string fileName, RichTextBox richTextBox)
         {
             try
@@ -54,16 +72,14 @@ namespace FileRender
                 Document doc = new Document(fileName);
 
                 // 将文档保存为 XAML 流
-                using (MemoryStream xamlStream = new MemoryStream())
+                // 将文档保存为 RTF 格式
+                using (MemoryStream rtfStream = new MemoryStream())
                 {
-                    doc.Save(xamlStream, SaveFormat.XamlFlow);
-                    xamlStream.Position = 0;
+                    doc.Save(rtfStream, SaveFormat.Rtf);
+                    rtfStream.Position = 0;
 
-                    // 将 XAML 流加载到 FlowDocument
-                    FlowDocument flowDocument = System.Windows.Markup.XamlReader.Load(xamlStream) as FlowDocument;
-
-                    // 设置到 RichTextBox
-                    richTextBox.Document = flowDocument;
+                    // 将 RTF 数据加载到 RichTextBox
+                    richTextBox.Selection.Load(rtfStream, DataFormats.Rtf);
                 }
             }
             catch (IOException ioEx)
@@ -81,22 +97,46 @@ namespace FileRender
             Base64Helper.Base64StringToFile(value.Base64Data, value.Filename);
             OpenFile(value.Filename);
             FileSystem.DeleteFile(value.Filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-
         }
         public void OpenFile(string value)
         {
-            RichTextBox richTextBox = new RichTextBox();
-            OpenWord(value, richTextBox);
+            TabItem tabItem = new TabItem
+            {
+                Header = System.IO.Path.GetFileName(value)
+            };
 
-            // 设置富文本控件显示样式
-            richTextBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-            richTextBox.VerticalAlignment = VerticalAlignment.Stretch;
-            richTextBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            if (value.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+            {
+                var webView = new WebView2();
+                webView.Source = new Uri(value);
+                FileGrid.Children.Add(webView);
+            }
+            else if (value.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) ||
+                     value.EndsWith(".doc", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    RichTextBox richTextBox = new RichTextBox();
+                    OpenWord(value, richTextBox);
 
-            // 将 RichTextBox 添加到 Grid 中
-            FileGrid.Children.Add(richTextBox);
+                    // 设置富文本控件显示样式
+                    richTextBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    richTextBox.VerticalAlignment = VerticalAlignment.Stretch;
+                    richTextBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+                    // 将 RichTextBox 添加到 Grid 中
+                    FileGrid.Children.Add(richTextBox);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"加载失败: {ex.Message}");
+                }
+            }
+            else
+            {
+                tabItem.Content = new TextBlock { Text = "不支持的文件格式" };
+            }
+            //(new ResumeFileControl()).Insert(ResumeFIleFactory.Get(value));
         }
-
-
     }
 }

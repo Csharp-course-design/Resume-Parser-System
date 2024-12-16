@@ -40,9 +40,9 @@ namespace Models.ResumeInfo.Apart
         public int Age { get => age; set => age = value; }
 
 
-        public override string ToString()
+        public string ToStr()
         {
-            return $"ID: {id}, Name: {name}, Age: {age}, Phone: {phone}";
+            return $"{id},{name},{age},{phone}";
         }
     }
 }

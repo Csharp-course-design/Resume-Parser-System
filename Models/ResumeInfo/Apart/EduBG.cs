@@ -57,5 +57,9 @@ namespace Models.ResumeInfo.Apart
         {
             return $"School Name: {school_name}, School Type: {schooll_type}, Degree: {degree}, Major: {major}";
         }
+        public string ToStr()
+        {
+            return $"{school_name},{schooll_type},{degree},{major}";
+        }
     }
 }

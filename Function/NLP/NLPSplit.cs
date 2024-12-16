@@ -1,7 +1,7 @@
 ﻿using JiebaNet.Segmenter;
 
 
-namespace Function
+namespace Function.NLP
 {
     /// <summary>
     /// 使用jieba分词库
