@@ -420,7 +420,7 @@ namespace StartUI
         private void TestClick(object sender, RoutedEventArgs e)
         {
             List<string> Test = new List<string> ();
-            Test.Add("C:\\Users\\34435\\Desktop\\计算224刘子默2209030115-微程序控制器实验.doc");
+            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
             DocDisplay.ShowFiles(Test);
             DocDisplay.Visibility = Visibility.Visible;
             DocDisplayScroll.Visibility = Visibility.Visible;
