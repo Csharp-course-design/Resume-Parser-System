@@ -157,65 +157,65 @@ namespace DAL.TEST
 
 
 
-using Function.Factory;
-using Models.ResumeInfo;
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using CsharpAPI;
-using Microsoft.VisualBasic;
-using Function.TransFactory;
+//using Function.Factory;
+//using Models.ResumeInfo;
+//using System;
+//using System.IO;
+//using System.Net.Http;
+//using System.Text;
+//using System.Text.Json;
+//using CsharpAPI;
+//using Microsoft.VisualBasic;
+//using Function.TransFactory;
 
-// 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
-/// <summary>
-/// WARN 调试 API JSON --> Easy JSON，勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
-/// 
-/// </summary>
-/// 
+//// 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
+///// <summary>
+///// WARN 调试 API JSON --> Easy JSON，勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
+///// 
+///// </summary>
+///// 
 
-//=== Resume Information ===
-//Basic Information:
-//ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
+////=== Resume Information ===
+////Basic Information:
+////ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
 
-//解析内容如下:
-//Education Background:
-//School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术
+////解析内容如下:
+////Education Background:
+////School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术
 
-//Skills:
-//Jpa, Aop, C++, SQL, Ioc, Vue, Java, Hive, MySQL, Cloud, Redis, C/C++, Excel, 优化, Spring, Innodb, Python, 缓存, 架构, 功能, Mybatis, Java Ee, Alibaba, Sentinel, rocketmq, 大数据, 数据库, Spring Boot, springcloud, Mybatis-Plus, Sql数据库, 数据结构, Spring框架, 程序设计, 设计模式, Elasticsearch, Mysql数据库
+////Skills:
+////Jpa, Aop, C++, SQL, Ioc, Vue, Java, Hive, MySQL, Cloud, Redis, C/C++, Excel, 优化, Spring, Innodb, Python, 缓存, 架构, 功能, Mybatis, Java Ee, Alibaba, Sentinel, rocketmq, 大数据, 数据库, Spring Boot, springcloud, Mybatis-Plus, Sql数据库, 数据结构, Spring框架, 程序设计, 设计模式, Elasticsearch, Mysql数据库
 
-//Work Experience:
-//Company: 上海致宇信息科技有限公司, Department: , Location: , Job Title: 后端开发工程师, Start: 2024 - 10, End: 2024 - 11
+////Work Experience:
+////Company: 上海致宇信息科技有限公司, Department: , Location: , Job Title: 后端开发工程师, Start: 2024 - 10, End: 2024 - 11
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        // 创建 LinkToAPI 实例
-        LinkToAPI api = new LinkToAPI();
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        // 创建 LinkToAPI 实例
+//        LinkToAPI api = new LinkToAPI();
 
-        // 简历文件路径，可以根据实际文件调整
-        string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf"; // 请替换成你的文件路径
+//        // 简历文件路径，可以根据实际文件调整
+//        string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf"; // 请替换成你的文件路径
 
-        //// 调用 getJson 方法获取数据
-        //api.getJson(filePath);
-        //Console.WriteLine(api.GetJson());
+//        //// 调用 getJson 方法获取数据
+//        //api.getJson(filePath);
+//        //Console.WriteLine(api.GetJson());
 
 
-        // 输出 API_Json 返回的数据，进行调试
-        // 假设 API_Json 会包含返回的 JSON 数据
-        Console.WriteLine("API 返回的数据：");
-        //Console.WriteLine(api.ResumeFile(filePath).ToString());
+//        // 输出 API_Json 返回的数据，进行调试
+//        // 假设 API_Json 会包含返回的 JSON 数据
+//        Console.WriteLine("API 返回的数据：");
+//        //Console.WriteLine(api.ResumeFile(filePath).ToString());
 
-        var TestObject = api.ResumeFile(filePath); // 类
-        Console.WriteLine(TestObject.ToString());
-        var res = (new JsonFactory()).Content(TestObject); // JSON
-        var tmp = (new JsonFactory()).Model(res); // JSON -> 类
-        Console.WriteLine(tmp.ToString());
-    }
-}
+//        var TestObject = api.ResumeFile(filePath); // 类
+//        Console.WriteLine(TestObject.ToString());
+//        var res = (new JsonFactory()).Content(TestObject); // JSON
+//        var tmp = (new JsonFactory()).Model(res); // JSON -> 类
+//        Console.WriteLine(tmp.ToString());
+//    }
+//}
 
 ///*
 // {

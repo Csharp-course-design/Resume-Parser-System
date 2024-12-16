@@ -255,7 +255,6 @@ namespace StartUI
 
         private void DragDropFunc(object sender, DragEventArgs e)
         {
-
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             DocDisplay.ShowFiles(new List<string>(files));
             DocDisplay.Visibility = Visibility.Visible;
@@ -331,6 +330,15 @@ namespace StartUI
             }
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string filepath = "C:\\Users\\34435\\Desktop\\数据库.docx";
+            DocDisplay.ShowFiles(new List<string>() { filepath });
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
     }
 }
 

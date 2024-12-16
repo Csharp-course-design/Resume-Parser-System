@@ -172,7 +172,7 @@
                             </MenuItem.Icon>
                         </MenuItem>
 
-                        <MenuItem Header="报告生成"
+                        <MenuItem Header="报告生成" Click="MenuItem_Click"
                               Template="{StaticResource Menu_Template}">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60b;"/>
