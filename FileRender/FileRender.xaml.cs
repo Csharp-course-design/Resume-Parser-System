@@ -20,6 +20,22 @@ namespace FileRender
             InitializeComponent();
         }
 
+        public void ShowFiles(List<ResumeFile> Files)
+        {
+            foreach (var item in Files)
+            {
+                TabItem tabItem = new TabItem();
+                tabItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                tabItem.VerticalAlignment = VerticalAlignment.Stretch;
+                tabItem.Header = item;
+                SingleFileRender singleFileRender = new SingleFileRender();
+                singleFileRender.VerticalAlignment = VerticalAlignment.Stretch;
+                singleFileRender.HorizontalAlignment = HorizontalAlignment.Stretch;
+                singleFileRender.OpenFile(item);
+                tabItem.Content = singleFileRender;
+                tagControl.Items.Add(tabItem);
+            }
+        }
 
 
         public void ShowFiles(List<string> FilePath)

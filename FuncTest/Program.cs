@@ -10,7 +10,7 @@ namespace DAL.TEST
     internal class FileTest
     {
         //public ResumeFile resumeFile;
-       // public ResumeFileControl resumeFileControl;
+        // public ResumeFileControl resumeFileControl;
         public FileTest()
         {
         }
@@ -26,14 +26,14 @@ namespace DAL.TEST
         static public void TestSelect()
         {
             //ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
-            Dictionary<string,List<string>> keyValuePairs = new Dictionary<string, List<string>>()
+            Dictionary<string, List<string>> keyValuePairs = new Dictionary<string, List<string>>()
             {
-                {"FileName", new List<string>(){ 
+                {"FileName", new List<string>(){
                     "abc"
                 } },
             };
             ResumeFileControl resumeFileControl = new ResumeFileControl();
-            List<object> results  = resumeFileControl.Select(keyValuePairs);   
+            List<object> results = resumeFileControl.Select(keyValuePairs);
             Console.WriteLine($"该简历文件为: {results[0].ToString()}");
 
         }
@@ -44,7 +44,7 @@ namespace DAL.TEST
         }
 
     }
-    
+
 }
 
 
@@ -94,7 +94,7 @@ namespace DAL.TEST
 ////Work Experience:
 ////Company: 上海致宇信息科技有限公司, Department: , Location: , Job Title: 后端开发工程师, Start: 2024 - 10, End: 2024 - 11
 
-//class Program 
+//class Program
 //{
 //    static void Main(string[] args)
 //    {
@@ -102,7 +102,7 @@ namespace DAL.TEST
 //        LinkToAPI api = new LinkToAPI();
 
 //        // 简历文件路径，可以根据实际文件调整
-//        string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf"; // 请替换成你的文件路径
+//        string filePath = "C:\\Users\\34435\\Desktop\\郭暾-Golang-后端简历.pdf"; // 请替换成你的文件路径
 
 //        //// 调用 getJson 方法获取数据
 //        //api.getJson(filePath);
@@ -115,7 +115,7 @@ namespace DAL.TEST
 //        //Console.WriteLine(api.ResumeFile(filePath).ToString());
 
 //        var TestObject = api.ResumeFile(filePath); // 类
-//        Console.WriteLine(TestObject.ToString()); 
+//        Console.WriteLine(TestObject.ToString());
 //        var res = (new CSVFactory()).Content(TestObject); // JSON
 //        var tmp = (new CSVFactory()).Model(res); // JSON -> 类
 //        Console.WriteLine(tmp.ToString());
