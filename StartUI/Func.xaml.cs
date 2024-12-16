@@ -258,7 +258,6 @@ namespace StartUI
 
         private void DragDropFunc(object sender, DragEventArgs e)
         {
-
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             DocDisplay.ShowFiles(new List<string>(files));
             DocDisplay.Visibility = Visibility.Visible;

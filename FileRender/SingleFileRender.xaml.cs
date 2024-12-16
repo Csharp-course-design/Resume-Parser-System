@@ -100,11 +100,6 @@ namespace FileRender
         }
         public void OpenFile(string value)
         {
-            //TabItem tabItem = new TabItem
-            //{
-            //    Header = System.IO.Path.GetFileName(value)
-            //};
-
             if (value.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
             {
                 var webView = new WebView2();
@@ -132,10 +127,6 @@ namespace FileRender
                     MessageBox.Show($"加载失败: {ex.Message}");
                 }
             }
-            //else
-            //{
-            //    tabItem.Content = new TextBlock { Text = "不支持的文件格式" };
-            //}
             //(new ResumeFileControl()).Insert(ResumeFIleFactory.Get(value));
         }
     }
