@@ -14,28 +14,28 @@ namespace Function.Factory
         {
             try
             {
-                var data = JObject.Parse(json)?["parsing_result"];
-                if (data == null) throw new Exception("Parsing result not found in JSON.");
+                var data = JObject.Parse(json)?["parsing_result"]; // 获得解析结果的 Json 列表
+                if (data == null) throw new Exception("Parsing result not found in JSON."); // 异常处理
 
-                var workExpers = ParseWorkExperiences(data["work_experience"] as JArray);
+                var workExpers = ParseWorkExperiences(data["work_experience"] as JArray); // 解析工作经历
 
-                var basicInfo = data["basic_info"];
-                var contactInfo = data["contact_info"];
+                var basicInfo = data["basic_info"]; // 解析基本信息 
+                var contactInfo = data["contact_info"]; // 解析联系方式
                 var baseInfo = new BaseInfo(
                     id: 0,
                     name: basicInfo?["name"]?.ToString() ?? string.Empty,
                     age: int.TryParse(basicInfo?["age"]?.ToString(), out var age) ? age : 0,
                     phone: contactInfo?["phone_number"]?.ToString() ?? string.Empty
-                );
+                ); // 解析到 BaseInfo 类
 
                 var eduBG = new EduBG(
                     school_name: basicInfo?["school_name"]?.ToString() ?? string.Empty,
                     schooll_type: basicInfo?["school_type"]?.ToString() ?? string.Empty,
                     degree: basicInfo?["degree"]?.ToString() ?? string.Empty,
                     major: basicInfo?["major"]?.ToString() ?? string.Empty
-                );
+                ); // 解析到 eduBG 类
 
-                var skillsArray = data["others"]?["skills"] as JArray;
+                var skillsArray = data["others"]?["skills"] as JArray; // 技能
                 var skills = skillsArray != null ? skillsArray.ToObject<List<string>>() : new List<string>();
 
                 return new ResumeInfo(baseInfo, eduBG, skills, workExpers);

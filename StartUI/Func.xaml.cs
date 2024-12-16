@@ -92,6 +92,10 @@ namespace StartUI
                 LinkToAPI api = new LinkToAPI();
 
                 // 假设 API_Json 会包含返回的 JSON 数据
+                if (api.ResumeFile(filePath).ToString() == String.Empty)
+                {
+                    throw new Exception("Null ");
+                }
                 InputArea.Text = api.ResumeFile(filePath).ToString();
             }
             else

@@ -54,8 +54,8 @@ namespace CsharpAPI
                     client.DefaultRequestHeaders.Add("id", UserId);
                     client.DefaultRequestHeaders.Add("secret", Secret);
 
-                    HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = client.PostAsync(ApiUrl, content).Result; // 使用同步的 PostAsync
+                    HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json"); // UTF-8 编码发送
+                    HttpResponseMessage response = client.PostAsync(ApiUrl, content).Result; // 使用同步的 PostAsync 接受信息
 
                     if (response.IsSuccessStatusCode)
                     {
