@@ -10,11 +10,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+ 
 using Microsoft.VisualBasic;
 using CsharpAPI;
 using Function.TransFactory;
 using Google.Protobuf.WellKnownTypes;
+using System.IO;
 
 namespace StartUI
 {
@@ -277,6 +278,59 @@ namespace StartUI
             ResumeUploadWindow resumeUploadWindow = new ResumeUploadWindow();
             resumeUploadWindow.ShowDialog(); // 以对话框方式打开，阻塞当前窗口
         }
+
+        private void SearchByDate_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+
+            // 假设用户选择了开始日期和结束日期
+            DateTime startDate = new DateTime(2023, 1, 1);  // 示例起始日期
+            DateTime endDate = new DateTime(2023, 12, 31);  // 示例结束日期
+
+            // 获取指定目录下的所有文件
+            string[] files = Directory.GetFiles(directoryPath);
+
+            // 按日期筛选文件
+            var filteredFiles = files.Where(file =>
+            {
+                DateTime creationDate = File.GetCreationTime(file);  // 获取文件创建日期
+                return creationDate >= startDate && creationDate <= endDate;
+            }).ToList();
+
+            // 显示筛选的文件（可以将文件名或文件内容展示在界面上）
+            DisplayFiles(filteredFiles);
+        }
+
+        private void SearchByName_Click(object sender, RoutedEventArgs e)
+        {
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+
+            // 假设用户输入了一个查询关键字（可以通过文本框获取）
+            string searchKeyword = "John";  // 示例关键字
+
+            // 获取指定目录下的所有文件
+            string[] files = Directory.GetFiles(directoryPath);
+
+            // 按文件名筛选
+            var filteredFiles = files.Where(file =>
+            {
+                string fileName = Path.GetFileName(file);  // 获取文件名
+                return fileName.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase);  // 检查文件名是否包含关键字
+            }).ToList();
+
+            // 显示筛选的文件（可以将文件名或文件内容展示在界面上）
+            DisplayFiles(filteredFiles);
+        }
+
+        private void DisplayFiles(List<string> files)
+        {
+            FilesListBox.Items.Clear();  // 清空当前项
+            foreach (var file in files)
+            {
+                FilesListBox.Items.Add(Path.GetFileName(file));  // 只显示文件名
+            }
+        }
+
     }
 }
 
