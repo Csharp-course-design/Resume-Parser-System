@@ -70,19 +70,39 @@ namespace Function.TransFactory
         private BaseInfo ParseBaseInfo(string details)
         {
             var parts = details.Split(';').Select(p => p.Trim()).ToArray();
-            return new BaseInfo(int.Parse(parts[0]), parts[1], int.Parse(parts[2]), parts[3]);
+            int id = int.Parse((parts[0].Split(";").Select(p => p.Trim()).ToArray())[1]);
+            return new BaseInfo(
+                int.Parse(parts[0].Split(":").Select(p => p.Trim()).ToArray()[1]), 
+                parts[1].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                int.Parse(parts[2].Split(":").Select(p => p.Trim()).ToArray()[1]), 
+                parts[3].Split(":").Select(p => p.Trim()).ToArray()[1]
+                );
         }
 
         private EduBG ParseEduBG(string details)
         {
             var parts = details.Split(';').Select(p => p.Trim()).ToArray();
-            return new EduBG(parts[0], parts[1], parts[2], parts[3]);
+            return new EduBG(
+                parts[0].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[1].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[2].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[3].Split(":").Select(p => p.Trim()).ToArray()[1]);
         }
 
         private WorkExper ParseWorkExper(string details)
         {
             var parts = details.Split(';').Select(p => p.Trim()).ToArray();
-            return new WorkExper(parts[0], parts[1], parts[2], parts[3], bool.Parse(parts[4]), parts[5], parts[6], parts[7], parts[8]);
+            return new WorkExper(
+                parts[0].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[1].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[2].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[3].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                bool.Parse(parts[4].Split(":").Select(p => p.Trim()).ToArray()[1]), 
+                parts[5].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[6].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[7].Split(":").Select(p => p.Trim()).ToArray()[1], 
+                parts[8].Split(":").Select(p => p.Trim()).ToArray()[1]
+                );
         }
     }
 }
