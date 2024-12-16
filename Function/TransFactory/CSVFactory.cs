@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Function.TransFactory
 {
-    public class TransFactory : ITransFactory
+    public class CSVFactory : ITransFactory
     {
         public ResumeInfo Model(string Content)
         {
