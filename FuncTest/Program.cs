@@ -21,10 +21,26 @@ namespace DAL.TEST
             ResumeFileControl resumeFileControl = new ResumeFileControl();
             string resultId = resumeFileControl.InsertReturnID(resumeFile);
             Console.WriteLine($"插入的简历文件 ID 为: {resultId}");
+
+        }
+        static public void TestSelect()
+        {
+            //ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
+            Dictionary<string,List<string>> keyValuePairs = new Dictionary<string, List<string>>()
+            {
+                {"FileName", new List<string>(){ 
+                    "abc"
+                } },
+            };
+            ResumeFileControl resumeFileControl = new ResumeFileControl();
+            List<object> results  = resumeFileControl.Select(keyValuePairs);   
+            Console.WriteLine($"该简历文件为: {results[0].ToString()}");
+
         }
         public static void Main()
         {
-            TestInsert();
+            //TestInsert();
+            TestSelect();
         }
 
     }
