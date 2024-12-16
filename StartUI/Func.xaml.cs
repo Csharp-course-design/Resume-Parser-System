@@ -18,6 +18,7 @@ using Google.Protobuf.WellKnownTypes;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using YourNamespace;
+using FileRender;
 
 namespace StartUI
 {
@@ -268,6 +269,7 @@ namespace StartUI
 
         private void Button_Click_AddResumeClose(object sender, RoutedEventArgs e)
         {
+            DocDisplay.ClearAll();
             DocDisplay.Visibility = Visibility.Collapsed;
             DocDisplayScroll.Visibility = Visibility.Collapsed;
             DocDisplayIcon.Visibility = Visibility.Collapsed;
@@ -408,9 +410,17 @@ namespace StartUI
 
         private void TestClick(object sender, RoutedEventArgs e)
         {
-            List<string> Test = new List<string> ();
+            List<string> Test = new List<string>();
             Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
             DocDisplay.ShowFiles(Test);
+            DocDisplay.Visibility = Visibility.Collapsed;
+            DocDisplayScroll.Visibility = Visibility.Collapsed;
+            DocDisplayIcon.Visibility = Visibility.Collapsed;
+            DocDisplayButton.Visibility = Visibility.Collapsed;
+
+            //var sg = new SingleFileRender();
+            //sg.OpenFile("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
+
         }
     }
 }

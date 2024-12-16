@@ -20,6 +20,11 @@ namespace FileRender
             InitializeComponent();
         }
 
+        public void ClearAll()
+        {
+            tagControl.Items.Clear();
+        }
+
         public void ShowFiles(List<ResumeFile> Files)
         {
             foreach (var item in Files)
