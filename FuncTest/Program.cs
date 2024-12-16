@@ -1,126 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
-using DAL.DataControl;
-namespace DAL.TEST
-{
-    internal class FileTest
-    {
-        //public ResumeFile resumeFile;
-       // public ResumeFileControl resumeFileControl;
-        public FileTest()
-        {
-        }
-
-        static public void TestInsert()
-        {
-            ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
-            ResumeFileControl resumeFileControl = new ResumeFileControl();
-            string resultId = resumeFileControl.InsertReturnID(resumeFile);
-            Console.WriteLine($"插入的简历文件 ID 为: {resultId}");
-
-        }
-        static public void TestSelect()
-        {
-            //ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
-            Dictionary<string,List<string>> keyValuePairs = new Dictionary<string, List<string>>()
-            {
-                {"FileName", new List<string>(){ 
-                    "abc"
-                } },
-            };
-            ResumeFileControl resumeFileControl = new ResumeFileControl();
-            List<object> results  = resumeFileControl.Select(keyValuePairs);   
-            Console.WriteLine($"该简历文件为: {results[0].ToString()}");
-
-        }
-        public static void Main()
-        {
-            //TestInsert();
-            TestSelect();
-        }
-
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//using Function.Factory;
-//using Models.ResumeInfo;
-//using System;
-//using System.IO;
-//using System.Net.Http;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
 //using System.Text;
-//using System.Text.Json;
-//using CsharpAPI;
-//using Microsoft.VisualBasic;
-//using Function.TransFactory;
-
-//// 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
-///// <summary>
-///// WARN 调试 API JSON --> Easy JSON，勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
-///// 
-///// </summary>
-///// 
-
-////=== Resume Information ===
-////Basic Information:
-////ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
-
-////解析内容如下:
-////Education Background:
-////School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术
-
-////Skills:
-////Jpa, Aop, C++, SQL, Ioc, Vue, Java, Hive, MySQL, Cloud, Redis, C/C++, Excel, 优化, Spring, Innodb, Python, 缓存, 架构, 功能, Mybatis, Java Ee, Alibaba, Sentinel, rocketmq, 大数据, 数据库, Spring Boot, springcloud, Mybatis-Plus, Sql数据库, 数据结构, Spring框架, 程序设计, 设计模式, Elasticsearch, Mysql数据库
-
-////Work Experience:
-////Company: 上海致宇信息科技有限公司, Department: , Location: , Job Title: 后端开发工程师, Start: 2024 - 10, End: 2024 - 11
-
-//class Program 
+//using System.Threading.Tasks;
+//using Models;
+//using DAL.DataControl;
+//namespace DAL.TEST
 //{
-//    static void Main(string[] args)
+//    internal class FileTest
 //    {
-//        // 创建 LinkToAPI 实例
-//        LinkToAPI api = new LinkToAPI();
+//        //public ResumeFile resumeFile;
+//       // public ResumeFileControl resumeFileControl;
+//        public FileTest()
+//        {
+//        }
 
-//        // 简历文件路径，可以根据实际文件调整
-//        string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf"; // 请替换成你的文件路径
+//        static public void TestInsert()
+//        {
+//            ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
+//            ResumeFileControl resumeFileControl = new ResumeFileControl();
+//            string resultId = resumeFileControl.InsertReturnID(resumeFile);
+//            Console.WriteLine($"插入的简历文件 ID 为: {resultId}");
 
-//        //// 调用 getJson 方法获取数据
-//        //api.getJson(filePath);
-//        //Console.WriteLine(api.GetJson());
+//        }
+//        static public void TestSelect()
+//        {
+//            //ResumeFile resumeFile = new ResumeFile(1, "abc", "abcd", Convert.ToDateTime("2006/8/6"));
+//            Dictionary<string,List<string>> keyValuePairs = new Dictionary<string, List<string>>()
+//            {
+//                {"FileName", new List<string>(){ 
+//                    "abc"
+//                } },
+//            };
+//            ResumeFileControl resumeFileControl = new ResumeFileControl();
+//            List<object> results  = resumeFileControl.Select(keyValuePairs);   
+//            Console.WriteLine($"该简历文件为: {results[0].ToString()}");
 
+//        }
+//        public static void Main()
+//        {
+//            //TestInsert();
+//            TestSelect();
+//        }
 
-//        // 输出 API_Json 返回的数据，进行调试
-//        // 假设 API_Json 会包含返回的 JSON 数据
-//        Console.WriteLine("API 返回的数据：");
-//        //Console.WriteLine(api.ResumeFile(filePath).ToString());
-
-//        var TestObject = api.ResumeFile(filePath); // 类
-//        Console.WriteLine(TestObject.ToString()); 
-//        var res = (new CSVFactory()).Content(TestObject); // JSON
-//        var tmp = (new CSVFactory()).Model(res); // JSON -> 类
-//        Console.WriteLine(tmp.ToString());
 //    }
+
 //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using Function.Factory;
+using Models.ResumeInfo;
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using CsharpAPI;
+using Microsoft.VisualBasic;
+using Function.TransFactory;
+
+// 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
+/// <summary>
+/// WARN 调试 API JSON --> Easy JSON，勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删 勿删
+/// 
+/// </summary>
+/// 
+
+//=== Resume Information ===
+//Basic Information:
+//ID: 0, Name: 闫振斌, Age: 0, Phone: 18146552582
+
+//解析内容如下:
+//Education Background:
+//School Name: 青岛科技大学, School Type: , Degree: 本科, Major: 数据科学与大数据技术
+
+//Skills:
+//Jpa, Aop, C++, SQL, Ioc, Vue, Java, Hive, MySQL, Cloud, Redis, C/C++, Excel, 优化, Spring, Innodb, Python, 缓存, 架构, 功能, Mybatis, Java Ee, Alibaba, Sentinel, rocketmq, 大数据, 数据库, Spring Boot, springcloud, Mybatis-Plus, Sql数据库, 数据结构, Spring框架, 程序设计, 设计模式, Elasticsearch, Mysql数据库
+
+//Work Experience:
+//Company: 上海致宇信息科技有限公司, Department: , Location: , Job Title: 后端开发工程师, Start: 2024 - 10, End: 2024 - 11
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 创建 LinkToAPI 实例
+        LinkToAPI api = new LinkToAPI();
+
+        // 简历文件路径，可以根据实际文件调整
+        string filePath = "C:\\Users\\95432\\Desktop\\闫振斌.pdf"; // 请替换成你的文件路径
+
+        //// 调用 getJson 方法获取数据
+        //api.getJson(filePath);
+        //Console.WriteLine(api.GetJson());
+
+
+        // 输出 API_Json 返回的数据，进行调试
+        // 假设 API_Json 会包含返回的 JSON 数据
+        Console.WriteLine("API 返回的数据：");
+        //Console.WriteLine(api.ResumeFile(filePath).ToString());
+
+        var TestObject = api.ResumeFile(filePath); // 类
+        Console.WriteLine(TestObject.ToString());
+        var res = (new JsonFactory()).Content(TestObject); // JSON
+        var tmp = (new JsonFactory()).Model(res); // JSON -> 类
+        Console.WriteLine(tmp.ToString());
+    }
+}
 
 ///*
 // {

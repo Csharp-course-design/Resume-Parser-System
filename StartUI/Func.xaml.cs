@@ -270,6 +270,13 @@ namespace StartUI
             DocDisplayIcon.Visibility = Visibility.Collapsed;
             DocDisplayButton.Visibility = Visibility.Collapsed;
         }
+
+        private void OpenResumeUploadWindow(object sender, RoutedEventArgs e)
+        {
+            // 打开新增简历窗口
+            ResumeUploadWindow resumeUploadWindow = new ResumeUploadWindow();
+            resumeUploadWindow.ShowDialog(); // 以对话框方式打开，阻塞当前窗口
+        }
     }
 }
 

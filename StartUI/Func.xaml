@@ -69,18 +69,18 @@
                         </Menu.ItemsPanel>
 
                         <MenuItem Header="新增简历"
-                              Template="{StaticResource Menu_Template}" DragEnter="DragEnterFunc" Drop="DragDropFunc" AllowDrop="True">
+                                  Template="{StaticResource Menu_Template}"
+                                  DragEnter="DragEnterFunc"
+                                  Drop="DragDropFunc"
+                                  AllowDrop="True"
+                                  Click="OpenResumeUploadWindow">       
+                            <!-- 点击事件 -->
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60e;"/>
                             </MenuItem.Icon>
                         </MenuItem>
 
-                        <MenuItem Header="所有简历"
-                              Template="{StaticResource Menu_Template}">
-                            <MenuItem.Icon>
-                                <TextBlock Text="&#xe60d;"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
+                        
 
                         <MenuItem Header="搜索简历"
                               Template="{StaticResource Menu_Template}">
@@ -127,6 +127,22 @@
                                 <TextBlock Text="&#xe60a;"/>
                             </MenuItem.Icon>
                         </MenuItem>
+
+                        <MenuItem Header="简历匹配"
+                            Template="{StaticResource Menu_Template}">
+                            <MenuItem.Icon>
+                                <TextBlock Text="&#xe60d;"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+
+                         
+                        <MenuItem Header="技能评估"
+          Template="{StaticResource Menu_Template}">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe8a1;" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+
 
                         <MenuItem Header="统计分析"
                               Template="{StaticResource Menu_Template}">
