@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
- 
+
 using Microsoft.VisualBasic;
 using CsharpAPI;
 using Function.TransFactory;
@@ -75,7 +75,7 @@ namespace StartUI
             InputAreaScrollViewer.Visibility = Visibility.Visible;
             closeInputAreaButton.Visibility = Visibility.Visible;
             closeInputAreaIcon.Visibility = Visibility.Visible;
-            
+
 
             // 创建文件选择对话框
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
@@ -206,13 +206,13 @@ namespace StartUI
         {
             InputArea.Visibility = Visibility.Collapsed;
             InputAreaScrollViewer.Visibility = Visibility.Collapsed;
-            closeInputAreaButton.Visibility = Visibility.Collapsed; 
+            closeInputAreaButton.Visibility = Visibility.Collapsed;
             closeInputAreaIcon.Visibility = Visibility.Collapsed;
 
 
             InputArea.Text = string.Empty;
         }
-         
+
         private void MenuItem_Click_JSON(object sender, RoutedEventArgs e)
         {
             InputArea.Visibility = Visibility.Visible;
@@ -244,7 +244,7 @@ namespace StartUI
 
                 // 如果文件存在，直接读取内容
                 if (System.IO.File.Exists(savePath))
-                { 
+                {
                     string existingContent = System.IO.File.ReadAllText(savePath);
                     InputArea.Text = existingContent;
                     return;
@@ -422,7 +422,8 @@ namespace StartUI
         private void SearchByDate_Click(object sender, RoutedEventArgs e)
         {
             // 弹出输入框让用户输入日期
-            string userInput = ShowInputDialog("请输入导入日期（格式：yyyy-MM-dd）");
+            string userInput = ShowInputDialog("请输入导入日期（格式：yyyy-MM-dd）",
+                DateTime.Now.ToString("yyyy-MM-dd"));
 
             if (!string.IsNullOrEmpty(userInput))
             {
@@ -469,10 +470,10 @@ namespace StartUI
         }
 
         // 弹出输入框让用户输入
-        private string ShowInputDialog(string prompt)
+        private string ShowInputDialog(string prompt, string defaultContent = "")
         {
             // 创建 InputDialog 对话框实例并传入提示信息
-            var inputDialog = new InputDialog(prompt);
+            var inputDialog = new InputDialog(prompt, defaultContent);
             bool? result = inputDialog.ShowDialog();  // 显示对话框并等待用户操作
 
             if (result == true)  // 如果用户点击了 OK
@@ -544,7 +545,7 @@ namespace StartUI
                 {
                     nlis.Add(file);
                 }
-                
+
             }
 
             if(nlis.Count == 0)
@@ -645,7 +646,7 @@ namespace StartUI
                 //    InputArea.Text = existingContent;
                 //    return;
                 //}
-                 
+
 
 
                 try
