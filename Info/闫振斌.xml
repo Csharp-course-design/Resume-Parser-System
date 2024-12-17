@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ResumeInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Skills>
+    <string>Jpa</string>
+    <string>Aop</string>
+    <string>C++</string>
+    <string>SQL</string>
+    <string>Ioc</string>
+    <string>Vue</string>
+    <string>Java</string>
+    <string>Hive</string>
+    <string>MySQL</string>
+    <string>Cloud</string>
+    <string>Redis</string>
+    <string>C/C++</string>
+    <string>Excel</string>
+    <string>优化</string>
+    <string>Spring</string>
+    <string>Innodb</string>
+    <string>Python</string>
+    <string>缓存</string>
+    <string>架构</string>
+    <string>功能</string>
+    <string>Mybatis</string>
+    <string>Java Ee</string>
+    <string>Alibaba</string>
+    <string>Sentinel</string>
+    <string>rocketmq</string>
+    <string>大数据</string>
+    <string>数据库</string>
+    <string>Spring Boot</string>
+    <string>springcloud</string>
+    <string>Mybatis-Plus</string>
+    <string>Sql数据库</string>
+    <string>数据结构</string>
+    <string>Spring框架</string>
+    <string>程序设计</string>
+    <string>设计模式</string>
+    <string>Elasticsearch</string>
+    <string>Mysql数据库</string>
+  </Skills>
+  <EduBG>
+    <School_name>青岛科技大学</School_name>
+    <Schooll_type />
+    <Degree>本科</Degree>
+    <Major>数据科学与大数据技术</Major>
+  </EduBG>
+  <WorkExpers>
+    <WorkExper>
+      <Start_time_year>2024</Start_time_year>
+      <Start_time_month>10</Start_time_month>
+      <End_time_year>2024</End_time_year>
+      <End_time_month>11</End_time_month>
+      <Still_active>false</Still_active>
+      <Company_name>上海致宇信息科技有限公司</Company_name>
+      <Department />
+      <Location />
+      <Job_title>后端开发工程师</Job_title>
+    </WorkExper>
+  </WorkExpers>
+  <BaseInfo>
+    <Id>0</Id>
+    <Phone>18146552582</Phone>
+    <Name>闫振斌</Name>
+    <Age>0</Age>
+  </BaseInfo>
+</ResumeInfo>

@@ -14,16 +14,13 @@ namespace CsharpAPI
     /// 建议提供连接测试方法，以测试用户名与Token是否正确
     /// </summary>
     public class LinkToAPI : IServer
-    {
-        /*
-            用户ID：3a70ef70-b2fb-11ef-b1d5-ff5abccbf335
-            用户密锁：a21447af-000c-47b8-95cc-6b49308709f8
-         */
+    { 
         private const string ApiUrl = "https://api.xiaoxizn.com/v1/parser/parse_base";
         //private const string UserId = "fdaf1790-ab18-11ef-b1d5-ff5abccbf335";
         //private const string Secret = "616af12d-d4c1-470f-a61a-3f25bb86d33d";
         private const string UserId = "3a70ef70-b2fb-11ef-b1d5-ff5abccbf335";
         private const string Secret = "a21447af-000c-47b8-95cc-6b49308709f8";
+
         private string API_Json = String.Empty;
         public string GetJson()
         {

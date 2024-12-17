@@ -143,7 +143,7 @@ Template="{StaticResource Menu_SubMenu_Template}">
                         </MenuItem>
 
                         <MenuItem Header="格式转换"
-                              Template="{StaticResource Menu_Template }">
+                              Template="{StaticResource Menu_Template }" Click="Button_Click_Format_Conversion">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60a;"/>
                             </MenuItem.Icon>
