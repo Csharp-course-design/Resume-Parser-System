@@ -1,0 +1,66 @@
+{
+  "Skills": [
+    "Jpa",
+    "Aop",
+    "C\u002B\u002B",
+    "SQL",
+    "Ioc",
+    "Vue",
+    "Java",
+    "Hive",
+    "MySQL",
+    "Cloud",
+    "Redis",
+    "C/C\u002B\u002B",
+    "Excel",
+    "\u4F18\u5316",
+    "Spring",
+    "Innodb",
+    "Python",
+    "\u7F13\u5B58",
+    "\u67B6\u6784",
+    "\u529F\u80FD",
+    "Mybatis",
+    "Java Ee",
+    "Alibaba",
+    "Sentinel",
+    "rocketmq",
+    "\u5927\u6570\u636E",
+    "\u6570\u636E\u5E93",
+    "Spring Boot",
+    "springcloud",
+    "Mybatis-Plus",
+    "Sql\u6570\u636E\u5E93",
+    "\u6570\u636E\u7ED3\u6784",
+    "Spring\u6846\u67B6",
+    "\u7A0B\u5E8F\u8BBE\u8BA1",
+    "\u8BBE\u8BA1\u6A21\u5F0F",
+    "Elasticsearch",
+    "Mysql\u6570\u636E\u5E93"
+  ],
+  "EduBG": {
+    "School_name": "\u9752\u5C9B\u79D1\u6280\u5927\u5B66",
+    "Schooll_type": "",
+    "Degree": "\u672C\u79D1",
+    "Major": "\u6570\u636E\u79D1\u5B66\u4E0E\u5927\u6570\u636E\u6280\u672F"
+  },
+  "WorkExpers": [
+    {
+      "Start_time_year": "2024",
+      "Start_time_month": "10",
+      "End_time_year": "2024",
+      "End_time_month": "11",
+      "Still_active": false,
+      "Company_name": "\u4E0A\u6D77\u81F4\u5B87\u4FE1\u606F\u79D1\u6280\u6709\u9650\u516C\u53F8",
+      "Department": "",
+      "Location": "",
+      "Job_title": "\u540E\u7AEF\u5F00\u53D1\u5DE5\u7A0B\u5E08"
+    }
+  ],
+  "BaseInfo": {
+    "Id": 0,
+    "Phone": "18146552582",
+    "Name": "\u95EB\u632F\u658C",
+    "Age": 0
+  }
+}
