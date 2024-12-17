@@ -34,6 +34,29 @@ namespace DAL.DataControl
                 try
                 {
                     OpenSqlConnection();
+
+                    string checkSql = "SELECT Id FROM ResumeModel WHERE FileBase64 = @FileBase64";
+
+                    
+                    if(Item is ResumeFile resume1)
+                        {
+                        using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+                        {
+                            checkCmd.Parameters.AddWithValue("@FileBase64", resume1.Base64Data);
+
+                            // 执行查询，获取已存在的关键字的 ID
+                            var existingId = checkCmd.ExecuteScalar();
+                            if (existingId != null)
+                            {
+                                // 如果找到了，直接返回已有的 Id
+                                return existingId.ToString();
+                            }
+                        }
+                        
+                        
+                    }
+
+
                     string IdReturn;
                     string sql = @"
         INSERT INTO ResumeModel
@@ -64,27 +87,6 @@ namespace DAL.DataControl
             return null;
         }
 
-        private string BuildWhereClause(Dictionary<string, List<string>> wheres)
-        {
-            if (wheres == null || wheres.Count == 0)
-                return "1=1";
-
-            var clauses = new List<string>();
-            foreach (var where in wheres)
-            {
-                if (where.Value.Count == 1)
-                {
-                    clauses.Add($"{where.Key} = '{where.Value[0]}'");
-                }
-                else
-                {
-                    var inClause = string.Join(", ", where.Value.ConvertAll(val => $"'{val}'"));
-                    clauses.Add($"{where.Key} IN ({inClause})");
-                }
-            }
-
-            return string.Join(" AND ", clauses);
-        }
 
         public List<object> Select(Dictionary<string, List<string>> Wheres)
         {

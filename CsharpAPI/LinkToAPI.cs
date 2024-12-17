@@ -1,5 +1,8 @@
-﻿using Models;
+﻿using Function;
+using Microsoft.VisualBasic.FileIO;
+using Models;
 using Models.ResumeInfo;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -97,11 +100,13 @@ namespace CsharpAPI
             //TODO 编写技能评级代码
             throw new NotImplementedException();
         }
-
-        ResumeInfo IServer.ExtractResumeFile(ResumeFile resumeFile)
+        public ResumeInfo ExtractResumeFile(ResumeFile resumeFile)
         {
-            // TODO 编写简历解析代码逻辑
-            throw new NotImplementedException();
+
+            Base64Helper.Base64StringToFile(resumeFile.Base64Data, resumeFile.Filename);
+            ResumeInfo resumeInfo = ResumeFile(resumeFile.Filename);
+            FileSystem.DeleteFile(resumeFile.Filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            return resumeInfo;
         }
     }
 

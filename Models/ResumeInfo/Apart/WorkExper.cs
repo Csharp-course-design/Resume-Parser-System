@@ -106,7 +106,7 @@ namespace Models.ResumeInfo.Apart
         public string ToStr()
         {
             string activeStatus = still_active ? "Still Active" : $"{end_time_year}-{end_time_month}";
-            return $"{company_name},{department},{location},{job_title},{start_time_year}-{start_time_month}, End: {activeStatus}";
+            return $"{company_name},{department},{location},{job_title},{start_time_year}-{start_time_month},{activeStatus}";
         }
 
     }

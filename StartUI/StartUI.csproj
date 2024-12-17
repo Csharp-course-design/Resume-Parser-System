@@ -12,10 +12,20 @@
     <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Fonts\Orbitron-Medium.ttf" />
     <None Remove="Resources\Arrow.jpg" />
+    <None Remove="Resources\char_state_tab.json" />
+    <None Remove="Resources\cn_synonym.txt" />
+    <None Remove="Resources\dict.txt" />
+    <None Remove="Resources\idf.txt" />
     <None Remove="Resources\Licence.jpg" />
     <None Remove="Resources\LoginLeft.jpg" />
     <None Remove="Resources\Logo.jpg" />
+    <None Remove="Resources\pos_prob_emit.json" />
+    <None Remove="Resources\pos_prob_start.json" />
+    <None Remove="Resources\pos_prob_trans.json" />
+    <None Remove="Resources\prob_emit.json" />
+    <None Remove="Resources\prob_trans.json" />
     <None Remove="Resources\StartBackground.jpg" />
+    <None Remove="Resources\stopwords.txt" />
     <None Remove="Resources\SubSuccess.jpg" />
   </ItemGroup>
 
@@ -35,10 +45,24 @@
     <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Fonts\Orbitron-Medium.ttf" />
     <Resource Include="Resources\Arrow.jpg" />
+    <Resource Include="Resources\char_state_tab.json" />
+    <Resource Include="Resources\cn_synonym.txt" />
+    <Resource Include="Resources\dict.txt" />
+    <Resource Include="Resources\idf.txt" />
     <Resource Include="Resources\Licence.jpg" />
     <Resource Include="Resources\LoginLeft.jpg" />
     <Resource Include="Resources\Logo.jpg" />
+    <Resource Include="Resources\pos_prob_emit.json" />
+    <Resource Include="Resources\pos_prob_start.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\pos_prob_trans.json" />
+    <Resource Include="Resources\prob_emit.json" />
+    <Resource Include="Resources\prob_trans.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\StartBackground.jpg" />
+    <Resource Include="Resources\stopwords.txt" />
     <Resource Include="Resources\SubSuccess.jpg" />
   </ItemGroup>
 

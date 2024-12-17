@@ -199,7 +199,7 @@ namespace DAL.DataControl
         /// </summary>
         /// <param name="conditions">键为字段名称，值为可匹配的多个值</param>
         /// <returns>返回构建的WHERE子句字符串</returns>
-        public static string BuildWhereClause(Dictionary<string, HashSet<string>> conditions)
+        public static string BuildWhereClause(Dictionary<string, List<string>> conditions)
         {
             if (conditions == null || conditions.Count == 0)
             {
@@ -212,7 +212,7 @@ namespace DAL.DataControl
             foreach (var condition in conditions)
             {
                 string field = condition.Key;
-                HashSet<string> values = condition.Value;
+                List<string> values = condition.Value;
 
                 if (values != null && values.Count > 0)
                 {

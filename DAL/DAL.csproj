@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageReference Include="O2S.Components.PDFView4NET.WPF" Version="11.3.13" />
-    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
   </ItemGroup>
 
   <ItemGroup>

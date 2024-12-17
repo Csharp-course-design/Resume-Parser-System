@@ -21,7 +21,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Xps.Packaging;
 using DAL.DataControl;
+using DAL.RelationControl;
 using Function.Factory;
+using Function.NLP;
+using CsharpAPI;
 
 namespace FileRender
 {
@@ -127,7 +130,19 @@ namespace FileRender
                     MessageBox.Show($"加载失败: {ex.Message}");
                 }
             }
-            //(new ResumeFileControl()).Insert(ResumeFIleFactory.Get(value));
+            ResumeFile resumeFile = (ResumeFile)ResumeFIleFactory.Get(value);
+            string FileId = (new ResumeFileControl()).InsertReturnID(resumeFile);
+            List<string> KeyIds = new List<string>();
+            string fileContent = (new LinkToAPI()).ExtractResumeFile(resumeFile).ToStr();
+            List<string> KeyWords = new List<string>(NLPSplit.Split(fileContent));
+            foreach (string Key in KeyWords)
+            {
+                if(Key != "")
+                {
+                    KeyIds.Add(new KeyworldControl().InsertReturnID(Key));
+                }
+            }
+            (new RelationForKeyworld()).Link(FileId, KeyIds);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DAL.RelationControl
 {
-    internal class RelationForKeyworld
+    public class RelationForKeyworld
     {
         /// <summary>
         /// 建立简历实体与关键字关系表
@@ -11,17 +11,22 @@ namespace DAL.RelationControl
         /// <param name="FileId">文件id</param>
         /// <param name="KeyId">关键字id</param>
         /// <returns></returns>
-        public bool Link(string FileId, string KeyId)
+        public bool Link(string FileId, List<string> KeyId)
         {
-            string sql = "INSERT INTO RelationResumKeyworld (ResumeId,KeyId)" +
-                "VALUES (@ResumeId,@KeyId);";
-            // 准备 SqlCommand
-            SqlParameter[] cmdParms = new SqlParameter[]
-                {
+            bool flag = true;
+            foreach (var key in KeyId)
+            {
+                string sql = "INSERT INTO RelationResumKeyworld (ResumeId,KeyId)" +
+                    "VALUES (@ResumeId,@KeyId);";
+                // 准备 SqlCommand
+                SqlParameter[] cmdParms = new SqlParameter[]
+                    {
                                     new SqlParameter("@ResumeId", SqlDbType.Int) { Value = int.Parse(FileId) },
-                                    new SqlParameter("@KeyId", SqlDbType.Int) {Value = int.Parse(KeyId) },
-                };
-            return DBHelper.ExecuteSql(sql, cmdParms) > 0;
+                                    new SqlParameter("@KeyId", SqlDbType.Int) {Value = int.Parse(key) },
+                    };
+                flag &= (DBHelper.ExecuteSql(sql, cmdParms) > 0);
+            }
+            return flag;
         }
     }
 }
