@@ -26,6 +26,13 @@ public partial class ChartWindow : Window
         initDegreePieChart();
         initSkillBarChart();
         initAgePieChart();
+
+        if ((degreeMap!.Count | skillMap!.Count | ageMap!.Count) == 0)
+        {
+            MessageBox.Show("暂无已导入的简历", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        Show();
     }
 
     private static OxyColor getColor(string degree)
@@ -48,10 +55,10 @@ public partial class ChartWindow : Window
     {
         return age switch
         {
-            <=18 => OxyColor.FromArgb(255, 149, 113, 6), // 配色参考 www.materialpalette.com
-            <=20 => OxyColor.FromArgb(255, 126, 115, 6),
-            <=22 => OxyColor.FromArgb(255, 116, 122, 26),
-            <=24 => OxyColor.FromArgb(255, 114, 146, 53),
+            <= 18 => OxyColor.FromArgb(255, 149, 113, 6), // 配色参考 www.materialpalette.com
+            <= 20 => OxyColor.FromArgb(255, 126, 115, 6),
+            <= 22 => OxyColor.FromArgb(255, 116, 122, 26),
+            <= 24 => OxyColor.FromArgb(255, 114, 146, 53),
             _ => OxyColor.FromArgb(255, 64, 139, 67)
         };
     }
@@ -60,10 +67,10 @@ public partial class ChartWindow : Window
     {
         return age switch
         {
-            <=18 => "<=18",
-            <=20 => "19~20",
-            <=22 => "21~22",
-            <=24 => "23~24",
+            <= 18 => "<=18",
+            <= 20 => "19~20",
+            <= 22 => "21~22",
+            <= 24 => "23~24",
             _ => ">=25"
         };
     }
