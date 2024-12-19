@@ -16,4 +16,10 @@
       <ProjectReference Include="..\CsharpAPI\CsharpAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="MaterialDesignThemes.Wpf">
+        <HintPath>C:\Users\RiceQuakes\.nuget\packages\materialdesignthemes\5.1.0\lib\net8.0\MaterialDesignThemes.Wpf.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

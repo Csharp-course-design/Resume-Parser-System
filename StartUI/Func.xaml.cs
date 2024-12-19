@@ -765,7 +765,7 @@ namespace StartUI
 
         private void Button_Click_Analysis(object sender, RoutedEventArgs e)
         {
-            new ChartRender.MainWindow().Show();
+            new ChartRender.ChartWindow().Show();
         }
     }
 }
