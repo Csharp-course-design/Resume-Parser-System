@@ -80,7 +80,7 @@ namespace StartUI
 
                 LinkToAPI api = new LinkToAPI();
                 api.ResumeFile(Path.Combine(destinationPath));
-                File.WriteAllText(Path.ChangeExtension(destinationPath, ".json"), api.GetJson());
+                File.WriteAllText(Path.ChangeExtension(destinationPath, ".json_chart"), api.GetJson());
 
                 MessageBox.Show($"文件已成功上传到：{destinationPath}", "成功");
             }

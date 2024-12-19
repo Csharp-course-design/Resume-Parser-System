@@ -177,7 +177,7 @@ public partial class ChartWindow : Window
         var files = Directory.GetFiles(directoryPath);
         foreach (var file in files)
         {
-            if (!file.EndsWith(".json")) continue;
+            if (!file.EndsWith(".json_chart")) continue;
             try
             {
                 var resumeInfo = (ResumeInfo)Function.Factory.ResumeInfoFactory.Get(File.ReadAllText(file));
@@ -201,7 +201,6 @@ public partial class ChartWindow : Window
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
     }
 
