@@ -166,7 +166,7 @@ Template="{StaticResource Menu_SubMenu_Template}">
 
 
                         <MenuItem Header="统计分析"
-                              Template="{StaticResource Menu_Template}">
+                              Template="{StaticResource Menu_Template}" Click="Button_Click_Analysis">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60c;"/>
                             </MenuItem.Icon>

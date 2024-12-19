@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChartRender\ChartRender.csproj" />
     <ProjectReference Include="..\CsharpAPI\CsharpAPI.csproj" />
     <ProjectReference Include="..\FileRender\FileRender.csproj" />
   </ItemGroup>

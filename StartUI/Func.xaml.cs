@@ -762,6 +762,11 @@ namespace StartUI
             var obj = (new XMLFactory().Model(xmlContent));
             return (new CSVFactory()).Content(obj);
         }
+
+        private void Button_Click_Analysis(object sender, RoutedEventArgs e)
+        {
+            new ChartRender.MainWindow().Show();
+        }
     }
 }
 

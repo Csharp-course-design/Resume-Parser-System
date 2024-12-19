@@ -10,7 +10,7 @@
         /// <returns>base64字符串</returns>
         public static string FileToBase64String(string path)
         {
-            FileStream fsForRead = new FileStream(path, FileMode.Open);//文件路径
+            FileStream fsForRead = new FileStream(path, FileMode.Open); //文件路径
             string base64Str = "";
             try
             {
@@ -46,7 +46,7 @@
             bool opResult = false;
             try
             {
-                string strbase64 = base64String.Trim().Substring(base64String.IndexOf(",") + 1);   //将‘，’以前的多余字符串删除
+                string strbase64 = base64String.Trim().Substring(base64String.IndexOf(",") + 1); //将‘，’以前的多余字符串删除
                 MemoryStream stream = new MemoryStream(Convert.FromBase64String(strbase64));
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
                 byte[] b = stream.ToArray();
