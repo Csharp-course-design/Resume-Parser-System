@@ -24,17 +24,18 @@ namespace DAL.ViewControl
             };
             string whereClause = BuildWhereClause(Wheres);
 
-            string query = $"SELECT *FROM ResumeModel WHERE Id IN (SELECT * FROM ResumeKeyworldView WHERE {whereClause});";
+            string query = $"SELECT *FROM ResumeModel WHERE Id IN (SELECT ResumeId FROM ResumeKeyworldView WHERE {whereClause});";
+
             if (Wheres.Count == 0)
             {
-                query = "SELECT * FROM ResumeKeyworldView;";
+                query = "SELECT * FROM ResumeModel;";
             }
 
             List<ResumeFile> results = new List<ResumeFile>();
 
-            using (var connection = GetSqlConnection())
+            var connection = GetSqlConnection();
             {
-                connection.Open();
+                OpenSqlConnection();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())

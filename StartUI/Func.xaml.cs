@@ -21,6 +21,12 @@ using YourNamespace;
 using JiebaNet.Segmenter.Common;
 using MySqlX.XDevAPI.Common;
 using Models.ResumeInfo;
+using DAL.DataControl;
+using DAL.ViewControl;
+using Function.NLP;
+using BLL;
+using Function.Factory;
+using Models;
 
 namespace StartUI
 {
@@ -41,7 +47,7 @@ namespace StartUI
 
         private void Button_Click_ChangeSize(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Maximized)
+            if (this.WindowState == WindowState.Maximized)
             {
                 Max.Visibility = Visibility.Visible;
                 Normal.Visibility = Visibility.Collapsed;
@@ -58,7 +64,7 @@ namespace StartUI
 
         private void Button_Click_Min(object sender, RoutedEventArgs e)
         {
-            this.WindowState= WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -75,7 +81,7 @@ namespace StartUI
             InputAreaScrollViewer.Visibility = Visibility.Visible;
             closeInputAreaButton.Visibility = Visibility.Visible;
             closeInputAreaIcon.Visibility = Visibility.Visible;
-            
+
 
             // 创建文件选择对话框
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
@@ -206,13 +212,13 @@ namespace StartUI
         {
             InputArea.Visibility = Visibility.Collapsed;
             InputAreaScrollViewer.Visibility = Visibility.Collapsed;
-            closeInputAreaButton.Visibility = Visibility.Collapsed; 
+            closeInputAreaButton.Visibility = Visibility.Collapsed;
             closeInputAreaIcon.Visibility = Visibility.Collapsed;
 
 
             InputArea.Text = string.Empty;
         }
-         
+
         private void MenuItem_Click_JSON(object sender, RoutedEventArgs e)
         {
             InputArea.Visibility = Visibility.Visible;
@@ -244,7 +250,7 @@ namespace StartUI
 
                 // 如果文件存在，直接读取内容
                 if (System.IO.File.Exists(savePath))
-                { 
+                {
                     string existingContent = System.IO.File.ReadAllText(savePath);
                     InputArea.Text = existingContent;
                     return;
@@ -539,15 +545,15 @@ namespace StartUI
             {
                 string filePath = directoryPath + file;
                 //MessageBox.Show(file);
-                if(file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
+                if (file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
                     || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
                 {
                     nlis.Add(file);
                 }
-                
+
             }
 
-            if(nlis.Count == 0)
+            if (nlis.Count == 0)
             {
                 MessageBox.Show("查询不到对应结果");
                 return;
@@ -562,7 +568,7 @@ namespace StartUI
 
         private void TestClick(object sender, RoutedEventArgs e)
         {
-            List<string> Test = new List<string> ();
+            List<string> Test = new List<string>();
             Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
             DocDisplay.ShowFiles(Test);
             DocDisplay.Visibility = Visibility.Visible;
@@ -645,7 +651,7 @@ namespace StartUI
                 //    InputArea.Text = existingContent;
                 //    return;
                 //}
-                 
+
 
 
                 try
@@ -663,11 +669,12 @@ namespace StartUI
                         {
                             convertedContent = JsonToXml(fileContent);
                         }
-                        else if(targetExtension == ".json")
+                        else if (targetExtension == ".json")
                         {
                             MessageBox.Show("JSON文件已存在");
                             return;
-;                        }
+                            ;
+                        }
                     }
                     else if (fileExtension == ".csv")
                     {
@@ -679,7 +686,7 @@ namespace StartUI
                         {
                             convertedContent = CsvToXml(fileContent);
                         }
-                        else if(targetExtension == ".csv")
+                        else if (targetExtension == ".csv")
                         {
                             MessageBox.Show("CSV文件已存在");
                             return;
@@ -695,7 +702,7 @@ namespace StartUI
                         {
                             convertedContent = XmlToCsv(fileContent);
                         }
-                        else if(targetExtension == ".xml")
+                        else if (targetExtension == ".xml")
                         {
                             MessageBox.Show("XML文件已存在");
                             return;
@@ -761,6 +768,112 @@ namespace StartUI
             var obj = (new XMLFactory().Model(xmlContent));
             return (new CSVFactory()).Content(obj);
         }
+
+        private void ShowFile()
+        {
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
+
+        private void HidenFile()
+        {
+            DocDisplay.ClearAll();
+            DocDisplay.Visibility = Visibility.Collapsed;
+            DocDisplayScroll.Visibility = Visibility.Collapsed;
+            DocDisplayIcon.Visibility = Visibility.Collapsed;
+            DocDisplayButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KeyWord_Click(object sender, RoutedEventArgs e)
+        {
+            //closeKeyWord.Visibility = Visibility.Visible;
+            //KeyWordScroll.Visibility = Visibility.Visible;
+            //closeKeyWordBtn.Visibility = Visibility.Visible;
+            string userInput = ShowInputDialog("输入规则1");
+
+            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(new List<string>(userInput.Split(','))));
+            ShowFile();
+        }
+
+        private void LongText_Click(object sender, RoutedEventArgs e)
+        {
+            string userInput = ShowInputDialog("输入规则2");
+            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(ElasticKey.Get(new List<string>(NLPSplit.Split(userInput)))));
+            ShowFile();
+        }
+
+        private void closeKeyWordBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            InputArea.Visibility = Visibility.Visible;
+            InputAreaScrollViewer.Visibility = Visibility.Visible;
+            closeInputAreaButton.Visibility = Visibility.Visible;
+            closeInputAreaIcon.Visibility = Visibility.Visible;
+
+
+            // 创建文件选择对话框
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Title = "选择一个文件",
+                Filter = "支持的文件 (*.pdf;*.docx;*.doc;*.txt)|*.pdf;*.docx;*.doc;*.txt|所有文件 (*.*)|*.*",
+                Multiselect = false // 限制只选择一个文件
+            };
+
+            // 显示对话框并判断用户是否选择了文件
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                // 获取文件的绝对路径
+                string filePath = openFileDialog.FileName;
+
+                LinkToAPI api = new LinkToAPI();
+
+                try
+                {
+                    // 调用 ResumeFile 方法解析文件内容
+                    var API_RETURN = api.GetSkillGrade((ResumeFile)ResumeFIleFactory.Get( filePath));
+                    string result = API_RETURN?.ToString();
+
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        throw new Exception("解析结果为空。");
+                    }
+
+                    // 显示解析结果到 InputArea
+                    InputArea.Text = result;
+
+
+                }
+                catch (Exception ex)
+                {
+                    // 捕获异常并提示
+                    MessageBox.Show($"发生错误: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                // 用户取消选择
+                MessageBox.Show("未选择任何文件。", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
     }
 }
 

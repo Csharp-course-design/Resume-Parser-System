@@ -71,9 +71,9 @@ namespace DAL.DataControl
 
             List<string> results = new List<string>();
 
-            using (var connection = GetSqlConnection())
+            var connection = GetSqlConnection();
             {
-                connection.Open();
+                OpenSqlConnection();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())

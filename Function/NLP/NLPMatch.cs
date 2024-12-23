@@ -17,7 +17,7 @@ namespace Function.NLP
         public float[] Features { get; set; }
     }
 
-    class NLPMatch
+    public class NLPMatch
     {
         public static double Match(string a, string b)
         {

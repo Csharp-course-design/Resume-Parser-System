@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.IO;
 using System.Windows;
 
@@ -56,6 +57,7 @@ namespace StartUI
         // 保存文件到指定路径
         private void SaveFileToDestination(string filePath)
         {
+            FileControl.SinglePut(filePath);
             try
             {
                 if (!Directory.Exists(DestinationFolder))
