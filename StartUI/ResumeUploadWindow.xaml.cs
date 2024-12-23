@@ -68,6 +68,15 @@ namespace StartUI
                 string fileName = Path.GetFileName(filePath);
                 string destinationPath = Path.Combine(DestinationFolder, fileName);
 
+                if (File.Exists(destinationPath)) // 移除已存在文件的只读属性，确保可以覆盖
+                {
+                    FileInfo fileInfo = new FileInfo(destinationPath);
+                    if (fileInfo.IsReadOnly)
+                    {
+                        fileInfo.IsReadOnly = false;
+                    }
+                }
+
                 File.Copy(filePath, destinationPath, true); // 覆盖已存在的文件
                 MessageBox.Show($"文件已成功上传到：{destinationPath}", "成功");
             }

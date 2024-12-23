@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
- 
+
 using Microsoft.VisualBasic;
 using CsharpAPI;
 using Function.TransFactory;
@@ -428,7 +428,8 @@ namespace StartUI
         private void SearchByDate_Click(object sender, RoutedEventArgs e)
         {
             // 弹出输入框让用户输入日期
-            string userInput = ShowInputDialog("请输入导入日期（格式：yyyy-MM-dd）");
+            string userInput = ShowInputDialog("请输入导入日期（格式：yyyy-MM-dd）",
+                DateTime.Now.ToString("yyyy-MM-dd"));
 
             if (!string.IsNullOrEmpty(userInput))
             {
@@ -475,10 +476,10 @@ namespace StartUI
         }
 
         // 弹出输入框让用户输入
-        private string ShowInputDialog(string prompt)
+        private string ShowInputDialog(string prompt, string defaultContent = "")
         {
             // 创建 InputDialog 对话框实例并传入提示信息
-            var inputDialog = new InputDialog(prompt);
+            var inputDialog = new InputDialog(prompt, defaultContent);
             bool? result = inputDialog.ShowDialog();  // 显示对话框并等待用户操作
 
             if (result == true)  // 如果用户点击了 OK
