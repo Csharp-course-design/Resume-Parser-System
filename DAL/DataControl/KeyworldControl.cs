@@ -1,6 +1,5 @@
 ﻿using DAL.DataControl.Interface;
 using Microsoft.Data.SqlClient;
-using Models;
 
 namespace DAL.DataControl
 {
@@ -81,7 +80,7 @@ namespace DAL.DataControl
                         while (reader.Read())
                         {
                             results.Add(
-                            
+
                                 reader.GetString(0)
                              //   Id = reader.GetInt32(reader.GetOrdinal("Id")),
                              //   FileName = reader.IsDBNull(reader.GetOrdinal("FileName")) ? null : reader.GetString(reader.GetOrdinal("FileName")),

@@ -1,11 +1,6 @@
 ﻿using DAL.DataControl;
 using Microsoft.Data.SqlClient;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.ViewControl
 {
@@ -47,7 +42,7 @@ namespace DAL.ViewControl
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Filename = reader.IsDBNull(reader.GetOrdinal("FileName")) ? string.Empty : reader.GetString(reader.GetOrdinal("FileName")),
                                 Base64Data = reader.IsDBNull(reader.GetOrdinal("FileBase64")) ? string.Empty : reader.GetString(reader.GetOrdinal("FileBase64")),
-                                Date = reader.IsDBNull(reader.GetOrdinal("ImportDate"))? default(DateTime): reader.GetDateTime(reader.GetOrdinal("ImportDate"))
+                                Date = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? default(DateTime) : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
                             });
                         }
                     }
@@ -57,8 +52,8 @@ namespace DAL.ViewControl
             return results;
 
         }
-        
 
-        
+
+
     }
 }

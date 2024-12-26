@@ -1,34 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using Microsoft.VisualBasic;
+﻿using BLL;
 using CsharpAPI;
-using Function.TransFactory;
-using Google.Protobuf.WellKnownTypes;
-using System.IO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using YourNamespace;
-using JiebaNet.Segmenter.Common;
-using MySqlX.XDevAPI.Common;
-using Models.ResumeInfo;
-using DAL.DataControl;
 using DAL.ViewControl;
-using Function.NLP;
-using BLL;
 using Function.Factory;
+using Function.NLP;
+using Function.TransFactory;
 using Models;
+using System.IO;
+using System.Windows;
+using System.Windows.Input;
+using YourNamespace;
 
 namespace StartUI
 {
+
     /// <summary>
     /// Func.xaml 的交互逻辑
     /// </summary>
@@ -38,6 +22,10 @@ namespace StartUI
         {
             InitializeComponent();
         }
+
+
+
+        string saveDirectory = AppDomain.CurrentDomain.BaseDirectory + @"\Info";
 
         #region 窗口处理事件
 
@@ -213,7 +201,6 @@ namespace StartUI
 
 
                 // 定义保存目录，文件名，保存文件路径 ：为了检测是否已经存在解析结果
-                string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
                 string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_json.txt";
                 string savePath = System.IO.Path.Combine(saveDirectory, fileName);
 
@@ -265,7 +252,6 @@ namespace StartUI
 
 
                 // 定义保存目录，文件名，保存文件路径 ：为了检测是否已经存在解析结果
-                string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
                 string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_csv.txt";
                 string savePath = System.IO.Path.Combine(saveDirectory, fileName);
 
@@ -317,7 +303,6 @@ namespace StartUI
                 string filePath = openFileDialog.FileName;
 
                 // 定义保存目录，文件名，保存文件路径 ：为了检测是否已经存在解析结果
-                string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
                 string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_xml.txt";
                 string savePath = System.IO.Path.Combine(saveDirectory, fileName);
 
@@ -459,7 +444,7 @@ namespace StartUI
 
             List<string> nlis = new List<string>();
 
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            string directoryPath = saveDirectory;
             foreach (var file in files)
             {
                 string filePath = directoryPath + file;
@@ -646,7 +631,7 @@ namespace StartUI
             List<string> matchingFiles = new List<string>();
 
             // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            string directoryPath = saveDirectory;
             var files = Directory.GetFiles(directoryPath);
 
             foreach (var file in files)
@@ -670,7 +655,7 @@ namespace StartUI
             List<string> matchingFiles = new List<string>();
 
             // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            string directoryPath = saveDirectory;
             var files = Directory.GetFiles(directoryPath);
 
             foreach (var file in files)
@@ -791,7 +776,7 @@ namespace StartUI
                 try
                 {
                     // 调用 ResumeFile 方法解析文件内容
-                    var API_RETURN = api.GetSkillGrade((ResumeFile)ResumeFIleFactory.Get( filePath));
+                    var API_RETURN = api.GetSkillGrade((ResumeFile)ResumeFIleFactory.Get(filePath));
                     string result = API_RETURN?.ToString();
 
                     if (string.IsNullOrEmpty(result))

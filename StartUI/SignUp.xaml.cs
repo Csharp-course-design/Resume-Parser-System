@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using MySql.Data.MySqlClient;
+using System.Windows;
 using System.Windows.Input;
-using MySql.Data.MySqlClient;
 
 namespace StartUI
 {
@@ -24,7 +24,7 @@ namespace StartUI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoginIn loginIn = new LoginIn();            
+            LoginIn loginIn = new LoginIn();
             loginIn.Show();
             this.Close();
         }
@@ -88,7 +88,7 @@ namespace StartUI
                 PasswordErrorTextBlock.Visibility = Visibility.Visible;
                 isValid = false;
             }
-           
+
             if (password != confirmPassword)      // 验证密码和确认密码一致
             {
                 ConfirmPasswordErrorTextBlock.Visibility = Visibility.Visible;
@@ -147,7 +147,7 @@ namespace StartUI
         private void UsernameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             UsernameRequire.Visibility = Visibility.Visible;
-            UsernameErrorTextBlock.Visibility = Visibility.Collapsed;          
+            UsernameErrorTextBlock.Visibility = Visibility.Collapsed;
         }
 
         private void EmailTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

@@ -1,5 +1,4 @@
-﻿using Function;
-using Models;
+﻿using Models;
 
 namespace Function.Factory
 {

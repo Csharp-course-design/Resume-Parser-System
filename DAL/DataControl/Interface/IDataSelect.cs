@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace DAL.DataControl.Interface
+﻿namespace DAL.DataControl.Interface
 {
     public interface IDataSelect
     {

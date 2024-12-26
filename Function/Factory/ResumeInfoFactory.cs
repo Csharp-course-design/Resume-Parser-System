@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using Models.ResumeInfo;
+﻿using Models.ResumeInfo;
 using Models.ResumeInfo.Apart;
+using Newtonsoft.Json.Linq;
 // G:\01____资源管理\03____工作\简历\赵雨禾-19511669233.pdf
 
 namespace Function.Factory

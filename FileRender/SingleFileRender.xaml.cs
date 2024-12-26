@@ -1,30 +1,10 @@
 ﻿using Aspose.Words;
 using Function;
-using Microsoft.VisualBasic.FileIO;
-using Models;
 using Microsoft.Web.WebView2.Wpf;
-using Spire.Additions.Xps.Schema;
-using System;
-using System.Collections.Generic;
+using Models;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Xps.Packaging;
-using DAL.DataControl;
-using DAL.RelationControl;
-using Function.Factory;
-using Function.NLP;
-using CsharpAPI;
 
 namespace FileRender
 {
@@ -74,7 +54,6 @@ namespace FileRender
                 // 加载 Word 文档
                 Document doc = new Document(fileName);
 
-                // 将文档保存为 XAML 流
                 // 将文档保存为 RTF 格式
                 using (MemoryStream rtfStream = new MemoryStream())
                 {
@@ -113,6 +92,7 @@ namespace FileRender
                 MessageBox.Show($"文件加载失败: {ex.Message}");
             }
         }
+
         public void OpenFile(string value)
         {
             if (value.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))

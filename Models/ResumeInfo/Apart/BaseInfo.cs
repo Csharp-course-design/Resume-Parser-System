@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Models.ResumeInfo.Apart
+﻿namespace Models.ResumeInfo.Apart
 {
     public class BaseInfo
     {
@@ -11,7 +9,7 @@ namespace Models.ResumeInfo.Apart
 
         public BaseInfo() { }
 
-        public BaseInfo(int id, string name,int age, string phone)
+        public BaseInfo(int id, string name, int age, string phone)
         {
             this.id = id;
             this.name = name;

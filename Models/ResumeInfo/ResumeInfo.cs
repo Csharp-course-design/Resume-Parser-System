@@ -1,7 +1,5 @@
 ﻿using Models.ResumeInfo.Apart;
 using System.Text;
-using System.Threading.Tasks;
-using Models.ResumeInfo.Apart;
 
 namespace Models.ResumeInfo
 {

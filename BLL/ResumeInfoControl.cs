@@ -1,9 +1,5 @@
-﻿using Models;
-using Models.ResumeInfo;
+﻿using Models.ResumeInfo;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace BLL
 {

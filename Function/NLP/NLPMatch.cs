@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Microsoft.ML;
+﻿using Microsoft.ML;
 using Microsoft.ML.Data;
 
 namespace Function.NLP

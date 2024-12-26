@@ -1,11 +1,7 @@
-﻿using Aspose.Words;
-using Models;
+﻿using Models;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using Function.Factory;
-using System.Security.Permissions;
 
 
 
@@ -20,6 +16,9 @@ namespace FileRender
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 清空当前显示所有内容
+        /// </summary>
         public void ClearAll()
         {
             tagControl.Items.Clear();
@@ -64,9 +63,9 @@ namespace FileRender
                 tagControl.Items.Add(tabItem);
             }
         }
+
         public void ShowFiles(List<string> files)
         {
-
             // 循环处理每个筛选后的文件
             foreach (var file in files)
             {
@@ -85,7 +84,7 @@ namespace FileRender
 
                 try
                 {
-                    // 假设 SingleFileRender 有一个 OpenFile 方法用于打开并显示文件内容
+                    //SingleFileRender 有一个 OpenFile 方法用于打开并显示文件内容
                     singleFileRender.OpenFile(file);
                 }
                 catch (Exception ex)
@@ -101,7 +100,5 @@ namespace FileRender
                 tagControl.Items.Add(tabItem);
             }
         }
-
-
     }
 }

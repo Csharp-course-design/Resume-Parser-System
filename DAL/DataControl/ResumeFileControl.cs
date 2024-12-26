@@ -1,12 +1,6 @@
 ﻿using DAL.DataControl.Interface;
 using Microsoft.Data.SqlClient;
 using Models;
-using Models.ResumeInfo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.DataControl
 {
@@ -24,7 +18,7 @@ namespace DAL.DataControl
 
         public int DeleteByID(string ID)
         {
-            string query = "DELETE FROM ResumeModel WHERE Id = "+ ID+";";
+            string query = "DELETE FROM ResumeModel WHERE Id = " + ID + ";";
             return (DBHelper.ExecuteSql(query));
         }
 
@@ -49,9 +43,9 @@ namespace DAL.DataControl
 
                     string checkSql = "SELECT Id FROM ResumeModel WHERE FileBase64 = @FileBase64";
 
-                    
-                    if(Item is ResumeFile resume1)
-                        {
+
+                    if (Item is ResumeFile resume1)
+                    {
                         using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
                         {
                             checkCmd.Parameters.AddWithValue("@FileBase64", resume1.Base64Data);
@@ -64,8 +58,8 @@ namespace DAL.DataControl
                                 return existingId.ToString();
                             }
                         }
-                        
-                        
+
+
                     }
 
 
@@ -104,8 +98,9 @@ namespace DAL.DataControl
         {
             string whereClause = BuildWhereClause(Wheres);
             string query = $"SELECT * FROM ResumeModel WHERE {whereClause}";
-            if (Wheres.Count == 0) {
-                 query = "SELECT * FROM ResumeModel;";
+            if (Wheres.Count == 0)
+            {
+                query = "SELECT * FROM ResumeModel;";
             }
 
             List<object> results = new List<object>();
@@ -188,7 +183,7 @@ namespace DAL.DataControl
                                 ImportDate = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
                             });
                         }
-                        
+
                     }
                 }
             }

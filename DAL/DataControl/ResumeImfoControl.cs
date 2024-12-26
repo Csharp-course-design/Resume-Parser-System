@@ -1,13 +1,12 @@
 ﻿using DAL.DataControl.Interface;
 using Microsoft.Data.SqlClient;
-using Models;
 using Models.ResumeInfo;
 using Models.ResumeInfo.Apart;
 using System.Data;
 
 namespace DAL.DataControl
 {
-    internal class ResumeInfoControl :  DataBaseControl, IDataInsert
+    internal class ResumeInfoControl : DataBaseControl, IDataInsert
     {
         public void Insert<T>(T Item)
         {

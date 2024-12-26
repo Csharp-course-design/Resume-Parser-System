@@ -2,14 +2,8 @@
 using Microsoft.VisualBasic.FileIO;
 using Models;
 using Models.ResumeInfo;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using static Microsoft.ML.Transforms.Text.TextNormalizingEstimator;
 
 namespace CsharpAPI
 {
@@ -127,10 +121,6 @@ namespace CsharpAPI
 
                 // 构建请求 URL 和查询参数
                 string requestUrl = $"https://api.xiaoxizn.com/v1/bundle/analyze_base";
-
-        //        "3a70ef70-b2fb-11ef-b1d5-ff5abccbf335";
-        //private const string Secret = "a21447af-000c-47b8-95cc-6b49308709f8";
-     
 
                 // 发送请求
                 using (HttpClient client = new HttpClient())

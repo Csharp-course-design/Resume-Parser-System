@@ -1,6 +1,5 @@
 ﻿using Models.ResumeInfo;
 using System.Xml.Serialization;
-using Models.ResumeInfo;
 
 namespace Function.TransFactory
 {

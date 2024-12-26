@@ -5,16 +5,15 @@ using Function.Factory;
 using Function.NLP;
 using Models;
 using Models.ResumeInfo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
     public class FileControl
     {
+        /// <summary>
+        /// 把指定路径下的文件添加到数据库中，并绑定好对应的关键
+        /// </summary>
+        /// <param name="FilePath">指定路径下的文件</param>
         static public void SinglePut(string FilePath)
         {
             string FileId = string.Empty;
@@ -37,9 +36,10 @@ namespace BLL
                         KeyIds.Add(new KeyworldControl().InsertReturnID(Key));
                     }
                 }
-            (new RelationForKeyworld()).Link(FileId, KeyIds);
+                (new RelationForKeyworld()).Link(FileId, KeyIds);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 (new ResumeFileControl()).DeleteByID(FileId);
             }
         }

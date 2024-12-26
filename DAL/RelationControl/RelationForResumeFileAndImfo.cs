@@ -14,7 +14,8 @@ namespace DAL.RelationControl
         public bool Link(string FileId, List<string> InfoId)
         {
             bool flag = true;
-            foreach (var item in InfoId) {
+            foreach (var item in InfoId)
+            {
                 string sql = "INSERT INTO RelationResumInfor (ResumeModelId,ResumeInfoId)" +
                 "VALUES (@ResumeModelId,@ResumeInfoId);";
                 // 准备 SqlCommand
@@ -26,7 +27,7 @@ namespace DAL.RelationControl
                 flag &= (DBHelper.ExecuteSql(sql, cmdParms) > 0);
             }
             return flag;
-            
+
         }
     }
 }

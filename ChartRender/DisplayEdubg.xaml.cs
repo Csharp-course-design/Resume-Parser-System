@@ -1,30 +1,18 @@
-﻿using LiveCharts.Wpf;
-using LiveCharts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BLL;
+﻿using BLL;
 using DAL.DataControl;
-using Models.ResumeInfo;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Models;
+using Models.ResumeInfo;
+using System.Windows.Controls;
 
 namespace ChartRender
 {
     // DisplayEdubg.xaml 的交互逻辑
     public partial class DisplayEdubg : UserControl
     {
-        Dictionary<string, int> Edu{
+        Dictionary<string, int> Edu
+        {
             get
             {
                 List<ResumeInfo> list = new List<ResumeInfo>();
@@ -36,13 +24,14 @@ namespace ChartRender
                 return ArmyClass.CountEduBG(list);
             }
 
-            set { 
+            set
+            {
 
             }
-}
-       
-          
-            public DisplayEdubg()
+        }
+
+
+        public DisplayEdubg()
         {
             InitializeComponent();
             Display();
@@ -51,7 +40,7 @@ namespace ChartRender
         private void Display()
         {
             var eduBackgrounds = Edu;
-           
+
 
             // 设置柱状图数据
             var barValues = new ChartValues<int>(eduBackgrounds.Values);

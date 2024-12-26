@@ -1,10 +1,5 @@
 ﻿using DAL.DataControl;
 using Function.NLP;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -22,10 +17,12 @@ namespace BLL
         {
             HashSet<string> result = new HashSet<string>();
             List<string> ans = new List<string>();
-            foreach (string key in keys) {
+            foreach (string key in keys)
+            {
                 result.Add(key);
-                ans =  (new KeyworldControl()).Select();
-                foreach (string value in ans) {
+                ans = (new KeyworldControl()).Select();
+                foreach (string value in ans)
+                {
                     if (NLPMatch.Match(key, value) > 0)
                     {
                         if (!result.Contains(value))

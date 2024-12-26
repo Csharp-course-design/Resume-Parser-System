@@ -1,10 +1,4 @@
-﻿using Models;
-using Models.ResumeInfo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models.ResumeInfo;
 
 namespace BLL
 {
@@ -25,8 +19,8 @@ namespace BLL
             return GetAgeStatistics(Age(resumeInfos));
         }
 
-        public static List<string> Skill(List<ResumeInfo> resumeInfos) 
-        { 
+        public static List<string> Skill(List<ResumeInfo> resumeInfos)
+        {
             List<string> strings = new List<string>();
             foreach (ResumeInfo resumeInfo in resumeInfos)
             {
