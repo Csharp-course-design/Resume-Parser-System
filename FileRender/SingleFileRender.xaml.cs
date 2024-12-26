@@ -37,7 +37,7 @@ namespace FileRender
         /// <summary>
         /// 统一读取
         /// </summary>
-        XpsDocument readerDoc;
+        //XpsDocument readerDoc;
 
         /// <summary>
         /// 转化临时显示文件
@@ -97,9 +97,21 @@ namespace FileRender
 
         public void OpenFile(ResumeFile value)
         {
-            Base64Helper.Base64StringToFile(value.Base64Data, value.Filename);
-            OpenFile(value.Filename);
-            FileSystem.DeleteFile(value.Filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = System.IO.Path.Combine(projectPath, value.Filename);
+
+            try
+            {
+                // 将 Base64 字符串转换为文件
+                Base64Helper.Base64StringToFile(value.Base64Data, filePath);
+
+                // 打开文件
+                OpenFile(filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"文件加载失败: {ex.Message}");
+            }
         }
         public void OpenFile(string value)
         {
@@ -130,19 +142,6 @@ namespace FileRender
                     MessageBox.Show($"加载失败: {ex.Message}");
                 }
             }
-            ResumeFile resumeFile = (ResumeFile)ResumeFIleFactory.Get(value);
-            string FileId = (new ResumeFileControl()).InsertReturnID(resumeFile);
-            List<string> KeyIds = new List<string>();
-            string fileContent = (new LinkToAPI()).ExtractResumeFile(resumeFile).ToStr();
-            List<string> KeyWords = new List<string>(NLPSplit.Split(fileContent));
-            foreach (string Key in KeyWords)
-            {
-                if(Key != "")
-                {
-                    KeyIds.Add(new KeyworldControl().InsertReturnID(Key));
-                }
-            }
-            (new RelationForKeyworld()).Link(FileId, KeyIds);
         }
     }
 }

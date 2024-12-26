@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Microsoft.VisualBasic;
 using CsharpAPI;
 using Function.TransFactory;
@@ -21,6 +20,12 @@ using YourNamespace;
 using JiebaNet.Segmenter.Common;
 using MySqlX.XDevAPI.Common;
 using Models.ResumeInfo;
+using DAL.DataControl;
+using DAL.ViewControl;
+using Function.NLP;
+using BLL;
+using Function.Factory;
+using Models;
 
 namespace StartUI
 {
@@ -34,6 +39,20 @@ namespace StartUI
             InitializeComponent();
         }
 
+        #region 窗口处理事件
+
+        private void TestClick(object sender, RoutedEventArgs e)
+        {
+            List<string> Test = new List<string>();
+            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
+            DocDisplay.ShowFiles(Test);
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
+
+
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -41,7 +60,7 @@ namespace StartUI
 
         private void Button_Click_ChangeSize(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Maximized)
+            if (this.WindowState == WindowState.Maximized)
             {
                 Max.Visibility = Visibility.Visible;
                 Normal.Visibility = Visibility.Collapsed;
@@ -58,7 +77,7 @@ namespace StartUI
 
         private void Button_Click_Min(object sender, RoutedEventArgs e)
         {
-            this.WindowState= WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -88,25 +107,9 @@ namespace StartUI
             // 显示对话框并判断用户是否选择了文件
             if (openFileDialog.ShowDialog() == true)
             {
-
-                // 显示文件路径（也可以替换为其他逻辑）
-                // MessageBox.Show($"您选择的文件路径是：{filePath}", "文件路径", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
                 // 获取文件的绝对路径
                 string filePath = openFileDialog.FileName;
 
-                //// 定义保存目录，文件名，保存文件路径
-                //string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
-                //string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_content.txt";
-                //string savePath = System.IO.Path.Combine(saveDirectory, fileName);
-
-                //// 如果文件存在，直接读取内容
-                //if (System.IO.File.Exists(savePath))
-                //{
-                //    string existingContent = System.IO.File.ReadAllText(savePath);
-                //    InputArea.Text = existingContent;
-                //}
 
                 // 创建 LinkToAPI 实例
                 LinkToAPI api = new LinkToAPI();
@@ -139,7 +142,6 @@ namespace StartUI
                     // 将解析结果写入文件
                     System.IO.File.WriteAllText(savePath, result);
 
-                    //MessageBox.Show("格式转换完成");
 
 
                     var resJson = (new JsonFactory()).Content(API_RETURN);
@@ -161,10 +163,6 @@ namespace StartUI
                     fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + ".xml";
                     savePath = System.IO.Path.Combine(saveDirectory, fileName);
                     System.IO.File.WriteAllText(savePath, resXML);
-
-
-                    // 提示保存成功
-                    //MessageBox.Show($"解析结果已保存到: {savePath}", "保存成功", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -172,28 +170,6 @@ namespace StartUI
                     MessageBox.Show($"发生错误: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-                //// 解析返回结果
-                //if (api.ResumeFile(filePath).ToString() == string.Empty)
-                //{
-                //    throw new Exception("Null ");
-                //}
-                //InputArea.Text = api.ResumeFile(filePath).ToString();
-
-                //// 定义保存目录
-                //string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
-
-                //// 创建保存目录（如果不存在）
-                //if (!System.IO.Directory.Exists(saveDirectory))
-                //{
-                //    System.IO.Directory.CreateDirectory(saveDirectory);
-                //}
-
-                //// 定义保存文件路径
-                //string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_content.txt";
-                //string savePath = System.IO.Path.Combine(saveDirectory, fileName);
-
-                //// 将解析结果写入文件
-                //System.IO.File.WriteAllText(savePath, result);
             }
             else
             {
@@ -208,7 +184,6 @@ namespace StartUI
             InputAreaScrollViewer.Visibility = Visibility.Collapsed;
             closeInputAreaButton.Visibility = Visibility.Collapsed;
             closeInputAreaIcon.Visibility = Visibility.Collapsed;
-
 
             InputArea.Text = string.Empty;
         }
@@ -250,14 +225,10 @@ namespace StartUI
                     return;
                 }
 
-                // 显示文件路径（也可以替换为其他逻辑）
-                // MessageBox.Show($"您选择的文件路径是：{filePath}", "文件路径", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 // 创建 LinkToAPI 实例
                 LinkToAPI api = new LinkToAPI();
 
                 // 假设 API_Json 会包含返回的 JSON 数据
-                // InputArea.Text = api.ResumeFile(filePath).ToString();
                 var TestObject = api.ResumeFile(filePath);
                 var res = (new JsonFactory()).Content(TestObject);
                 InputArea.Text = res;
@@ -307,14 +278,11 @@ namespace StartUI
                     return;
                 }
 
-                // 显示文件路径（也可以替换为其他逻辑）
-                // MessageBox.Show($"您选择的文件路径是：{filePath}", "文件路径", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // 创建 LinkToAPI 实例
                 LinkToAPI api = new LinkToAPI();
 
                 // 假设 API_Json 会包含返回的 JSON 数据
-                // InputArea.Text = api.ResumeFile(filePath).ToString();
                 var TestObject = api.ResumeFile(filePath);
                 var res = (new CSVFactory()).Content(TestObject);
                 InputArea.Text = res;
@@ -361,14 +329,11 @@ namespace StartUI
                     return;
                 }
 
-                // 显示文件路径（也可以替换为其他逻辑）
-                // MessageBox.Show($"您选择的文件路径是：{filePath}", "文件路径", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // 创建 LinkToAPI 实例
                 LinkToAPI api = new LinkToAPI();
 
                 // 假设 API_Json 会包含返回的 JSON 数据
-                // InputArea.Text = api.ResumeFile(filePath).ToString();
                 var TestObject = api.ResumeFile(filePath);
                 var res = (new XMLFactory()).Content(TestObject);
                 InputArea.Text = res;
@@ -485,92 +450,6 @@ namespace StartUI
             return string.Empty;  // 如果用户点击了 Cancel 或关闭了对话框
         }
 
-        // 根据日期获取文件
-        private List<string> GetFilesByDate(string date)
-        {
-            List<string> matchingFiles = new List<string>();
-
-            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            var files = Directory.GetFiles(directoryPath);
-
-            foreach (var file in files)
-            {
-                var fileInfo = new FileInfo(file);
-
-                // 假设文件的创建日期是导入日期
-                if (fileInfo.CreationTime.ToString("yyyy-MM-dd") == date)
-                {
-                    matchingFiles.Add(file);
-                }
-            }
-
-            return matchingFiles;
-        }
-
-        // 根据文件名获取文件
-        private List<string> GetFilesByName(string fileName)
-        {
-            List<string> matchingFiles = new List<string>();
-
-            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            var files = Directory.GetFiles(directoryPath);
-
-            foreach (var file in files)
-            {
-                if (file.Contains(fileName)) // 根据文件名进行模糊查询
-                {
-                    matchingFiles.Add(file);
-                }
-            }
-
-            return matchingFiles;
-        }
-
-        // 显示查询结果
-        private void DisplayFiles(List<string> files)
-        {
-            FilesListBox.Items.Clear();  // 清空当前项
-
-            List<string> nlis = new List<string>();
-
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            foreach (var file in files)
-            {
-                string filePath = directoryPath + file;
-                //MessageBox.Show(file);
-                if(file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
-                    || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
-                {
-                    nlis.Add(file);
-                }
-
-            }
-
-            if(nlis.Count == 0)
-            {
-                MessageBox.Show("查询不到对应结果");
-                return;
-            }
-
-            DocDisplay.ShowFiles(nlis);
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
-        }
-
-        private void TestClick(object sender, RoutedEventArgs e)
-        {
-            List<string> Test = new List<string> ();
-            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
-            DocDisplay.ShowFiles(Test);
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
-        }
 
         private void Button_Click_Format_Conversion(object sender, RoutedEventArgs e)
         {
@@ -634,21 +513,6 @@ namespace StartUI
                     return;
                 }
 
-                //// 定义保存目录，文件名，保存文件路径 ：为了检测是否已经存在解析结果
-                //string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
-                //string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_xml.txt";
-                //string savePath = System.IO.Path.Combine(saveDirectory, fileName);
-
-                //// 如果文件存在，直接读取内容
-                //if (System.IO.File.Exists(savePath))
-                //{
-                //    string existingContent = System.IO.File.ReadAllText(savePath);
-                //    InputArea.Text = existingContent;
-                //    return;
-                //}
-
-
-
                 try
                 {
                     // 根据文件类型进行内容转换
@@ -664,11 +528,12 @@ namespace StartUI
                         {
                             convertedContent = JsonToXml(fileContent);
                         }
-                        else if(targetExtension == ".json")
+                        else if (targetExtension == ".json")
                         {
                             MessageBox.Show("JSON文件已存在");
                             return;
-;                        }
+                            ;
+                        }
                     }
                     else if (fileExtension == ".csv")
                     {
@@ -680,7 +545,7 @@ namespace StartUI
                         {
                             convertedContent = CsvToXml(fileContent);
                         }
-                        else if(targetExtension == ".csv")
+                        else if (targetExtension == ".csv")
                         {
                             MessageBox.Show("CSV文件已存在");
                             return;
@@ -696,7 +561,7 @@ namespace StartUI
                         {
                             convertedContent = XmlToCsv(fileContent);
                         }
-                        else if(targetExtension == ".xml")
+                        else if (targetExtension == ".xml")
                         {
                             MessageBox.Show("XML文件已存在");
                             return;
@@ -719,6 +584,107 @@ namespace StartUI
                 MessageBox.Show("未选择任何文件。", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void KeyWord_Click(object sender, RoutedEventArgs e)
+        {
+            string userInput = ShowInputDialog("输入规则1");
+
+            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(new List<string>(userInput.Split(','))));
+            ShowFile();
+        }
+
+        private void LongText_Click(object sender, RoutedEventArgs e)
+        {
+            string userInput = ShowInputDialog("输入规则2");
+            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(ElasticKey.Get(new List<string>(NLPSplit.Split(userInput)))));
+            ShowFile();
+        }
+
+        #endregion
+
+
+        #region 文件处理方法
+
+
+        // 根据日期获取文件
+        private List<string> GetFilesByDate(string date)
+        {
+            List<string> matchingFiles = new List<string>();
+
+            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            var files = Directory.GetFiles(directoryPath);
+
+            foreach (var file in files)
+            {
+                var fileInfo = new FileInfo(file);
+
+                // 假设文件的创建日期是导入日期
+                if (fileInfo.CreationTime.ToString("yyyy-MM-dd") == date)
+                {
+                    matchingFiles.Add(file);
+                }
+            }
+
+            return matchingFiles;
+        }
+
+        // 根据文件名获取文件
+        private List<string> GetFilesByName(string fileName)
+        {
+            List<string> matchingFiles = new List<string>();
+
+            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            var files = Directory.GetFiles(directoryPath);
+
+            foreach (var file in files)
+            {
+                if (file.Contains(fileName)) // 根据文件名进行模糊查询
+                {
+                    matchingFiles.Add(file);
+                }
+            }
+
+            return matchingFiles;
+        }
+
+        #endregion
+
+
+        // 显示查询结果
+        private void DisplayFiles(List<string> files)
+        {
+            FilesListBox.Items.Clear();  // 清空当前项
+
+            List<string> nlis = new List<string>();
+
+            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+            foreach (var file in files)
+            {
+                string filePath = directoryPath + file;
+                //MessageBox.Show(file);
+                if (file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
+                    || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                {
+                    nlis.Add(file);
+                }
+
+            }
+
+            if (nlis.Count == 0)
+            {
+                MessageBox.Show("查询不到对应结果");
+                return;
+            }
+
+            DocDisplay.ShowFiles(nlis);
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
+
 
         // 以下是示例转换方法的占位实现，可根据实际需求替换
         private string JsonToCsv(string jsonContent)
@@ -761,6 +727,99 @@ namespace StartUI
             // 实现 XML 转 CSV 的逻辑
             var obj = (new XMLFactory().Model(xmlContent));
             return (new CSVFactory()).Content(obj);
+        }
+
+        private void ShowFile()
+        {
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
+
+        private void HidenFile()
+        {
+            DocDisplay.ClearAll();
+            DocDisplay.Visibility = Visibility.Collapsed;
+            DocDisplayScroll.Visibility = Visibility.Collapsed;
+            DocDisplayIcon.Visibility = Visibility.Collapsed;
+            DocDisplayButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void closeKeyWordBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            InputArea.Visibility = Visibility.Visible;
+            InputAreaScrollViewer.Visibility = Visibility.Visible;
+            closeInputAreaButton.Visibility = Visibility.Visible;
+            closeInputAreaIcon.Visibility = Visibility.Visible;
+
+
+            // 创建文件选择对话框
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Title = "选择一个文件",
+                Filter = "支持的文件 (*.pdf;*.docx;*.doc;*.txt)|*.pdf;*.docx;*.doc;*.txt|所有文件 (*.*)|*.*",
+                Multiselect = false // 限制只选择一个文件
+            };
+
+            // 显示对话框并判断用户是否选择了文件
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                // 获取文件的绝对路径
+                string filePath = openFileDialog.FileName;
+
+                LinkToAPI api = new LinkToAPI();
+
+                try
+                {
+                    // 调用 ResumeFile 方法解析文件内容
+                    var API_RETURN = api.GetSkillGrade((ResumeFile)ResumeFIleFactory.Get( filePath));
+                    string result = API_RETURN?.ToString();
+
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        throw new Exception("解析结果为空。");
+                    }
+
+                    // 显示解析结果到 InputArea
+                    InputArea.Text = result;
+
+
+                }
+                catch (Exception ex)
+                {
+                    // 捕获异常并提示
+                    MessageBox.Show($"发生错误: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                // 用户取消选择
+                MessageBox.Show("未选择任何文件。", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

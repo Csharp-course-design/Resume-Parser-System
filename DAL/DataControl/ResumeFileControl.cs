@@ -10,12 +10,24 @@ using System.Threading.Tasks;
 
 namespace DAL.DataControl
 {
-    public class ResumeFileControl : DataBaseControl, IDataInsert, IDataSelect
+    public class ResumeFileControl : DataBaseControl, IDataInsert, IDataSelect, IDataDelete
     {
         public ResumeFileControl()
         {
 
         }
+
+        public int Delete(Dictionary<string, List<string>> Wheres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteByID(string ID)
+        {
+            string query = "DELETE FROM ResumeModel WHERE Id = "+ ID+";";
+            return (DBHelper.ExecuteSql(query));
+        }
+
         public void Insert<T>(T Item)
         {
             InsertReturnID(Item);
@@ -94,7 +106,6 @@ namespace DAL.DataControl
             string query = $"SELECT * FROM ResumeModel WHERE {whereClause}";
             if (Wheres.Count == 0) {
                  query = "SELECT * FROM ResumeModel;";
-
             }
 
             List<object> results = new List<object>();
@@ -177,6 +188,7 @@ namespace DAL.DataControl
                                 ImportDate = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
                             });
                         }
+                        
                     }
                 }
             }

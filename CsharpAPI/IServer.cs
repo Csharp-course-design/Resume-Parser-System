@@ -27,6 +27,6 @@ namespace CsharpAPI
         /// 键为技能字符串<br/>
         /// 值为技能评分
         /// </returns>
-        Dictionary<string, double> GetSkillGrade(ResumeFile resumeFile);
+        string GetSkillGrade(ResumeFile resumeFile);
     }
 }

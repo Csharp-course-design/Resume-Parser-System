@@ -88,7 +88,7 @@
 
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
+
     <!--主-子菜单-->
     <ControlTemplate x:Key="Menu_SubMenu_Template"
                  TargetType="{x:Type MenuItem}">
@@ -215,6 +215,113 @@
 
         </ControlTemplate.Triggers>
     </ControlTemplate>
+    <!--主-子菜单-->
+    <ControlTemplate x:Key="KeyWord_Template" TargetType="{x:Type MenuItem}">
+
+        <Border x:Name="border"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            Height="50"
+            Width="200"
+            CornerRadius="20"
+            Margin="0 0 0 10">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="22" Width="Auto" />
+                    <ColumnDefinition Width="13" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Icon -->
+                <ContentPresenter x:Name="Icon"
+                              ContentSource="Icon"
+                              HorizontalAlignment="Left"
+                              Height="35"
+                              Width="35"
+                              Margin="10 0 0 0"
+                              VerticalAlignment="Center"
+                              TextElement.FontFamily="../Fonts/#iconfont"
+                              TextElement.FontSize="35"
+                              TextElement.Foreground="#ffffff"/>
+
+                <!-- Menu Text -->
+                <ContentPresenter ContentSource="Header"
+                              Grid.Column="2"
+                              TextBlock.Foreground="#ffffff"
+                              TextBlock.FontSize="20"
+                              HorizontalAlignment="Center"
+                              RecognizesAccessKey="True"
+                              Margin="3 0 0 0"
+                              VerticalAlignment="Center" />
+
+                <!-- Popup for Submenu -->
+                <Popup x:Name="PART_Popup"
+                   AllowsTransparency="true"
+                   Focusable="false"
+                   HorizontalOffset="0"
+                   IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                   Placement="Right"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                   VerticalOffset="0">
+
+                    <Border x:Name="SubMenuBorder"
+                        Background="#3e3a65"
+                        BorderBrush="#3e3a65">
+
+                        <ScrollViewer x:Name="SubMenuScrollViewer"
+                                  Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+
+                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                <Canvas HorizontalAlignment="Left"
+                                    VerticalAlignment="Top" />
+
+                                <ItemsPresenter x:Name="ItemsPresenter"
+                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                            Grid.IsSharedSizeScope="true"
+                                            KeyboardNavigation.TabNavigation="Cycle" />
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+
+            <!-- Disable Popup Animation if Suspended -->
+            <Trigger Property="IsSuspendingPopupAnimation" Value="true">
+                <Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None" />
+            </Trigger>
+
+            <!-- Hide Icon if Null -->
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+            </Trigger>
+
+            <!-- Checked State -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" TargetName="Icon" Value="Visible" />
+                <Setter Property="Background" TargetName="border" Value="#21203b" />
+                <Setter Property="BorderBrush" TargetName="border" Value="#e9e9e9" />
+            </Trigger>
+
+            <!-- Highlighted State -->
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter Property="Background" TargetName="border" Value="#3a3a6b" />
+                <Setter Property="BorderBrush" TargetName="border" Value="#e9e9e9" />
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
 
     <!--子菜单-->
     <ControlTemplate x:Key="Item_Template"

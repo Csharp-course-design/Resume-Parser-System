@@ -67,6 +67,13 @@
                                 <VirtualizingStackPanel Orientation="Vertical"/>
                             </ItemsPanelTemplate>
                         </Menu.ItemsPanel>
+                        
+                        <!--<MenuItem Header="新增简历"
+                              Template="{StaticResource Menu_Template}">
+                        <MenuItem.Icon>
+                                <TextBlock Text="&#xe60e;"/>
+                            </MenuItem.Icon>
+                        </MenuItem>-->
 
 
 
@@ -86,7 +93,7 @@
 
 
                         <MenuItem Header="搜索简历"
-Template="{StaticResource Menu_SubMenu_Template}">
+Template="{StaticResource KeyWord_Template}">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe606;"/>
                             </MenuItem.Icon>
@@ -150,15 +157,29 @@ Template="{StaticResource Menu_SubMenu_Template}">
                         </MenuItem>
 
                         <MenuItem Header="简历匹配"
-                            Template="{StaticResource Menu_Template}">
+                            Template="{StaticResource KeyWord_Template}">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60d;"/>
                             </MenuItem.Icon>
+
+                            <MenuItem x:Name="KeyWord" Header="关键字匹配" 
+                                      Template="{StaticResource Item_Template}" Click="KeyWord_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xe669;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="LongText" Header="语义匹配"
+                                      Template="{StaticResource Item_Template}" Click="LongText_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xe669;"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
                         </MenuItem>
 
 
                         <MenuItem Header="技能评估"
-          Template="{StaticResource Menu_Template}">
+          Template="{StaticResource Menu_Template}"
+                                  Click="MenuItem_Click_2">
                             <MenuItem.Icon>
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe8a1;" />
                             </MenuItem.Icon>
@@ -166,7 +187,8 @@ Template="{StaticResource Menu_SubMenu_Template}">
 
 
                         <MenuItem Header="统计分析"
-                              Template="{StaticResource Menu_Template}">
+                              Template="{StaticResource Menu_Template}"
+                                  Click="MenuItem_Click_3">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60c;"/>
                             </MenuItem.Icon>
@@ -260,7 +282,6 @@ Template="{StaticResource Menu_SubMenu_Template}">
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Click="Button_Click_Min"/>
-
                     <ScrollViewer x:Name="InputAreaScrollViewer" 
                         HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                                   Margin="55" Visibility="Collapsed">
@@ -289,7 +310,6 @@ Template="{StaticResource Menu_SubMenu_Template}">
                          Background="Transparent"
                          Foreground="#ffffff" Margin="825,60,0,0" RenderTransformOrigin="1.535,-0.65"
                                              Visibility="Collapsed"/>
-
                     <Button x:Name="closeInputAreaButton" HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Width="30"
@@ -300,7 +320,7 @@ Template="{StaticResource Menu_SubMenu_Template}">
                             BorderBrush="Transparent"
                             RenderTransformOrigin="0.997,0.207" 
                             Visibility="Collapsed"
-                            Click="closeInputAreaButton_Click"/>
+                            Click="closeInputAreaButton_Click" Cursor="Hand"/>
                     <ScrollViewer x:Name="DocDisplayScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                                   Margin="10 55 10 10"
                                   Visibility="Collapsed">
@@ -311,6 +331,37 @@ Template="{StaticResource Menu_SubMenu_Template}">
                                                Width="900"
                                                Visibility="Collapsed"/>
                     </ScrollViewer>
+
+
+
+                    <materialDesign:PackIcon x:Name="closeKeyWord" Kind="WindowClose"
+                         Width="20"
+                         Height="20"
+                         Background="Transparent"
+                         Foreground="#ffffff" Margin="825,60,0,0" RenderTransformOrigin="1.535,-0.65"
+                                             Visibility="Collapsed"/>
+                    <Button x:Name="closeKeyWordBtn" HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Width="30"
+                            Height="30"
+                            Margin="0,55,145,0"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            RenderTransformOrigin="0.997,0.207" 
+                            Visibility="Collapsed"
+                            Click="closeKeyWordBtn_Click"/>
+                    <ScrollViewer x:Name="KeyWordScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                  Margin="10 55 10 10"
+                                  Visibility="Collapsed">
+                        <Grid>
+                            <TextBox x:Name="KeyWordInput" Width="200" Height="30" />
+                            <Button x:Name="SearchButton" Content="Search" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,0,0" />
+                        </Grid>
+
+                    </ScrollViewer>
+                    
+                    
                     <materialDesign:PackIcon x:Name="DocDisplayIcon" 
                         Kind="WindowClose"
                  VerticalAlignment="Top"
