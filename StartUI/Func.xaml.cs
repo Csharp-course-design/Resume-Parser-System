@@ -450,48 +450,7 @@ namespace StartUI
             return string.Empty;  // 如果用户点击了 Cancel 或关闭了对话框
         }
 
-        // 根据日期获取文件
-        private List<string> GetFilesByDate(string date)
-        {
-            List<string> matchingFiles = new List<string>();
 
-            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            var files = Directory.GetFiles(directoryPath);
-
-            foreach (var file in files)
-            {
-                var fileInfo = new FileInfo(file);
-
-                // 假设文件的创建日期是导入日期
-                if (fileInfo.CreationTime.ToString("yyyy-MM-dd") == date)
-                {
-                    matchingFiles.Add(file);
-                }
-            }
-
-            return matchingFiles;
-        }
-
-        // 根据文件名获取文件
-        private List<string> GetFilesByName(string fileName)
-        {
-            List<string> matchingFiles = new List<string>();
-
-            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            var files = Directory.GetFiles(directoryPath);
-
-            foreach (var file in files)
-            {
-                if (file.Contains(fileName)) // 根据文件名进行模糊查询
-                {
-                    matchingFiles.Add(file);
-                }
-            }
-
-            return matchingFiles;
-        }
 
         // 显示查询结果
         private void DisplayFiles(List<string> files)
@@ -520,17 +479,6 @@ namespace StartUI
             }
 
             DocDisplay.ShowFiles(nlis);
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
-        }
-
-        private void TestClick(object sender, RoutedEventArgs e)
-        {
-            List<string> Test = new List<string>();
-            Test.Add("C:\\Users\\95432\\Desktop\\闫振斌.pdf");
-            DocDisplay.ShowFiles(Test);
             DocDisplay.Visibility = Visibility.Visible;
             DocDisplayScroll.Visibility = Visibility.Visible;
             DocDisplayIcon.Visibility = Visibility.Visible;
@@ -715,6 +663,7 @@ namespace StartUI
             return matchingFiles;
         }
 
+
         // 根据文件名获取文件
         private List<string> GetFilesByName(string fileName)
         {
@@ -734,42 +683,8 @@ namespace StartUI
 
             return matchingFiles;
         }
-
         #endregion
 
-
-        // 显示查询结果
-        private void DisplayFiles(List<string> files)
-        {
-            FilesListBox.Items.Clear();  // 清空当前项
-
-            List<string> nlis = new List<string>();
-
-            string directoryPath = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
-            foreach (var file in files)
-            {
-                string filePath = directoryPath + file;
-                //MessageBox.Show(file);
-                if (file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
-                    || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
-                {
-                    nlis.Add(file);
-                }
-
-            }
-
-            if (nlis.Count == 0)
-            {
-                MessageBox.Show("查询不到对应结果");
-                return;
-            }
-
-            DocDisplay.ShowFiles(nlis);
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
-        }
 
 
         // 以下是示例转换方法的占位实现，可根据实际需求替换
@@ -835,24 +750,6 @@ namespace StartUI
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void KeyWord_Click(object sender, RoutedEventArgs e)
-        {
-            //closeKeyWord.Visibility = Visibility.Visible;
-            //KeyWordScroll.Visibility = Visibility.Visible;
-            //closeKeyWordBtn.Visibility = Visibility.Visible;
-            string userInput = ShowInputDialog("输入规则1");
-
-            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(new List<string>(userInput.Split(','))));
-            ShowFile();
-        }
-
-        private void LongText_Click(object sender, RoutedEventArgs e)
-        {
-            string userInput = ShowInputDialog("输入规则2");
-            DocDisplay.ShowFiles((new ResumeKeyworldView()).SelectView(ElasticKey.Get(new List<string>(NLPSplit.Split(userInput)))));
-            ShowFile();
         }
 
         private void closeKeyWordBtn_Click(object sender, RoutedEventArgs e)
