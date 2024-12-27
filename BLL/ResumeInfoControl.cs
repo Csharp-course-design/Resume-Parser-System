@@ -8,7 +8,7 @@ namespace BLL
     /// </summary>
     public class ResumeInfoControl : IDisposable
     {
-        private string staticPath = AppDomain.CurrentDomain.BaseDirectory + @"\InfoSet.json";
+        private string staticPath = System.AppDomain.CurrentDomain.BaseDirectory + @"InfoSet.json";
         private Dictionary<string, ResumeInfo> InfoDic = new Dictionary<string, ResumeInfo>();
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace BLL
             {
                 // 返回指定键的 ResumeInfo，如果不存在则返回 null
                 InfoDic.TryGetValue(nameSpace, out ResumeInfo resumeInfo);
-                return resumeInfo;
+                return resumeInfo==null?new ResumeInfo(): resumeInfo;
             }
             set
             {
@@ -99,6 +99,7 @@ namespace BLL
                     // 如果键不存在，则添加新的键值对
                     InfoDic.Add(nameSpace, value);
                 }
+                SaveToFile();
             }
         }
 

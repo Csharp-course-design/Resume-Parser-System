@@ -6,7 +6,7 @@ namespace StartUI
 {
     public partial class ResumeUploadWindow : Window
     {
-        private const string DestinationFolder = @"E:\GitHubDeskTop_\Resume-Parser-System\Info";
+        private  string DestinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"\Info";
 
         public ResumeUploadWindow()
         {

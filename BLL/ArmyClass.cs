@@ -34,7 +34,11 @@ namespace BLL
             List<string> strings = new List<string>();
             foreach (ResumeInfo resumeInfo in resumeInfos)
             {
-                strings.Add(resumeInfo.EduBG.School_name);
+                if(resumeInfo != null)
+                {
+                    strings.Add(resumeInfo.EduBG.School_name);
+                }
+                
             }
             return strings;
         }
@@ -44,7 +48,11 @@ namespace BLL
             List<int> Ages = new List<int>();
             foreach (ResumeInfo resumeInfo in resumeInfos)
             {
-                Ages.Add(resumeInfo.BaseInfo.Age);
+                if(resumeInfo != null)
+                {
+                    Ages.Add(resumeInfo.BaseInfo.Age);
+                }
+                
             }
             return Ages;
         }
@@ -53,6 +61,7 @@ namespace BLL
             // 创建年龄段字典
             var ageGroups = new Dictionary<string, int>
         {
+            { "0-19", 0 },
             { "20-29", 0 },
             { "30-39", 0 },
             { "40-49", 0 },
@@ -63,6 +72,8 @@ namespace BLL
             // 按照年龄范围进行分组
             foreach (var age in ages)
             {
+                if (age >= 0 && age <= 19)
+                    ageGroups["20-29"]++;
                 if (age >= 20 && age <= 29)
                     ageGroups["20-29"]++;
                 else if (age >= 30 && age <= 39)
@@ -77,7 +88,6 @@ namespace BLL
 
             return ageGroups;
         }
-
         public static Dictionary<string, int> GetSkillStatistics(List<string> skills)
         {
             // 创建一个字典来存储技能及其出现次数
@@ -96,7 +106,24 @@ namespace BLL
                 }
             }
 
-            return skillCount;
+            // 按照出现次数排序，并取前20个技能
+            var topSkills = skillCount
+                .OrderByDescending(kv => kv.Value)
+                .Take(20)
+                .ToDictionary(kv => kv.Key, kv => kv.Value);
+
+            // 获取前20个技能之外的其他技能
+            var otherCount = skillCount
+                .Where(kv => !topSkills.ContainsKey(kv.Key))
+                .Sum(kv => kv.Value);
+
+            // 如果有其他技能，将其添加到字典中
+            if (otherCount > 0)
+            {
+                topSkills["Other"] = otherCount;
+            }
+
+            return topSkills;
         }
 
         public static Dictionary<string, int> GetEducationStatistics(List<string> educationBackgrounds)

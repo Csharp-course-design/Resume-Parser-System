@@ -73,12 +73,15 @@ namespace ChartRender
         private void UpdateMinMax(Dictionary<string, int> data, string category)
         {
             // 获取最大值和最小值
-            var maxItem = data.OrderByDescending(x => x.Value).First();
-            var minItem = data.OrderBy(x => x.Value).First();
+            if (data.Count > 0)
+            {
+                var maxItem = data.OrderByDescending(x => x.Value).First();
+                var minItem = data.OrderBy(x => x.Value).First();
 
-            // 更新界面上的文本
-            MaxValueText.Text = $"{category}中：{maxItem.Key} 占比最大 ({maxItem.Value}%)";
-            MinValueText.Text = $"，{minItem.Key} 占比最小 ({minItem.Value}%)";
+                // 更新界面上的文本
+                MaxValueText.Text = $"{category}中：{maxItem.Key} 最多，共有 ({maxItem.Value}个)";
+                MinValueText.Text = $"，{minItem.Key} 最小，共有 ({minItem.Value}个)";
+            }
         }
     }
 }

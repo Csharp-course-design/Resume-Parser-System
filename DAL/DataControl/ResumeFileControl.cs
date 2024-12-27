@@ -104,27 +104,31 @@ namespace DAL.DataControl
             }
 
             List<object> results = new List<object>();
-
-            using (var connection = GetSqlConnection())
+            var connection = GetSqlConnection();
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                  OpenSqlConnection();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            results.Add(new
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                FileName = reader.IsDBNull(reader.GetOrdinal("FileName")) ? null : reader.GetString(reader.GetOrdinal("FileName")),
-                                FileBase64 = reader.IsDBNull(reader.GetOrdinal("FileBase64")) ? null : reader.GetString(reader.GetOrdinal("FileBase64")),
-                                ImportDate = reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate"))
-                            });
+                                results.Add(new ResumeFile()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                    Filename = reader.IsDBNull(reader.GetOrdinal("FileName")) ? null : reader.GetString(reader.GetOrdinal("FileName")),
+                                    Base64Data = reader.IsDBNull(reader.GetOrdinal("FileBase64")) ? null : reader.GetString(reader.GetOrdinal("FileBase64")),
+                                    Date = (DateTime)(reader.IsDBNull(reader.GetOrdinal("ImportDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("ImportDate")))
+                                });
+                            }
                         }
                     }
-                }
+                
+
             }
+            
+           
+            
 
             return results;
         }

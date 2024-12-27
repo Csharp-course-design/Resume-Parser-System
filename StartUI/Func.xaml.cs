@@ -12,7 +12,6 @@ using YourNamespace;
 
 namespace StartUI
 {
-
     /// <summary>
     /// Func.xaml 的交互逻辑
     /// </summary>
@@ -22,8 +21,6 @@ namespace StartUI
         {
             InitializeComponent();
         }
-
-
 
         string saveDirectory = AppDomain.CurrentDomain.BaseDirectory + @"\Info";
 
@@ -117,7 +114,6 @@ namespace StartUI
                     InputArea.Text = result;
 
                     // 定义保存目录，文件名，保存文件路径
-                    string saveDirectory = "E:\\GitHubDeskTop_\\Resume-Parser-System\\Info";
                     string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath) + "_content.txt";
                     string savePath = System.IO.Path.Combine(saveDirectory, fileName);
 
@@ -436,40 +432,6 @@ namespace StartUI
         }
 
 
-
-        // 显示查询结果
-        private void DisplayFiles(List<string> files)
-        {
-            FilesListBox.Items.Clear();  // 清空当前项
-
-            List<string> nlis = new List<string>();
-
-            string directoryPath = saveDirectory;
-            foreach (var file in files)
-            {
-                string filePath = directoryPath + file;
-                //MessageBox.Show(file);
-                if (file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
-                    || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
-                {
-                    nlis.Add(file);
-                }
-
-            }
-
-            if (nlis.Count == 0)
-            {
-                MessageBox.Show("查询不到对应结果");
-                return;
-            }
-
-            DocDisplay.ShowFiles(nlis);
-            DocDisplay.Visibility = Visibility.Visible;
-            DocDisplayScroll.Visibility = Visibility.Visible;
-            DocDisplayIcon.Visibility = Visibility.Visible;
-            DocDisplayButton.Visibility = Visibility.Visible;
-        }
-
         private void Button_Click_Format_Conversion(object sender, RoutedEventArgs e)
         {
             // 创建文件选择对话框
@@ -648,14 +610,12 @@ namespace StartUI
             return matchingFiles;
         }
 
-
         // 根据文件名获取文件
         private List<string> GetFilesByName(string fileName)
         {
             List<string> matchingFiles = new List<string>();
-
-            // 在指定目录中搜索所有文件，假设路径是 "E:\GitHubDeskTop_\Resume-Parser-System\Info"
             string directoryPath = saveDirectory;
+
             var files = Directory.GetFiles(directoryPath);
 
             foreach (var file in files)
@@ -668,8 +628,41 @@ namespace StartUI
 
             return matchingFiles;
         }
+
         #endregion
 
+
+        // 显示查询结果
+        private void DisplayFiles(List<string> files)
+        {
+            FilesListBox.Items.Clear();  // 清空当前项
+
+            string directoryPath = saveDirectory;
+            List<string> nlis = new List<string>();
+            foreach (var file in files)
+            {
+                string filePath = directoryPath + file;
+                //MessageBox.Show(file);
+                if (file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) || file.EndsWith(".doc", StringComparison.OrdinalIgnoreCase)
+                    || file.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                {
+                    nlis.Add(file);
+                }
+
+            }
+
+            if (nlis.Count == 0)
+            {
+                MessageBox.Show("查询不到对应结果");
+                return;
+            }
+
+            DocDisplay.ShowFiles(nlis);
+            DocDisplay.Visibility = Visibility.Visible;
+            DocDisplayScroll.Visibility = Visibility.Visible;
+            DocDisplayIcon.Visibility = Visibility.Visible;
+            DocDisplayButton.Visibility = Visibility.Visible;
+        }
 
 
         // 以下是示例转换方法的占位实现，可根据实际需求替换
@@ -736,6 +729,7 @@ namespace StartUI
         {
 
         }
+
 
         private void closeKeyWordBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -804,7 +798,12 @@ namespace StartUI
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
+        }
 
+        private void Caculae_Click(object sender, RoutedEventArgs e)
+        {
+
+            (new Window1()).ShowDialog();
         }
     }
 }

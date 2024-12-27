@@ -188,18 +188,18 @@ Template="{StaticResource KeyWord_Template}">
 
                         <MenuItem Header="统计分析"
                               Template="{StaticResource Menu_Template}"
-                                  Click="MenuItem_Click_3">
+                                  Click="Caculae_Click">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60c;"/>
                             </MenuItem.Icon>
                         </MenuItem>
 
-                        <MenuItem Header="报告生成"
+                        <!--<MenuItem Header="报告生成"
                               Template="{StaticResource Menu_Template}" Click="TestClick">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60b;"/>
                             </MenuItem.Icon>
-                        </MenuItem>
+                        </MenuItem>-->
                     </Menu>
 
                 </StackPanel>
