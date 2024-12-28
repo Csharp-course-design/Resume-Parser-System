@@ -187,8 +187,7 @@ Template="{StaticResource KeyWord_Template}">
 
 
                         <MenuItem Header="统计分析"
-                              Template="{StaticResource Menu_Template}"
-                                  Click="Caculae_Click">
+                              Template="{StaticResource Menu_Template}" Click="Button_Click_Analysis">
                             <MenuItem.Icon>
                                 <TextBlock Text="&#xe60c;"/>
                             </MenuItem.Icon>
