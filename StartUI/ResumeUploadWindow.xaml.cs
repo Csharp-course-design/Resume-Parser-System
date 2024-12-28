@@ -1,5 +1,4 @@
-﻿using CsharpAPI;
-using System;
+﻿using BLL;
 using System.IO;
 using System.Windows;
 
@@ -78,11 +77,6 @@ namespace StartUI
                 }
 
                 File.Copy(filePath, destinationPath, true); // 覆盖已存在的文件
-
-                LinkToAPI api = new LinkToAPI();
-                api.ResumeFile(Path.Combine(destinationPath));
-                File.WriteAllText(Path.ChangeExtension(destinationPath, ".json_chart"), api.GetJson());
-
                 MessageBox.Show($"文件已成功上传到：{destinationPath}", "成功");
             }
             catch (Exception ex)

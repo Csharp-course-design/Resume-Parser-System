@@ -15,12 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuncTest", "FuncTest\FuncTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{C1E5F4D1-9E9A-43F0-88AE-BFF1BB83418F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartRender-backup", "ChartRender-backup\ChartRender-backup.csproj", "{936A582D-6A58-419A-894C-461356887743}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRendertest", "FileRendertest\FileRendertest.csproj", "{FF9EE21F-7447-41F4-965B-D2D86B54132E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormFactory", "FormFactory\FormFactory.csproj", "{188D37CB-BAA8-4431-B6A5-3DDABD3C166C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileRender", "FileRender\FileRender.csproj", "{BB71C681-8CCF-4D7B-AA43-0A011B1113BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{925F0F40-94D6-4CF1-87D4-AC487F850410}"
@@ -69,6 +63,13 @@ Global
 		{925F0F40-94D6-4CF1-87D4-AC487F850410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{925F0F40-94D6-4CF1-87D4-AC487F850410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{925F0F40-94D6-4CF1-87D4-AC487F850410}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
+		{63A1BA12-1A80-4689-ADC8-B1942E461E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A1BA12-1A80-4689-ADC8-B1942E461E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A1BA12-1A80-4689-ADC8-B1942E461E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A1BA12-1A80-4689-ADC8-B1942E461E24}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> parent of 6b1a7de (Merge branch '统计分析')
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
